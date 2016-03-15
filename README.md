@@ -1,2 +1,0 @@
-# prophecies.github.io
-Website
