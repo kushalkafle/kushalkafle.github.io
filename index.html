@@ -211,7 +211,7 @@
 }
   </style>
 </head>
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="40">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="10">
 
 <nav class="navbar navbar-default navbar-fixed-top" data-spy="affix" data-offset-top="400">
   <div class="container">
@@ -229,7 +229,7 @@
         <li><a href="#research">RESEARCH</a></li>
         <li><a href="#publications">PUBLICATIONS</a></li>
         <li><a href="cv.pdf" target="_blank">C.V.</a></li>
-        <li><a href="#contact">CONTACT</a></li>
+<!--        <li><a href="#contact">CONTACT</a></li>-->
       </ul>
     </div>
   </div>
@@ -316,7 +316,7 @@
     </div>
     </div>
 
-<footer id="contact" class="container-fluid text-center">
+<footer class="container-fluid text-center">
     
     
 <!--
@@ -327,7 +327,7 @@
     <a href="#myPage" title="To Top">
     <span class="glyphicon glyphicon-home" style="font-size: 40px; color:white"></span>
   </a> &nbsp; &nbsp; &nbsp; &nbsp;
-<a href="mailto:kk6055@rit.edu"><span class="glyphicon glyphicon-envelope" style="font-size: 40px; color:white"></span> </a>
+<a id="contact"  href="mailto:kk6055@rit.edu"><span class="glyphicon glyphicon-envelope" style="font-size: 40px; color:white"></span> </a>
 <hr>
     <p> © 2016 Kushal Kafle <br>
 </footer>
@@ -338,11 +338,16 @@ $(document).ready(function(){
   $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
 
     // Prevent default anchor click behavior
-    event.preventDefault();
+    
 
     // Store hash
     var hash = this.hash;
-
+    
+    if (hash != "")
+        {
+            event.preventDefault();
+        }
+      
     // Using jQuery's animate() method to add smooth page scroll
     // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
     $('html, body').animate({
