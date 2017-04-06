@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <title>Kushal Kafle</title>
-     <description>Kushal Kafle's Personal Homepage</description>
+     <description>Kushal Kafle Personal Homepage</description>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -11,25 +11,27 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <style>
-  body {
-      font: 400 15px Lato, sans-serif;
-      line-height: 1.8;
-      color: #818181;
-  }
   h2 {
       font-size: 24px;
       text-transform: uppercase;
       color: #303030;
       font-weight: 600;
-      margin-bottom: 30px;
+      margin-bottom: 5px;
   }
   h4 {
       font-size: 19px;
       line-height: 1.375em;
       color: #303030;
       font-weight: 400;
-      margin-bottom: 30px;
-  }  
+      margin-bottom: 15px;
+  }
+.h4-small {
+      font-size: 14px;
+      line-height: 1.375em;
+      color: #303030;
+      font-weight: 400;
+      margin-bottom: 10px;
+  } 
   .jumbotron {
       background-color: #2c3e50;
       color: #fff;
@@ -211,7 +213,7 @@
 }
   </style>
 </head>
-<body id="Home" data-spy="scroll" data-target=".navbar" data-offset="200">
+<body id="Home" data-spy="scroll" data-target=".navbar" data-offset="300">
 
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
@@ -225,9 +227,11 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li data-toggle="collapse" data-target=".navbar-collapse.in"><a href="#about">ABOUT</a></li>
-        <li data-toggle="collapse" data-target=".navbar-collapse.in"><a href="#research">RESEARCH</a></li>
-        <li data-toggle="collapse" data-target=".navbar-collapse.in"><a href="#publications" >PUBLICATIONS</a></li>
+              <li data-toggle="collapse" data-target=".navbar-collapse.in"><a href="#home">HOME</a></li>
+
+    <li data-toggle="collapse" data-target=".navbar-collapse.in"><a href="#about">ABOUT</a></li>
+   <li data-toggle="collapse" data-target=".navbar-collapse.in"><a href="#news" >RECENT</a></li>
+    <li data-toggle="collapse" data-target=".navbar-collapse.in"><a href="#research">RESEARCH</a></li>
         <li data-toggle="collapse" data-target=".navbar-collapse.in"><a href="KushalKafle_CV.pdf" target="_blank">C.V.</a></li>
 <!--        <li><a href="#contact">CONTACT</a></li>-->
       </ul>
@@ -236,14 +240,14 @@
 </nav>
 <br>
 
-<div class="jumbotron">
+<div class="jumbotron" id="home">
     <div class="row">
         <div class="text-center">
   <h1>Kushal Kafle <a href="https://www.linkedin.com/in/kushal-kafle-23247458" target="_blank">
             <img border="0" alt="Kushal Kafle" src="linkedin_high.png" width="64"></a></h1> 
-  <p>Ph.D. Student at Center for Imaging Science, RIT <br>
-      <h5>kk6055_AT_rit.edu</h5>
-            </p>
+  Ph.D. Student at Center for Imaging Science, RIT <br>
+      kk6055_AT_rit.edu
+            
     </div>
     </div>
 </div>
@@ -254,37 +258,33 @@
     <div class="col-sm-6 col-sm-offset-2">
       <h2>About Me</h2><br>
         <h4>I am a third year Ph.D. student in <a href="http://www.cis.rit.edu" target="_blank">Chester F. Carlson Center for Imaging Science</a> at <a href="http://www.rit.edu" target="_blank">Rochester Institute of Technology</a>. I work at <a href="http://klab.cis.rit.edu" target="_blank">Machine and Neuromorphic Perception Laboratory, (a.k.a. klab)</a> which is directed by my advisor, Dr. <a href="http://chriskanan.com" target="_blank">Christopher Kanan.</a></h4>
-      <h4>Much of my research is devoted to developing better image understanding models. I am interested in applying deep learning and natural language processing techniques simultaneously understand images and interact with people. </h4>
-    </div>
-    <div class="col-sm-4">
+      <h4>Much of my research is devoted to developing better image understanding models. I am interested in applying deep learning and natural language processing techniques to simultaneously understand and communicate about the images. </h4>
+      </div>
+      <div class="col-sm-2">
         <br><br>
       <span><img src="kushal.jpg" alt="Kushal Kafle"></span>
     </div>
   </div>
 </div>
+    <div id="news" class = "container-fluid bg-grey">
+        <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
 
-<div class="container-fluid bg-grey">
-  <div class="row">
-    <div class="col-sm-4 col-sm-offset-2 logos row-fluid">
-      <div class="slideanim"> <a href="http://askimage.org" class="thumbnail"><h2 class='text-center'> screenshot of askimage.org</h2><img src="askimage.png" alt="ASKIMAGE"> </a><br>
-</div>
-    </div>
-    <div class="col-sm-6">
-      <h2>Latest Events</h2><br>
-    <h4><strong>October 2016:</strong> Survey paper on VQA titled "Visual Question Answering: Datasets, Algorithms, and Future Challenges" is <a href="https://arxiv.org/abs/1610.01465">available on arXiv.</a>  </h4>
-    <h4><strong>May 2016:</strong> My application to <a href = "https://sites.google.com/site/deeplearningsummerschool2016/"> Deep Learning Summer School, 2016 </a>was accepted with scholarship </h4>
+        <h2>Latest Events</h2><br>
+    <h4><strong>March 2017:</strong> Our new paper "An Analysis of Visual Question Answering" is <a href="https://arxiv.org/abs/1703.09684" target="_blank">available on arXiv.</a> Download the dataset <a href=" https://drive.google.com/file/d/0Bxky2G3DfeTMWXREV20xZE93Rnc/view?usp=sharing" target="_blank"> here.</a></h4>
+    <h4><strong>October 2016:</strong> Survey paper on VQA "Visual Question Answering: Datasets, Algorithms, and Future Challenges" is <a href="https://arxiv.org/abs/1610.01465">available on arXiv.</a></h4>
+    <h4><strong>May 2016:</strong> My application to <a href = "https://sites.google.com/site/deeplearningsummerschool2016/" target="_blank"> Deep Learning Summer School, 2016 </a>was accepted with scholarship.</h4>
     <h4><strong>April 2016:</strong> Launched <a href="http://askimage.org" target="_blank">online web demo</a> for Visual Question Answering </h4>
-    <h4><strong>March 2016:</strong> Our Paper "Answer Type Prediction for Visual Question Answering" was <a href="http://www.cv-foundation.org/openaccess/content_cvpr_2016/html/Kafle_Answer-Type_Prediction_for_CVPR_2016_paper.html">accepted to CVPR, 2016 !</a> </h4>
-    <h4><strong>March 2016:</strong> Our Amazon Web Services (AWS) grant proposal was accepted. Offered $15000 worth AWS credits usable towards any AWS service</h4>
+    <h4><strong>March 2016:</strong> Our Paper "Answer Type Prediction for Visual Question Answering" was <a href="http://www.cv-foundation.org/openaccess/content_cvpr_2016/html/Kafle_Answer-Type_Prediction_for_CVPR_2016_paper.html" target="_blank">accepted to CVPR, 2016 !</a> </h4>
+    <h4><strong>March 2016:</strong> Our Amazon Web Services (AWS) grant proposal was accepted. Awarded $15K worth AWS credits.</h4>
       <h4><strong>July 2015:</strong> Started Working at Machine and Neuromorphic Perception Laboratory under Dr. Christopher Kanan </h4>
     <h4><strong>June 2015:</strong> Passed Ph.d. qualifying exam</h4>
-
-      
     </div>
-  </div>
-</div>
+    </div>
+        </div>
 
-<div id="research" class="container-fluid">
+
+<!--<div id="research" class="container-fluid">
   <div class="row">
     
     <div class="col-sm-6 col-sm-offset-2">
@@ -294,34 +294,101 @@
         <br>
         VQA is specifically difficult given the dual requirement of (1) Implicitly performing object recognition, detection, scene and activity recognition etc. and (2) Understanding the Natural Language Question.<br>
         <br>
-        I am currently exploring several ideas to further improve VQA algorithm.
+        Be.
     </h4>
       
     </div>
-      <div class="col-sm-3">
+      <div class="col-sm-2">
       <div class="slideanim"> <a href="#publications" class="thumbnail"><img src="vqa.png" alt="OVERVIEW"> </a><br>
 </div>
     </div>
   </div>
-</div>
-<!-- Container (Services Section) -->
-<div id="publications" class="container-fluid text-center bg-grey">
+</div>-->
+
+    <div id="research">
+        <div class="container-fluid">
+        <h2 class="text-center">Latest Manuscripts</h2><br>
+
     <div class="row">
+    <div class="col-sm-3 col-sm-offset-2">
+      <div class="slideanim"> <img src="vqa-tasks.png" class="thumbnail img-responsive" alt="Different Tasks in VQA"><br>
+      </div>
+    </div>
     
-    <div class="col-sm-8 col-sm-offset-2">
-  <h2>Latest Manuscripts</h2>
-  <li><h4 class="text-left">Kafle, K., Kanan, C. (2016) Visual Question Answering: Datasets, Algorithms, and Future Challenges.
- <i>arXiv preprint arXiv:1610.01465</i>. 
-  <a href="https://arxiv.org/abs/1610.01465" target="_blank"> <kbd>paper</kbd> </a> </h4></li>
-      <h2>Refereed Publications</h2>
-  <li><h4 class="text-left">Kafle, K., Kanan, C. (2016) Answer-Type Prediction for Visual Question Answering. In: Proc. <i>IEEE Conference on Computer Vision and Pattern Recognition (CVPR-2016).</i> 
-  <a href="http://www.cv-foundation.org/openaccess/content_cvpr_2016/html/Kafle_Answer-Type_Prediction_for_CVPR_2016_paper.html" target="_blank"> <kbd>paper</kbd> </a> <a href="http://askimage.org" target="_blank"> <kbd>demo</kbd> </a> </h4></li>
-        <h2>Abstracts and Posters</h2>
-  <li><h4 class="text-left">Kanan, C., Kafle,K. (2016) A Bayesian Model of Visual Question Answering. <i>16<sup>th</sup> Annual Meeting, Vision Sciences Society, St. Pete Beach, Florida.</i></h4></li>
-</div>
+    <div class="col-sm-5 text-left">
+        <a href="https://arxiv.org/abs/1703.09684" target="_blank"><h4 class="mark"><strong>An Analysis of Visual Question Answering Datasets</strong><br>
+            <small><strong>Kushal Kafle</strong> and Christopher Kanan</small></h4></a>
+      <h4 class="h4-small"> Analyzing and comparing different VQA algorithms is notoriously opaque and difficult. In this paper, we analyze existing VQA algorithms using a new dataset that contains over 1.6 million questions organized into 12 different categories including questions that are meaningless for a given image. We also propose new evaluation schemes that compensate for over-represented question-types and make it easier to study the strengths and weaknesses of algorithms. Our experiments establish how attention helps certain categories more than others,  determine which models work better than others, and explain how simple models (e.g. MLP) can surpass more complex models (MCB) by simply learning to answer large, easy question categories.
+</h4>
+ <h4 class="text-danger"><strong>arXiv preprint</strong><br> 
+  <a href="https://arxiv.org/abs/1703.09684" target="_blank"><kbd>paper</kbd></a> 
+     <a href="https://drive.google.com/file/d/0Bxky2G3DfeTMWXREV20xZE93Rnc/view" target="_blank"><kbd>dataset</kbd></a><br>     
+        </h4>
+        
+        </div>
+        </div>
+        
+        
+            <div class="row">
+    <div class="col-sm-3 col-sm-offset-2">
+                <div class="slideanim"> <img src="vqa-framework.png" class="thumbnail img-responsive" alt="Common VQA Framework"><br>
+
+      </div>
+    </div>
+    
+    <div class="col-sm-5 text-left">
+        <a href="https://arxiv.org/abs/1610.01465" target="_blank"><h4 class="mark"><strong>Visual Question Answering: Datasets, Algorithms, and Future Challenges.</strong><br>
+            <small><strong>Kushal Kafle</strong> and Christopher Kanan</small></h4></a>
+      <h4 class="h4-small"> Since the release of the first VQA dataset in 2014, additional datasets have been released and many algorithms have been proposed. In this review, we critically examine the current state of VQA in terms of problem formulation, existing datasets, evaluation metrics, and algorithms. In particular, we discuss the limitations of current datasets with regard to their ability to properly train and assess VQA algorithms. We then exhaustively review existing algorithms for VQA. Finally, we discuss possible future directions for VQA and image understanding research.
+</h4>
+ <h4 class="text-danger"><strong>arXiv preprint</strong><br>
+  <a href="https://arxiv.org/abs/1610.01465" target="_blank"> <kbd>paper</kbd> </a> </h4><br>
+        
+        </div>
+        </div>
+    </div>
+        
+    <div class="container-fluid bg-grey">
+            <h2 class="text-center">Refereed Publications</h2><br>
+
+        
+            <div class="row">
+    <div class="col-sm-3 col-sm-offset-2">
+      <div class="slideanim"> <img src="answertype.png" alt="OVERVIEW" class="thumbnail img-responsive"><br>
+      </div>
+    </div>
+    
+    <div class="col-sm-5 text-left">
+        <a href="http://ieeexplore.ieee.org/document/7780907/" target="_blank"><h4 class="mark"><strong>Answer-Type Prediction for Visual Question Answering</strong><br>
+            <small><strong>Kushal Kafle</strong> and Christopher Kanan</small></h4></a>
+      <h4 class="h4-small">In this paper, we build a system capable of answering open-ended text-based questions about images, which is known as Visual Question Answering (VQA). Our approach's key insight is that we can predict the form of the answer from the question. We formulate our solution in a Bayesian framework. When our approach is combined with a discriminative model, the combined model achieves state-of-the-art results (at the time of publication) on four benchmark datasets for open-ended VQA: DAQUAR, COCO-QA, The VQA Dataset, and Visual7W. </h4>
+        
+ <h4 class="text-danger"><strong>IEEE Conference on Computer Vision and Pattern Recognition (CVPR 2016)</strong><br> 
+  <a href="http://ieeexplore.ieee.org/document/7780907/" target="_blank"> <kbd>paper</kbd> </a>
+        </h4>
+        
+        </div>
+        </div>
     </div>
     </div>
 
+        <!-- <div class="container-fluid bg-grey">
+            <h2 class="text-center">Abstracts and posters</h2><br>       
+            <div class="row">
+    <div class="col-sm-3 col-sm-offset-2">
+       <div class="slideanim"> <a href="#publications" class="thumbnail"><img src="vqa.png" alt="OVERVIEW"> </a><br></div>> 
+    </div>
+    
+    <div class="col-sm-8 text-left col-sm-offset-2">
+        <a href="https://arxiv.org/abs/1610.01465" target="_blank"><h4 class="mark"><strong>A Bayesian Model for Visual Question Answering</strong><br>
+            <small> Christopher Kanan <strong>Kushal Kafle</strong></small></h4></a>
+ <h4 class=""><em>16th Annual Meeting, Vision Sciences Society</em><br> </h4>
+        
+        </div>
+        </div>
+    </div>-->
+    
+    
 <footer class="container-fluid text-center">
 <script>
 $(document).ready(function(){
@@ -373,7 +440,7 @@ $(document).ready(function(){
   </a> &nbsp; &nbsp; &nbsp; &nbsp;
 <a id="contact"  href="mailto:kk6055@rit.edu"><span class="glyphicon glyphicon-envelope" style="font-size: 40px; color:white"></span> </a>
 <hr>
-    <p> © 2016 Kushal Kafle <br>
+    <p> © 2017 Kushal Kafle <br>
 
     </footer>
       
