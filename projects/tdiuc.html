@@ -315,13 +315,16 @@
 
     <div id="download">
         <div class="container-fluid">
-        <h2 class="text-center">Download</h2><br>
+        <h2 class="text-center">Download and Usage</h2><br>
 
     <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
         <p>Please <a href="../data/TDIUC.zip">click here</a> to download the TDIUC dataset (70MB). Please refer the README file for instructions on how to setup TDIUC. </p>
         <p>
         The folder contains all the question-answer pairs for train and validation split of TDIUC , manually created images, and scripts for downloading and setting up images from MS-COCO and Visual Genome. For your convinience, we have also included the script to calculate normalized and un-normalized MPT scores from the paper. The distribution format for TDIUC is structured to mirror the format from the <a href="http://www.visualqa.org/vqa_v1_download.html">VQA dataset</a>, so that you can directly use code written for the VQA dataset (almost) without modification.</p>
+        
+        <p class="lead bg-danger"> Warning: Validation/Test split of TDIUC uses question-answer pairs and images from the validation set of the VQA Dataset as well as images from the Visual Genome validation set. Do not use these data sources as additional data-augmentation in your training data if you are evaluating your model on TDIUC.
+        </p>
         
       </div>
     </div>
@@ -344,20 +347,20 @@
             
                 <div class="row">
     <div class="col-sm-4 col-sm-offset-2 text-center">
-        
-<a href="http://chriskanan.com" target="_blank"><img src="../chris-rit.jpg" class="img-circle center-block" alt="Christopher Kanan" height="200">
-        <h3>Christopher Kanan</h3></a>
-                            <p> Assistant Professor <br>
+        <a href="http://www.kushalkafle.com/" target="_blank"><img src="../kushal.jpg" class="img-circle center-block " alt="Kushal Kafle" height="200"></a>
+                            <a href="http://www.kushalkafle.com/"><h3>Kushal Kafle</h3></a>
+                            <p> Ph.D. Student <br>
                             Chester F. Carlson Center for Imaging Science<br>
                                 Rochester Institute of Technology
                             </p>
+
       </div>
         
                     
      <div class="col-sm-4 text-center">        
-<a href="http://www.kushalkafle.com/" target="_blank"><img src="../kushal.jpg" class="img-circle center-block " alt="Kushal Kafle" height="200">
-                            <a href="http://www.kushalkafle.com/"><h3>Kushal Kafle</h3></a>
-                            <p> Ph.D. Student <br>
+<a href="http://chriskanan.com" target="_blank"><img src="../chris-rit.jpg" class="img-circle center-block" alt="Christopher Kanan" height="200">
+        <h3>Christopher Kanan</h3></a>
+                            <p> Assistant Professor <br>
                             Chester F. Carlson Center for Imaging Science<br>
                                 Rochester Institute of Technology
                             </p>
