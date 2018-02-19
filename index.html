@@ -259,7 +259,8 @@
     <div class="col-sm-6 col-sm-offset-2">
       <h2>About Me</h2><br>
         <h4>I am a fourth year Ph.D. student in <a href="http://www.cis.rit.edu" target="_blank">Chester F. Carlson Center for Imaging Science</a> at <a href="http://www.rit.edu" target="_blank">Rochester Institute of Technology</a>. I work at <a href="http://klab.cis.rit.edu" target="_blank">Machine and Neuromorphic Perception Laboratory, (a.k.a. klab)</a> which is directed by my advisor, Dr. <a href="http://chriskanan.com" target="_blank">Christopher Kanan.</a></h4>
-      <h4>Much of my research is devoted to developing better image understanding models. I am interested in applying deep learning and natural language processing techniques to simultaneously understand and communicate about the images. </h4>
+      <h4>The overarching goal of my research is to develop develop robust vision and language models. Along the way, I have published about both novel data and algorithms for VQA (CVPR 2016, CVPR 2018) and the analysis of robustness of the VQA algorithms in presence of dataset bias (ICCV 2017, CVIU 2017). Currently, I am exploring techniques that can help vision and languge models go beyond the traditional bounds of classification based approaches.
+        </h4>
       </div>
       <div class="col-sm-2">
         <br><br>
@@ -272,12 +273,13 @@
     <div class="col-sm-8 col-sm-offset-2">
 
         <h2>Timeline Events</h2><br>
-     <h4><strong>Jul 2017:</strong> Our new paper "An Analysis of Visual Question Answering" was accepted to ICCV ! Also, <a href="https://arxiv.org/pdf/1703.09684.pdf" target="_blank">available on arXiv.</a></h4>
+             <h4><strong>Feb 2017:</strong> Our <a href="https://arxiv.org/abs/1801.08163" target="_blank"> new paper </a> "DVQA: Understanding Data Visualizations via Question Answering" was accepted to CVPR 2018! </h4>
+     <h4><strong>Jul 2017:</strong> Our new paper "An Analysis of Visual Question Answering" was accepted to ICCV 2017! Also, <a href="https://arxiv.org/pdf/1703.09684.pdf" target="_blank">available on arXiv.</a></h4>
         <h4><strong>Jun 2017:</strong> Our short <a href="kafle2017inlg.pdf" target="_blank">paper</a> "Data Augmentation for Visual Question Answering" was accepted to INLG 2017.</h4>
       <h4><strong>Jun 2017:</strong> Visual Question Answering (VQA) survey paper titled "Visual Question Answering: Datasets, Algorithms, and Future Challenges" was accepted to Computer Vision and Image Understanding Journal (CVIU). Also <a href="https://arxiv.org/abs/1610.01465">available on arXiv.</a></h4>
       <h4><strong>May 2017:</strong> Started working as Research Intern at Adobe Research.</h4>
     <h4><strong>May 2016:</strong> My application to <a href = "https://sites.google.com/site/deeplearningsummerschool2016/" target="_blank"> Deep Learning Summer School, 2016 </a>was accepted with scholarship.</h4>
-    <h4><strong>Apr 2016:</strong> Launched <a href="http://askimage.org" target="_blank">online web demo</a> for Visual Question Answering </h4>
+    <h4><strong>Apr 2016:</strong> Launched <a href="http://askimage.org" target="_blank">online web demo</a> for Visual Question Answering. (Currently under maintanance.) </h4>
     <h4><strong>Mar 2016:</strong> Our Paper "Answer Type Prediction for Visual Question Answering" was <a href="http://www.cv-foundation.org/openaccess/content_cvpr_2016/html/Kafle_Answer-Type_Prediction_for_CVPR_2016_paper.html" target="_blank">accepted to CVPR, 2016 !</a> </h4>
     <h4><strong>Mar 2016:</strong> Our Amazon Web Services (AWS) grant proposal was accepted. Awarded $15K worth AWS credits.</h4>
       <h4><strong>Jul 2015:</strong> Started Working at Machine and Neuromorphic Perception Laboratory under Dr. Christopher Kanan </h4>
@@ -313,6 +315,37 @@
 
     <div class="row">
     <div class="col-sm-3 col-sm-offset-2">
+      <div class="slideanim"> <img src="dvqa.png" class="thumbnail img-responsive" alt="DVQA"><br>
+      </div>
+    </div>
+    
+    <div class="col-sm-5 text-left">
+        <a href="https://arxiv.org/abs/1801.08163" target="_blank"><h4 class="mark"><strong>DVQA: Understanding Data Visualizations via Question Answering
+</strong><br>
+            <small><strong>Kushal Kafle</strong>, Scott Cohen, Brian Price, and Christopher Kanan</small></h4></a>
+      <h4 class="h4-small"> Bar charts are an effective way for humans to convey information to each other, but today's algorithms cannot parse them. Existing methods fail when faced with minor variations in appearance. Here, we present DVQA, a dataset that tests many aspects of bar chart understanding in a question answering framework. Unlike visual question answering (VQA), DVQA requires processing words and answers that are unique to a particular bar chart. State-of-the-art VQA algorithms perform poorly on DVQA, and we propose two strong baselines that perform considerably better. DVQA also serves as an important proxy task for several critical AI abilities, such as attention, working memory, visual reasoning and an ability to handle dynamic and out-of-vocabulary(OOV) labels. 
+
+</h4>
+ <h4 class="text-danger"><strong>IEEE Conference on Computer Vision and Pattern Recognition (CVPR 2018)</strong><br> 
+  <a href="https://arxiv.org/abs/1801.08163" target="_blank"><kbd>Paper</kbd></a> 
+     <!-- <a href="projects/tdiuc.html"><kbd>Project Page</kbd></a>-->
+     <kbd data-toggle="collapse" data-target="#kafle-cvpr2018">Bibtex</kbd>    
+     <div id="kafle-cvpr2018" class="collapse">
+    <pre><code>@inproceedings{kafle2018dvqa,
+  title={DVQA: Understanding Data Visualizations via Question Answering},
+  author={Kafle, Kushal and Cohen, Scott and Price, Brian and Kanan, Christopher},
+  booktitle={CVPR},
+  year={2018}
+}
+</code></pre>
+  </div>
+        </h4><br>
+        
+        </div>
+        </div>
+        
+       <div class="row">
+    <div class="col-sm-3 col-sm-offset-2">
       <div class="slideanim"> <img src="vqa-tasks.png" class="thumbnail img-responsive" alt="Different Tasks in VQA"><br>
       </div>
     </div>
@@ -338,9 +371,7 @@
         </h4><br>
         
         </div>
-        </div>
-        
-        
+        </div>     
           
           <div class="row">
     <div class="col-sm-3 col-sm-offset-2">
@@ -349,12 +380,12 @@
     </div>
     
     <div class="col-sm-5 text-left">
-        <a href="https://eventos.citius.usc.es/inlg2017/resources/final/1/1_Paper.pdf" target="_blank"><h4 class="mark"><strong>Data Augmentation for Visual Question Answering</strong><br>
+        <a href="http://www.aclweb.org/anthology/W17-3529" target="_blank"><h4 class="mark"><strong>Data Augmentation for Visual Question Answering</strong><br>
             <small><strong>Kushal Kafle,</strong> Mohammed Yousefhussien and Christopher Kanan</small></h4></a>
       <h4 class="h4-small">In this short paper, we describe two simple means of producing new training data for visual question answering algorithms. Data augmentation using these methods show increased performance in both baseline and state of the art VQA algorithms, including pronounced increase in counting questions. which remain one of the most difficult problems in VQA. </h4>
         
  <h4 class="text-danger"><strong>International Natural Language Generation Conference (INLG 2017)</strong><br> 
-  <a href="kafle2017inlg.pdf" target="_blank"> <kbd>Paper</kbd> </a>
+  <a href="http://www.aclweb.org/anthology/W17-3529" target="_blank"> <kbd>Paper</kbd> </a>
  <kbd data-toggle="collapse" data-target="#kafle-inlg2017">Bibtex</kbd>    
      <div id="kafle-inlg2017" class="collapse">
     <pre><code>@inproceedings{kafle2017data,
