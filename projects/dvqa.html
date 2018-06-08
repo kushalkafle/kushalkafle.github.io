@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>TDIUC</title>
-     <description>Kushal Kafle - An Analysis of Visual Question Answering (VQA) Algorithms</description>
+  <title>DVQA: Understanding Data Visualization via Question Answering</title>
+     <description>Kushal Kafle - Question Answering about data visualization</description>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -247,7 +247,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#Home">TDIUC</a>
+      <a class="navbar-brand" href="#Home">DVQA</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
@@ -265,29 +265,47 @@
 <div id="about" class="container-fluid row">
 
     <div class="col-sm-8 col-sm-offset-2">
-     <h2 class="big text-center">Task Directed Image Understanding Challenge (TDIUC) <br>
+     <h2 class="big text-center">DVQA: Understanding Data Visualization through Question Answering<br>
              </h2>
-  <p class="text-center">A more nuanced analysis of Visual Question Answering (VQA) algorithms 
-                    <img src="../images/vqa-tasks.png" class="img-responsive center-block" alt="TDIUC"> </p><br>
+  <p class="text-center">A synthetic question-answering dataset on images of bar-charts 
+                    <img src="../images/dvqa.png" class="img-responsive center-block" alt="TDIUC"> </p><br>
         
-        <p>Visual Question Answering is a challenging vision and language problem that demands a wide range of language and image understanding abilities from an algorithm. However, studying the abilities of current VQA systems is very difficult due to critical problems with bias and a lack of well-annotated question-types. Task Directed Image Understanding Challenge (TDIUC) is a new dataset that divides VQA into 12 constituent tasks that makes it easier to measure and compare the performance of VQA algorithms. </p>
+        <p>Data visualizations, e.g., bar charts, pie charts, and plots,
+contain large amounts of information in a concise format.
+These visualizations are specifically designed to communicate
+data to people, and are not designed to be machine
+interpretable. Nevertheless, making algorithms capable to
+make inferences from data visualizations has enormous
+practical applications. Here, we study systems capable of
+answering open-ended questions about bar charts, which we
+refer to as data visualization question answering (DVQA).
+DVQA would enable vast repositories of charts within scientific
+documents, web-pages, and business reports to be
+queried automatically. 
+
+ </p>
 		<p>
-		TDIUC was created for multiple reasons. One of the major reasons why VQA is interesting is because it encompasses so many other computer vision problems, e.g., object detection, object classification, attribute classification, positional reasoning, counting, etc. Truly solving VQA requires an algorithm to be capable of solving all these problems. However, because prior datasets are heavily unbalanced toward certain kinds of questions, good performance on less frequent kinds of questions has negligible impact on overall performance. For example, in many datasets object presence questions are far more common than questions requiring positional reasoning, meaning that an algorithm that excels at positional reasoning is not able to showcase its abilities on these datasets. TDIUC's performance metrics compensate for this bias, so good performance on TDIUC requires good performance across kinds of questions. Another issue with other datasets is that many questions can be answered from just the question, so the algorithm ignores the image. TDIUC introduces absurd questions, that demand an algorithm look at the image to determine if the question is appropriate for the image.
 		
+Unlike visual question answering
+(VQA), DVQA requires processing words and answers
+that are unique to a particular bar chart. State-of-the-art
+VQA algorithms perform poorly on DVQA, and we propose
+two strong baselines that perform considerably better. Besides practical benefits, DVQA also serves as an important proxy task for several critical AI abilities, such as attention, working memory, visual reasoning and an ability to handle dynamic and out-of-vocabulary(OOV) labels.
+
 		</p>
 		
 		
 		
-        <h3> TDIUC Statistics
+        <h3> <b>DVQA dataset at-a-glance</b> </br>
 		
 		
     <ul>
 		
-  <li>12 Different question-types <small>  grouped according to underlying task, including 'absurd' questions</small></li>
-  <li>167,437 Images <small> from MS-COCO and Visual Genome</small></li>
-  <li>1,654,167 question-answer pairs <small>derived from 3 distinct sources</small> </li>
-  <li>4 New evaluation metrics <small>designed to compensate for bias</small> </li>
-<li>6 New experimental setups <small> to answer crucial questions about VQA algorithms  </small> </li>
+  <li>3 different types of questions <small>  assessing performance on structure understanding, data retrieval and reasoning capabilities</small></li>
+  <li>300,000 Images <small> generated synthetically</small></li>
+  <li>3,487,194 question-answer pairs <small>completely balanced for simple language biases</small> </li>
+  <li>A number of variations <small> in both data and appearance of the bar-charts</small> </li>
+  <li>Detailed metadata <small>about every element in the chart</small> </li>
 </ul>
         </h3>
     </div>
@@ -298,15 +316,15 @@
     <div class="col-sm-8 col-sm-offset-2">
         <h2>Paper</h2><br>
                 <a href="https://arxiv.org/pdf/1703.09684.pdf" target="_blank">
-        <img src="../images/kushalkafle_iccv2017.png" class="center-block img-responsive" alt="TDIUC"> </a>
+        <img src="../images/dvqa_paper.png" class="center-block img-responsive" alt="TDIUC"> </a>
 
-      <h4 class="h4-small"> In our ICCV paper, we show how TDIUC allows us to perform a more nuanced analysis and comparison of VQA algorithms through extensive experimentation. We believe TDIUC offers room for even more experimentation. If you use TDIUC in your work, please cite the following paper.
+      <h4 class="h4-small">If you use DVQA in your work, please cite the following paper.
     </h4>
-<pre><code>@inproceedings{kafle2017analysis,
-  title={An Analysis of Visual Question Answering Algorithms},
-  author={Kafle, Kushal and Kanan, Christopher},
-  booktitle={ICCV},
-  year={2017}
+<pre><code>@inproceedings{kafle2018dvqa,
+  title={DVQA: Understanding Data Visualizations via Question Answering},
+  author={Kafle, Kushal and Cohen, Scott and Price, Brian and Kanan, Christopher},
+  booktitle={CVPR},
+  year={2018}
 }
 </code></pre>
         
@@ -319,19 +337,15 @@
 
     <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
-        <p>Please <a href="../data/TDIUC.zip">click here</a> to download the TDIUC dataset (70MB). Please refer the README file for instructions on how to setup TDIUC. </p>
-        <p>
-        The folder contains all the question-answer pairs for train and validation split of TDIUC , manually created images, and scripts for downloading and setting up images from MS-COCO and Visual Genome. For your convinience, we have also included the script to calculate normalized and un-normalized MPT scores from the paper. The distribution format for TDIUC is structured to mirror the format from the <a href="http://www.visualqa.org/vqa_v1_download.html">VQA dataset</a>, so that you can directly use code written for the VQA dataset (almost) without modification.</p>
-        
-        <p class="lead bg-danger"> Warning: Validation/Test split of TDIUC uses question-answer pairs and images from the validation set of the VQA Dataset as well as images from the Visual Genome validation set. Do not use these data sources as additional data-augmentation in your training data if you are evaluating your model on TDIUC.
-        </p>
-        
+        <p>The links for download and README file is located in this <a href="../data/TDIUC.zip">github repo</a></p>         
       </div>
     </div>
     
        
         </div>
         </div>
+
+
         <div id="contact">
         <div class="container-fluid">
         <h2 class="text-center">Contact</h2><br>
@@ -346,25 +360,46 @@
     </div>
             
                 <div class="row">
-    <div class="col-sm-4 col-sm-offset-2 text-center">
+    <div class="col-sm-2 col-sm-offset-2 text-center">
         <a href="http://www.kushalkafle.com/" target="_blank"><img src="../images/kushal.jpg" class="img-circle center-block " alt="Kushal Kafle" height="200"></a>
                             <a href="http://www.kushalkafle.com/"><h3>Kushal Kafle</h3></a>
                             <p> Ph.D. Student <br>
-                            Chester F. Carlson Center for Imaging Science<br>
                                 Rochester Institute of Technology
                             </p>
 
       </div>
         
                     
-     <div class="col-sm-4 text-center">        
+     <div class="col-sm-2 text-center">        
+<a href="https://research.adobe.com/person/brian-price/" target="_blank"><img src="../images/brian.jpg" class="img-circle center-block" alt="Christopher Kanan" height="200">
+        <h3>Brian Price</h3></a>
+                            <p> Senior Research Scientist <br>
+                            Adobe Research<br>
+                            </p>
+      </div>
+
+
+     <div class="col-sm-2 text-center">        
+<a href="https://research.adobe.com/person/scott-cohen/" target="_blank"><img src="../images/scott.jpg" class="img-circle center-block" alt="Christopher Kanan" height="200">
+        <h3>Scott Cohen</h3></a>
+                            <p> Principal Scientist <br>
+                            Adobe Research
+                            </p>
+      </div>
+           <div class="col-sm-2 text-center">        
 <a href="http://chriskanan.com" target="_blank"><img src="../images/chris-rit.jpg" class="img-circle center-block" alt="Christopher Kanan" height="200">
         <h3>Christopher Kanan</h3></a>
                             <p> Assistant Professor <br>
-                            Chester F. Carlson Center for Imaging Science<br>
                                 Rochester Institute of Technology
                             </p>
       </div>
+
+
+
+
+
+
+
     </div>
                           </div>
     </div>
@@ -419,8 +454,6 @@ $(document).ready(function(){
     <a href="#Home" title="To Top">
     <span class="glyphicon glyphicon-home" style="font-size: 40px; color:white"></span>
   </a> <hr>
-    <p> © 2017 Kushal Kafle <br>
-
     </footer>
       
 </body>
