@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row text-center">
+            <h1>Who is this baby?</h1>
+            <h4>Guess who this baby is. Two of the photo below are Jwala and Kushal. The rest are other people at the party. 
+            If you think you see a uncanny resemblance, find out their name and try your luck. To win at the <a href='https://kushalkafle.com/babybingo.html'>baby bingo</a>, you will need to 
+            find Jwala, Kushal and at least one more person from here.</h4>
+
+            <div class="col-md-5 bg-warning text-center">
+                <h2>1. Who is this?</h2>
+
+                <img src="https://kushalkafle.com/images/game/babyphoto1.jpg" style="height: 300px;" class="img-fluid" alt="Question Image">
+                <select id="a1" class="form-control">
+                    <option value="">Select an answer</option>
+                    <option value="Gajendra">Gajendra</option>
+                    <option value="Colin">Colin</option>
+                    <option value="Jwala">Jwala</option>
+                    <option value="Midhusa">Midhusa</option>
+                    <option value="Krishna">Krishna</option>
+                    <option value="Emily">Emily</option>
+                    <option value="Utsav">Utsav</option>
+                    <option value="Natasha">Natasha</option>
+                    <option value="Utsav">Kushal</option>
+                    <option value="Sawal">Sawal</option>
+
+                </select>
+                <button onclick="checkAnswer('a1', ['e8e9689deac5bac977b64e85c1105bd1419608f1223bdafb8e5fbdf6cf939879'])" class="btn btn-primary mt-3">Check Answer</button>
+                <p id="r1"></p>
+            </div>
+
+
+          <div class="col-md-5 bg-danger offset-1 text-center">
+                <h2>2. Who is this?</h2>
+
+
+                <img src="https://kushalkafle.com/images/game/babyphoto2.jpg" style="height: 300px;" class="img-fluid" alt="Question Image">
+                <select id="a2" class="form-control">
+                    <option value="">Select an answer</option>
+                    <option value="Gajendra">Gajendra</option>
+                    <option value="Colin">Colin</option>
+                    <option value="Jwala">Jwala</option>
+                    <option value="Midhusa">Midhusa</option>
+                    <option value="Krishna">Krishna</option>
+                    <option value="Emily">Emily</option>
+                    <option value="Utsav">Utsav</option>
+                    <option value="Natasha">Natasha</option>
+                    <option value="Kushal">Kushal</option>
+                    <option value="Sawal">Sawal</option>
+
+                </select>
+                <button onclick="checkAnswer('a2', '7ca603c9584257d92d4a1761ce5a493c80053125c69ca996387f02ce6584b761')" class="btn btn-primary mt-3">Check Answer</button>
+                <p id="r2"></p>
+            </div>
+
+        </div>
+
+
+<br>
+<br>
+
+
+       <div class="row">
+            <div class="col-md-5 bg-success text-center">
+                <h2>3. Who is this?</h2>
+
+                <img src="https://kushalkafle.com/images/game/babyphoto3.jpg" style="height: 300px;" class="img-fluid" alt="Question Image">
+                <select id="a3" class="form-control">
+                    <option value="">Select an answer</option>
+                    <option value="Gajendra">Gajendra</option>
+                    <option value="Colin">Colin</option>
+                    <option value="Jwala">Jwala</option>
+                    <option value="Midhusa">Midhusa</option>
+                    <option value="Krishna">Krishna</option>
+                    <option value="Emily">Emily</option>
+                    <option value="Utsav">Utsav</option>
+                    <option value="Natasha">Natasha</option>
+                    <option value="Utsav">Kushal</option>
+                    <option value="Sawal">Sawal</option>
+
+                </select>
+                <button onclick="checkAnswer('a3', ['4c1001c251c1c923bca00789638afb17e908d526bf3e9975407c65d2b03f4b10'])" class="btn btn-primary mt-3">Check Answer</button>
+                <p id="r3"></p>
+
+                </div>
+
+
+          <div class="col-md-5 bg-info offset-1 text-center">
+                <h2>4. Who is this?</h2>
+                <img src="https://kushalkafle.com/images/game/babyphoto4.jpg" style="height: 300px;" class="img-fluid" alt="Question Image">
+                <select id="a4" class="form-control">
+                    <option value="">Select an answer</option>
+                    <option value="Gajendra">Gajendra</option>
+                    <option value="Colin">Colin</option>
+                    <option value="Jwala">Jwala</option>
+                    <option value="Midhusa">Midhusa</option>
+                    <option value="Krishna">Krishna</option>
+                    <option value="Emily">Emily</option>
+                    <option value="Utsav">Utsav</option>
+                    <option value="Natasha">Natasha</option>
+                    <option value="Utsav">Kushal</option>
+                    <option value="Sawal">Sawal</option>
+
+                </select>
+                <button onclick="checkAnswer('a4', ['4bbaf22f7dd13e1b4aa8dbdaee05efd747149846b79e94e96e6d32018633d420'])" class="btn btn-primary mt-3">Check Answer</button>
+                <p id="r4"></p>
+                
+            </div>
+
+        </div>
+
+<br>
+<br>
+
+
+       <div class="row">
+            <div class="col-md-5 bg-secondary text-center">
+                <h2>5. Who is this?</h2>
+
+               <img src="https://kushalkafle.com/images/game/babyphoto5.jpg" style="height: 300px;" class="img-fluid" alt="Question Image">
+                <select id="a5" class="form-control">
+                    <option value="">Select an answer</option>
+                    <option value="Gajendra">Gajendra</option>
+                    <option value="Colin">Colin</option>
+                    <option value="Jwala">Jwala</option>
+                    <option value="Midhusa">Midhusa</option>
+                    <option value="Krishna">Krishna</option>
+                    <option value="Emily">Emily</option>
+                    <option value="Utsav">Utsav</option>
+                    <option value="Natasha">Natasha</option>
+                    <option value="Utsav">Kushal</option>
+                    <option value="Sawal">Sawal</option>
+
+                </select>
+                <button onclick="checkAnswer('a5', ['b8bdf581607d73e9b90de1db3075662794c8d0aa27ce10d25ce8dba053006b90'])" class="btn btn-primary mt-3">Check Answer</button>
+                <p id="r5"></p>
+                
+
+            </div>
+
+
+          <div class="col-md-5 bg-primary offset-1 text-center">
+                <h2>6. Who is this?</h2>
+
+              <img src="https://kushalkafle.com/images/game/babyphoto6.jpg" style="height: 300px;" class="img-fluid" alt="Question Image">
+                <select id="a6" class="form-control">
+                    <option value="">Select an answer</option>
+                    <option value="Gajendra">Gajendra</option>
+                    <option value="Colin">Colin</option>
+                    <option value="Jwala">Jwala</option>
+                    <option value="Midhusa">Midhusa</option>
+                    <option value="Krishna">Krishna</option>
+                    <option value="Emily">Emily</option>
+                    <option value="Utsav">Utsav</option>
+                    <option value="Natasha">Natasha</option>
+                    <option value="Utsav">Kushal</option>
+                    <option value="Sawal">Sawal</option>
+
+                </select>
+                <button onclick="checkAnswer('a6', ['b06514d8bc65875cc670a226aa945c492c126ef2da71f226c3ed938aacb27f30'])" class="btn btn-primary mt-3">Check Answer</button>
+                <p id="r6"></p>
+
+            </div>
+        </div>
+
+
+<br>
+<br>
+
+       <div class="row">
+          <div class="col-md-5 bg-success text-center">
+                <h2>7. Who is this?</h2>
+
+              <img src="https://kushalkafle.com/images/game/babyphoto7.jpg" style="height: 300px;" class="img-fluid" alt="Question Image">
+                <select id="a7" class="form-control">
+                    <option value="">Select an answer</option>
+                    <option value="Gajendra">Gajendra</option>
+                    <option value="Colin">Colin</option>
+                    <option value="Jwala">Jwala</option>
+                    <option value="Midhusa">Midhusa</option>
+                    <option value="Krishna">Krishna</option>
+                    <option value="Emily">Emily</option>
+                    <option value="Utsav">Utsav</option>
+                    <option value="Natasha">Natasha</option>
+                    <option value="Utsav">Kushal</option>
+                    <option value="Sawal">Sawal</option>
+
+                </select>
+                <button onclick="checkAnswer('a7', ['6b5eda34d46167cf00d4c8baa606aba50d127a14de69b7c0b29208e060a60d19'])" class="btn btn-primary mt-3">Check Answer</button>
+                <p id="r7"></p>
+
+            </div>
+
+
+
+                      <div class="col-md-5 bg-warning offset-1 text-center">
+                <h2>8. Who is this?</h2>
+
+              <img src="https://kushalkafle.com/images/game/babyphoto8.jpg" style="height: 300px;" class="img-fluid" alt="Question Image">
+                <select id="a8" class="form-control">
+                    <option value="">Select an answer</option>
+                    <option value="Gajendra">Gajendra</option>
+                    <option value="Colin">Colin</option>
+                    <option value="Jwala">Jwala</option>
+                    <option value="Midhusa">Midhusa</option>
+                    <option value="Krishna">Krishna</option>
+                    <option value="Emily">Emily</option>
+                    <option value="Utsav">Utsav</option>
+                    <option value="Natasha">Natasha</option>
+                    <option value="Utsav">Kushal</option>
+                    <option value="Sawal">Sawal</option>
+
+                </select>
+                <button onclick="checkAnswer('a8', ['2811e6e58cfe978542877578a1bdf1d193a637de68cef9d13f93f8c7174f92aa'])" class="btn btn-primary mt-3">Check Answer</button>
+                <p id="r8"></p>
+
+            </div>
+</div>
+
+<br>
+<br>
+
+
+                           <div class="row">
+  <div class="col-md-5 bg-info text-center">
+                <h2>9. Who is this?</h2>
+
+              <img src="https://kushalkafle.com/images/game/babyphoto9.jpg" style="height: 300px;" class="img-fluid" alt="Question Image">
+                <select id="a9" class="form-control">
+                    <option value="">Select an answer</option>
+                    <option value="Gajendra">Gajendra</option>
+                    <option value="Colin">Colin</option>
+                    <option value="Jwala">Jwala</option>
+                    <option value="Midhusa">Midhusa</option>
+                    <option value="Krishna">Krishna</option>
+                    <option value="Emily">Emily</option>
+                    <option value="Utsav">Utsav</option>
+                    <option value="Natasha">Natasha</option>
+                    <option value="Utsav">Kushal</option>
+                    <option value="Sawal">Sawal</option>
+
+                </select>
+                <button onclick="checkAnswer('a9', ['d334cbac4bb3f242dfe5e11a656333345ce05c8409bc347be201f2447e14b480'])" class="btn btn-primary mt-3">Check Answer</button>
+                <p id="r9"></p>
+
+            </div>
+
+
+                      <div class="col-md-5 bg-primary offset-1 text-center">
+                <h2>10. Who is this?</h2>
+
+              <img src="https://kushalkafle.com/images/game/babyphoto10.jpg" style="height: 300px;" class="img-fluid" alt="Question Image">
+                <select id="a10" class="form-control">
+                    <option value="">Select an answer</option>
+                    <option value="Gajendra">Gajendra</option>
+                    <option value="Colin">Colin</option>
+                    <option value="Jwala">Jwala</option>
+                    <option value="Midhusa">Midhusa</option>
+                    <option value="Krishna">Krishna</option>
+                    <option value="Emily">Emily</option>
+                    <option value="Utsav">Utsav</option>
+                    <option value="Natasha">Natasha</option>
+                    <option value="Utsav">Kushal</option>
+                    <option value="Sawal">Sawal</option>
+
+                </select>
+                <button onclick="checkAnswer('a10', ['abe52c9021ffbd51a8e0da8a3056b0eca2030bb2f11d38fa67605eebdfbf8bdb'])" class="btn btn-primary mt-3">Check Answer</button>
+                <p id="r10"></p>
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+    <br>
+    <br>
+    <br>
+    
+
+    <script>
+
+
+    function gethash(input) {
+      return CryptoJS.SHA256(input).toString();
+    }
+
+        function checkAnswer(answerId, correctAnswer) {
+            var userAnswer = document.getElementById(answerId).value.toLowerCase();
+            userAnswer = gethash(userAnswer)
+            var resultId = 'r' + answerId.substring(1);
+
+            document.getElementById(resultId).innerHTML = "Checking answer in 5 seconds to avoid over-guessing :)";
+
+
+            setTimeout(function() {
+
+
+
+            if (correctAnswer.includes(userAnswer)){
+                document.getElementById(resultId).innerHTML = "Correct!";
+            }
+            else {
+                document.getElementById(resultId).innerHTML = "Incorrect. Try Again!";
+            }
+
+
+            }, 5000);
+
+        }    </script>
+</body>
+</html>
