@@ -3,6 +3,8 @@
 <head>
     <title>Baby Bingo</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
     <style>
         .question-card {
             padding: 20px;
@@ -39,7 +41,7 @@
                 <p>Hint: This English poet wrote a influential poem called The 🎭 of anarchy </p>
 
                 <input type="text" class="text-primary" id="a1" placeholder="Your answer here">
-                <button class='btn-info' onclick="checkAnswer('a1', ['percy'])">Check Answer</button>
+                <button class='btn-info' onclick="checkAnswer('a1', ['715773c66c9347749f5921bdce502d7de7081e19d07c7b40a70f19665700d919'])">Check Answer</button>
                 <p id="r1"></p>
             </div>
 
@@ -48,17 +50,17 @@
                 <p>Which park was Rohan's first outing?</p>
                 <p>Hint: Check the photo + we couldn't have gone too far from our home. Answer as: "XXXX park" </p>
                 <input type="text" class="text-dark" id="a2" placeholder="Your answer here">
-                <button class='btn-info' onclick="checkAnswer('a2', ['washington park'])">Check Answer</button>
+                <button class='btn-info' onclick="checkAnswer('a2', ['79ce74dd295ab4e8596ece81102f8b1f1e69f9dd0c33aedc77ba2b9d053c0436'])">Check Answer</button>
                 <p id="r2"></p>
             </div>
 
             <div class="col-md-3 question-card" id="q3">
                 <h4>Question 3</h4>
-                <p>In the <a href='https://kushalkafle.com/babyphoto.html' target="_blank_">"Who is this baby?"</a> game, which one is Kushal (answer just the number)?</p>
+                <p>In the <a href='https://kushalkafle.com/babyphoto.html' target="_blank_">"Who is this baby?"</a> game, which one is Kushal (answer just the number as 1,2,3...10)?</p>
                                 <p>Hint: You can try as many times as you want</p>
 
                 <input type="text" class="text-dark" id="a3" placeholder="Your answer here">
-                <button class='btn-info' onclick="checkAnswer('a3', ['paris'])">Check Answer</button>
+                <button class='btn-info' onclick="checkAnswer('a3', ['d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35'])">Check Answer</button>
                 <p id="r3"></p>
             </div>
 
@@ -66,22 +68,29 @@
         <div class="row">
             <div class="col-md-3 question-card" id="q4">
                 <h4>Question 4</h4>
-                <p>In the <a href='https://kushalkafle.com/babyphoto.html' target="_blank_">"Who is this baby?"</a> , which one is Jwala (answer just the number)?</p>
+                <p>In the <a href='https://kushalkafle.com/babyphoto.html' target="_blank_">"Who is this baby?"</a> , which one is Jwala (answer just the number as 1,2,3...10)?</p>
                                 <p>Hint: You can try multiple times</p>
                                 <br>
                                 <br>
 
                 <input type="text" class="text-primary" id="a4" placeholder="Your answer here">
-                <button class='btn-info' onclick="checkAnswer('a4', ['paris'])">Check Answer</button>
+                <button class='btn-info' onclick="checkAnswer('a4', ['ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d'])">Check Answer</button>
                 <p id="r4"></p>
             </div>
 
             <div class="col-md-3 question-card" id="q5">
                 <h4>Question 5</h4>
                 <p>In the <a href='https://kushalkafle.com/babyphoto.html' target="_blank_">"Who is this baby?"</a>  game, identify at least one other person than Jwala or Kushal</p>
-                <p>Type the answer as: "1 is Emily" for example.</p>
+                <p>Type the answer as: "1 is John" for example.</p>
                 <input type="text" class="text-dark" id="a5" placeholder="Your answer here">
-                <button class='btn-info' onclick="checkAnswer('a5', ['1 is emily','2 is jwala'])">Check Answer</button>
+                <button class='btn-info' onclick="checkAnswer('a5', ['fd6fcf63191498147c34ea1011a0df547508d63791c2caf4b38cb9682e0c2326','89373b2b11409a9a109c0b63d3cdf02f4f3faee1ecd050023370a9ac2a920aec','d8f02c11c0b41226801f1c326646f7143d78e9fc8a8be4a3423e7d59f4333531',
+                    '5212af24c3732f3214df3d81c42364242f910b6ec37fe447c5394a348a652b80',
+                    '66b0b0c12af8d8c19a0379470da139bb4cc1e09dfb29dec4ee08b2109ca570ea',
+                    '2c2964894f87c9ecf014a0ec6000d38f23c1e7f1b957f684c45ff4c458c7ad48',
+                    'f6f3dffdba8a4dc21b09c88b43f707fe428c6b11e26559509455204bb511d074',
+                    '6b70364168d42ea418dc4b985daec2f9fbc394c7fe424935d85293550bf521ab',
+                    '0a9ec29c62ef0f978d9a4b742cbce4d5f366900c0136433f7445ed56fd300b55',
+                    'ca922bf8a8fdba8b46563e406a5ce48092e4b107b41cbca2b081dd610efccd80'])">Check Answer</button>
                 <p id="r5"></p>
             </div>
 
@@ -104,18 +113,18 @@
                 <p>What food besides milk did Rohan eat first?</p>
                 <p>Hint: Check the photo wall</p>
                 <input type="text" class="text-primary" id="a7" placeholder="Your answer here">
-                <button class='btn-info' onclick="checkAnswer('a7', ['paris'])">Check Answer</button>
+                <button class='btn-info' onclick="checkAnswer('a7', ['fc7647bee720ef94013a9ff03d93d7bdc231eaa072f7312e27558fecf5dde52c'])">Check Answer</button>
                 <p id="r7"></p>
             </div>
 
             <div class="col-md-3 question-card" id="q8">
                 <h4>Question 8</h4>
-                <p>What is Rohan's birthday? Answer as month only </p>
+                <p>What is Rohan's birth month? Answer as full month only </p>
                 <p>Hint: Photo wall might give some clues</p>
 
-                <input type="text" class="text-dark" id="a9" placeholder="Your answer here">
-                <button class='btn-info' onclick="checkAnswer('a9', ['paris'])">Check Answer</button>
-                <p id="r9"></p>
+                <input type="text" class="text-dark" id="a8" placeholder="Your answer here">
+                <button class='btn-info' onclick="checkAnswer('a8', ['b68823eded0bc9c7f3317d601ac24f6ac563895cee8e5a2bd2ca475906fe2615'])">Check Answer</button>
+                <p id="r8"></p>
             </div>
 
             <div class="col-md-3 question-card" id="q9">
@@ -123,7 +132,7 @@
                 <p>What felt good to Rohan at four months?</p>
                 <p>Hint: Check the photo wall</p>
                 <input type="text" class="text-dark" id="a9" placeholder="Your answer here">
-                <button class='btn-info' onclick="checkAnswer('a9', ['paris'])">Check Answer</button>
+                <button class='btn-info' onclick="checkAnswer('a9', ['67116a8b5426fd51e13ec9c796f1a250de534b74ea186c83154b5bfd72dce3f8'])">Check Answer</button>
                 <p id="r9"></p>
             </div>
 
@@ -134,8 +143,14 @@
     </div>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
+
+            function gethash(input) {
+      return CryptoJS.SHA256(input).toString();
+    }
+
         function checkAnswer(answerId, correctAnswer) {
             var userAnswer = document.getElementById(answerId).value.toLowerCase();
+            userAnswer = gethash(userAnswer);
             var resultId = 'r' + answerId.substring(1);
             if (correctAnswer.includes(userAnswer)){
                 document.getElementById(resultId).innerHTML = "Correct!";
