@@ -212,3 +212,5 @@ h4 { font-size: 18px; margin: 24px 0 6px; }
 .stats span { color: var(--muted); font-size: 15px; }
 pre.cite { font-size: 13px; background: #fff; border: 1px solid var(--line); padding: 14px; border-radius: 6px; overflow-x: auto; }
 .warning { background: #fff8db; border-left: 4px solid #e6b800; padding: 10px 14px; border-radius: 4px; font-size: 15px; }
+.interns .sep { color: var(--muted); }
+.interns a { white-space: nowrap; }

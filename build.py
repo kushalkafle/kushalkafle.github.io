@@ -364,6 +364,9 @@ def build_site(pubs):
         if missing:
             raise SystemExit(f"news.yml ({n['date']}): unknown paper keys {missing}")
         n["refs"] = [by_key[k] for k in n.get("papers", [])]
+    interns = load_yaml("interns.yml") or []
+    intern_years = [(y, [i for i in interns if i["year"] == y])
+                    for y in sorted({i["year"] for i in interns}, reverse=True)]
     tabs = [{"id": "selected", "label": "Selected", "pubs": [p for p in pubs if p["selected"]]}]
     for tid, label in TOPICS:
         tabs.append({"id": tid, "label": label, "pubs": [p for p in pubs if tid in p["topics"]]})
@@ -377,7 +380,7 @@ def build_site(pubs):
         out.parent.mkdir(exist_ok=True)
         out.write_text(env.get_template(f"projects/{tpl.name}").render(root="../", **common), encoding="utf-8")
     page = env.get_template("index.html.j2").render(
-        root="", tabs=tabs, news=news, transfers=transfers, pubs=pubs, talks=load_yaml("talks.yml") or [], **common,
+        root="", tabs=tabs, news=news, transfers=transfers, pubs=pubs, talks=load_yaml("talks.yml") or [], intern_years=intern_years, **common,
         pubs_updated=f"{pubs_updated():%B} {pubs_updated().day}, {pubs_updated():%Y}",
         counts={k: sum(p["kind"] == k for p in pubs) for k in ("conference", "journal", "workshop", "preprint")},
     )

@@ -1,0 +1,159 @@
+# Interns I have worked with at Adobe Research ("Internships and Mentoring" section); one entry per internship.
+# Source: Kushal's annual plans and accomplishment summaries (2020-2025); 2026 from Kushal directly.
+#   papers: pubs.bib keys of papers that came out of the internship
+#   homepage: verified link (personal page preferred; Scholar/LinkedIn if none)
+
+- year: 2020
+  name: Hareesh Ravi
+  homepage: https://hareesh-ravi.github.io/
+  project: Visual storytelling
+  papers: [Ravi_2021_ICCV]
+- year: 2020
+  name: Qiuyu Chen
+  homepage: https://www.linkedin.com/in/qiuyu-james-chen-260a21137
+  project: Color attribute understanding
+- year: 2020
+  name: Khoi Pham
+  homepage: https://scholar.google.com/citations?user=o7hS8EcAAAAJ
+  project: Large-scale object attribute understanding
+  papers: [Pham_2021_CVPR]
+
+- year: 2021
+  name: Khoi Pham
+  homepage: https://scholar.google.com/citations?user=o7hS8EcAAAAJ
+  project: Large-scale attribute understanding (continued)
+  papers: [pham2022improving]
+- year: 2021
+  name: Robik Shrestha
+  homepage: https://robikshrestha.com/
+  project: Fast, fine-grained text-to-image retrieval
+- year: 2021
+  name: Md Mehrab Tanjim
+  homepage: https://mehrab-tanjim.github.io/
+  project: Debiasing image generation
+  papers: [tanjim2022debiasing, Tanjim_2024_WACV]
+- year: 2021
+  name: Aiyu Cui
+  homepage: https://cuiaiyu.github.io/
+  project: Search-based image generation from scene graphs
+- year: 2021
+  name: Stanislav Frolov
+  homepage: https://stanifrolov.github.io/
+  project: Semantic image manipulation using text
+
+- year: 2022
+  name: Ziyan Yang
+  homepage: https://ziyanyang.github.io/
+  project: Relationship prediction and grounding
+  papers: [Yang_2023_CVPR, Yang_2024_WACV]
+- year: 2022
+  name: Bhavin Jawade
+  homepage: https://bhavinjawade.github.io/
+  project: Coalesced learning for vision-language contrastive pretraining
+- year: 2022
+  name: Eric Slyman
+  homepage: https://github.com/slymane  # ericslyman.com was down on 2026-11-05; switch back when it is up
+  project: User-driven behavioral testing of vision-language models
+
+- year: 2023
+  name: Aman Shrivastava
+  homepage: https://4m4n5.github.io/
+  project: Visual reasoning by bootstrapping foundation models
+- year: 2023
+  name: Eric Slyman
+  homepage: https://github.com/slymane  # ericslyman.com was down on 2026-11-05; switch back when it is up
+  project: Fair data deduplication for vision-language models
+  papers: [Slyman_2024_CVPR]
+- year: 2023
+  name: Sepehr Sameni
+  homepage: https://scholar.google.com/citations?user=x__oC0QAAAAJ
+  project: Improving the spatial understanding of vision-language models
+  papers: [Sameni_2024_CVPR]
+- year: 2023
+  name: Hang Hua
+  homepage: https://hanghuacs.notion.site/
+  project: Diversified and relevant text-to-image search
+  papers: [Hua_2024_ECCV]
+- year: 2023
+  name: Yuan Zang
+  homepage: https://scholar.google.com/citations?user=Y_IbB6MAAAAJ
+  project: Visual instruction tuning for tutorial videos
+  papers: [zang2025ms4uidatasetmultimodalsummarization]
+- year: 2023
+  name: Cristina González
+  homepage: https://compai-lab.github.io/author/cristina-gonzalez/
+  project: Region-based classification, tagging, and captioning
+- year: 2023
+  name: Salma Abdel Magid
+  homepage: https://sabdelmagid.github.io/
+  project: Improving fairness in CLIP models via generation
+  papers: [magid2024theyredoctorssynthesizingdiverse]
+- year: 2023
+  name: Ziyan Yang
+  homepage: https://ziyanyang.github.io/
+  project: Relationship prediction and grounding (continued)
+
+- year: 2024
+  name: Jefferson Hernandez
+  homepage: https://jeffhernandez1995.github.io/
+  project: Improving large vision-language models with feedback from a panel of peers
+  papers: [Hernandez_2025_ICCV]
+- year: 2024
+  name: Kiymet Akdemir
+  homepage: https://scholar.google.com/citations?user=DLrvqwcAAAAJ
+  project: Zero-shot story visualization and disentangled editing
+  papers: [akdemir2026plot]
+- year: 2024
+  name: Savya Khosla
+  homepage: https://savya08.github.io/
+  project: Augmenting generative decoders with representation learning and infilling
+  papers: [khosla-etal-2025-magnet]
+- year: 2024
+  name: Eric Slyman
+  homepage: https://github.com/slymane  # ericslyman.com was down on 2026-11-05; switch back when it is up
+  project: Human-in-the-loop collaborative judging
+  papers: [Slyman_2025_ICCV]
+- year: 2024
+  name: Qihua Dong
+  homepage: https://dddraxxx.github.io/
+  project: Referring expression segmentation
+  papers: [dong2026cotreferringimprovingreferring]
+- year: 2024
+  name: Jianglin Lu
+  homepage: https://jianglin954.github.io/
+  project: Dataset-conditioned query completion and recommendation
+  papers: [lu2026seeingwordscontrollingvisual]
+
+- year: 2025
+  name: Joseph Fioresi
+  homepage: https://joefioresi718.github.io/
+  project: Query-guided embedding transformations for steerable search and clustering
+  papers: [fioresi2026controlling]
+- year: 2025
+  name: Daiqing Qi
+  homepage: https://daiqing-qi.github.io/
+  project: Learning to understand multi-image aesthetics
+- year: 2025
+  name: T. V. Sethuraman
+  homepage: https://scholar.google.com/citations?user=Ufg3TDgAAAAJ
+  project: Efficient video-language alignment
+  papers: [sethuraman2026vitalx]
+- year: 2025
+  name: Hoang Anh Just
+  homepage: https://www.justhoanganh.com/
+  project: Post-training data creation for vision-language models
+  papers: [just2025finalanswerimprovingvisual]
+
+- year: 2026
+  name: Jefferson Hernandez
+  homepage: https://jeffhernandez1995.github.io/
+- year: 2026
+  name: Chengyue Huang
+  homepage: https://chengyuehuang511.github.io/
+  project: VLM-as-a-judge
+- year: 2026
+  name: Junyu Chen
+  homepage: https://jchen175.github.io/
+- year: 2026
+  name: Aoming Liu
+  homepage: https://cs-people.bu.edu/amliu/

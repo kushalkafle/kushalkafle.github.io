@@ -13,6 +13,7 @@ Source for my website, hosted at [kushalkafle.com](https://kushalkafle.com).
 | `src/index.html.j2` | Home page (About text, section order, Misc). |
 | `src/projects/*.html.j2` | Project pages (DVQA, TDIUC); built to `projects/*.html`. |
 | `src/talks.yml` | Talks section, newest first. |
+| `src/interns.yml` | Internships and Mentoring section: one entry per internship (`year`, `name`, `homepage`), grouped by year on the page. |
 | `src/style.css`, `src/site.js` | Styling and the research tabs. |
 | `images/`, `data/` | Static files copied as-is (`data/KushalKafle_CV.pdf` is the linked CV). |
 | `build.py` | Renders everything into `_site/`. |

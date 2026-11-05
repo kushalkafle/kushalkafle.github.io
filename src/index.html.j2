@@ -7,6 +7,7 @@
       <li><a href="#transfers">Tech Transfers</a></li>
       <li><a href="#research">Research</a></li>
       <li><a href="#talks">Talks</a></li>
+      <li><a href="#interns">Mentoring</a></li>
       <li><a href="#misc">Misc</a></li>
 {% endblock %}
 {% block content %}
@@ -172,7 +173,26 @@
   </div>
 </section>
 
-<section id="misc" class="section alt">
+<section id="interns" class="section alt">
+  <div class="wrap">
+    <h2>Internships and Mentoring</h2>
+    <p>
+      I have been fortunate to work with many talented research interns at Adobe Research, most of them
+      PhD students at the time, and many of whom have since graduated. Many of these internships led to
+      publications, and several continued as longer collaborations. Here is a list of the interns I have
+      worked with over the years.
+    </p>
+    <ul class="talks interns">
+      {% for year, people in intern_years %}
+      <li><span class="date">{{ year }}</span><span>
+        {% for i in people %}<a href="{{ i.homepage }}" target="_blank" rel="noopener">{{ i.name }}</a>{% if not loop.last %}<span class="sep"> · </span>{% endif %}{% endfor %}
+      </span></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section id="misc" class="section">
   <div class="wrap">
     <h2>Misc</h2>
     <h4>I have an Erdős number of four!</h4>

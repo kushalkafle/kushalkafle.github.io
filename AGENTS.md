@@ -25,6 +25,7 @@ phone width), and checking that links and images resolve.
 | `src/news.yml` | News, newest first. |
 | `src/transfers.yml` | Tech Transfers cards; also drives the CV transfers section. |
 | `src/talks.yml` | Talks section. |
+| `src/interns.yml` | Internships and Mentoring section: one entry per internship (year, name, verified homepage). No main/co-mentor distinction. |
 | `src/site.yml` | Public title and the highlighted banner. |
 | `src/index.html.j2` | Home page text and section order. |
 | `src/_base.html.j2`, `src/_macros.html.j2` | Shared layout and helpers. |
