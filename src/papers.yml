@@ -1,0 +1,220 @@
+# Website-only metadata for papers in pubs.bib, keyed by BibTeX key (pubs.bib stays plain BibTeX).
+# Venue labels and years are derived from the BibTeX (see VENUE_LUT in build.py).
+#   topic:    research tabs: mllm, vlrep, gen, bias, vqa
+#   selected: true to feature in the Selected tab (with thumb)
+#   arxiv / pdf / code / project: link buttons (arXiv-only papers use their eprint automatically)
+#   doi:      used for a "Paper" link when the BibTeX has no doi and there is no arXiv/PDF
+#   award:    e.g. "Oral Presentation";  equal: [1, 2, 3] author positions with equal contribution
+
+abdelmagid2026copying:
+  topic: [gen, bias]
+
+lu2026seeing:
+  topic: [vlrep]
+
+wu2026retouchiq:
+  topic: [gen, mllm]
+
+just2025more:
+  topic: [mllm]
+
+dong2025cot:
+  topic: [mllm]
+
+zang2025ms4ui:
+  topic: [mllm]
+
+abdelmagid2024doctors:
+  topic: [bias, gen]
+
+qian2020fc: {}
+
+fioresi2026controlling:
+  topic: [vlrep]
+  selected: true
+  thumb: images/pubs/controlling-embeddings.png
+  arxiv: "2607.22919"
+  doi: 10.1007/978-3-032-37041-9_30
+
+sethuraman2026vitalx:
+  topic: [vlrep]
+  arxiv: "2609.00505"
+  doi: 10.1007/978-3-032-37174-4_8
+
+akdemir2026plot:
+  topic: [gen]
+  arxiv: "2509.04446"
+  doi: 10.1609/aaai.v40i3.37147
+
+hernandez2025panel:
+  topic: [mllm]
+  selected: true
+  thumb: images/pubs/panel-of-peers.png
+  arxiv: "2509.01610"
+  doi: 10.1109/ICCV51701.2025.00138
+
+slyman2025calibrating:
+  topic: [mllm]
+  arxiv: "2509.08777"
+  doi: 10.1109/ICCV51701.2025.01600
+
+khosla2025magnet:
+  topic: [mllm, vlrep]
+  arxiv: "2501.08648"
+
+lu2025revisiting:
+  topic: [mllm, vqa]
+  arxiv: "2408.05334"
+  doi: 10.1109/CVPRW67362.2025.00060
+
+hua2024finematch:
+  topic: [vlrep, mllm]
+  arxiv: "2404.14715"
+  code: https://github.com/hanghuacs/FineMatch
+  doi: 10.1007/978-3-031-72673-6_26
+
+slyman2024fairdedup:
+  topic: [bias, vlrep]
+  selected: true
+  thumb: images/pubs/fairdedup.jpg
+  arxiv: "2404.16123"
+  doi: 10.1109/CVPR52733.2024.01319
+
+sameni2024building:
+  topic: [vlrep]
+  selected: true
+  thumb: images/pubs/sf-clip.png
+  doi: 10.1109/CVPR52733.2024.01348
+
+yang2024scord:
+  topic: [vlrep]
+  arxiv: "2308.12910"
+  doi: 10.1109/WACV57701.2024.00563
+
+tanjim2024discovering:
+  topic: [bias, gen]
+  selected: true
+  thumb: images/pubs/clip-editing-bias.png
+  pdf: https://openaccess.thecvf.com/content/WACV2024/papers/Tanjim_Discovering_and_Mitigating_Biases_in_CLIP-Based_Image_Editing_WACV_2024_paper.pdf
+  project: https://mehrab-tanjim.github.io/Debiasing-CLIP-based-Editing/
+  doi: 10.1109/WACV57701.2024.00296
+  award: "Oral Presentation (2.6% of submissions)"
+
+yang2023improving:
+  topic: [vlrep]
+  arxiv: "2206.15462"
+  doi: 10.1109/CVPR52729.2023.01837
+
+tanjim2022debiasing:
+  topic: [bias, gen]
+  pdf: https://pdf-files.bmvc2022.org/0182.pdf
+
+pham2022improving:
+  topic: [vlrep]
+  doi: 10.1007/978-3-031-19806-9_12
+
+shrestha2022occamnets:
+  topic: [bias]
+  selected: true
+  thumb: images/pubs/occamnets.png
+  arxiv: "2204.02426"
+  code: https://github.com/erobic/occam-nets-v1
+  doi: 10.1007/978-3-031-20044-1_40
+  award: "Oral Presentation (2.7% of submissions)"
+
+shrestha2022investigation:
+  topic: [bias]
+  arxiv: "2104.00170"
+  code: https://github.com/erobic/bias-mitigators
+  doi: 10.1109/WACV51458.2022.00257
+
+ravi2021aesop:
+  topic: [gen]
+  doi: 10.1109/ICCV48922.2021.00206
+
+pham2021learning:
+  topic: [vlrep]
+  arxiv: "2106.09707"
+  doi: 10.1109/CVPR46437.2021.01282
+
+teney2020value:
+  topic: [bias, vqa]
+  arxiv: "2005.09241"
+
+shrestha2020negative:
+  topic: [vqa, bias]
+  arxiv: "2004.05704"
+  code: https://github.com/erobic/negative_analysis_of_grounding
+
+hayes2020remind:
+  topic: [vqa]
+  selected: true
+  thumb: images/remind.png
+  arxiv: "1910.02509"
+  code: https://github.com/tyler-hayes/REMIND
+  doi: 10.1007/978-3-030-58598-3_28
+  equal: [1, 2, 3]
+
+kafle2020answering:
+  topic: [vqa]
+  thumb: images/prefil.png
+  arxiv: "1908.01801"
+  code: https://github.com/kushalkafle/PReFIL
+  doi: 10.1109/WACV45572.2020.9093494
+
+shrestha2019answer:
+  topic: [vqa]
+  thumb: images/ramen.png
+  arxiv: "1903.00366"
+  code: https://github.com/erobic/ramen
+  doi: 10.1109/CVPR.2019.01072
+
+acharya2019tallyqa:
+  topic: [vqa]
+  thumb: images/tallyqa.png
+  arxiv: "1810.12440"
+  project: https://www.manojacharya.com/tallyqa.html
+  doi: 10.1609/aaai.v33i01.33018076
+
+kafle2018dvqa:
+  topic: [vqa]
+  selected: true
+  thumb: images/dvqa.png
+  arxiv: "1801.08163"
+  code: https://github.com/kushalkafle/DVQA_dataset
+  project: projects/dvqa.html
+  doi: 10.1109/CVPR.2018.00592
+
+kafle2017analysis:
+  topic: [vqa]
+  selected: true
+  thumb: images/vqa-tasks.png
+  arxiv: "1703.09684"
+  project: projects/tdiuc.html
+  doi: 10.1109/ICCV.2017.217
+
+kafle2017data:
+  topic: [vqa]
+  thumb: images/vqa-framework.png
+  pdf: https://aclanthology.org/W17-3529.pdf
+
+kafle2016answer:
+  topic: [vqa]
+  thumb: images/answertype.png
+  pdf: https://openaccess.thecvf.com/content_cvpr_2016/papers/Kafle_Answer-Type_Prediction_for_CVPR_2016_paper.pdf
+  doi: 10.1109/CVPR.2016.538
+
+kafle2019challenges:
+  topic: [vqa, bias]
+  thumb: images/challenges.png
+  arxiv: "1904.09317"
+
+kafle2017visual:
+  topic: [vqa]
+  thumb: images/VQA-classification.png
+  arxiv: "1610.01465"
+  doi: 10.1016/j.cviu.2017.06.005
+
+kafle2020thesis:
+  topic: [vqa]
+  pdf: https://repository.rit.edu/theses/10357

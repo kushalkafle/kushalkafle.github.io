@@ -20,7 +20,8 @@ phone width), and checking that links and images resolve.
 
 | Edit this | For |
 |---|---|
-| `pubs.bib` | All publications (site + CV). Custom fields documented at the top of the file. |
+| `pubs.bib` | All publications (site + CV), plain official BibTeX only. |
+| `src/papers.yml` | Website-only paper data keyed by BibTeX key: tabs, Selected, thumbnails, links, awards. |
 | `src/news.yml` | News, newest first. |
 | `src/transfers.yml` | Tech Transfers cards; also drives the CV transfers section. |
 | `src/talks.yml` | Talks section. |
@@ -47,17 +48,20 @@ Never edit `_site/` (generated, gitignored) and don't reintroduce a root `index.
   - `tools/fetch_bib.py` fetches official exports (CVF, ACL Anthology, Springer/ECCV, Frontiers, NeurIPS,
     arXiv) and prints the note line for you. AAAI is behind a bot check and BMVC/RIT have no export:
     ask the owner to paste those.
-  - If an official `year` is a print year that differs from the conference year (Springer often does
-    this), keep it and add `eventyear` for display instead of editing `year`.
-  - After copying, formatting edits are fine: protecting capitalization (`{DVQA}`), renaming keys,
-    dropping noise fields, and adding our custom fields (`venue`, `topic`, `selected`, `thumb`, links).
+  - Springer's `year` is sometimes the print year; the conference year comes from its booktitle
+    ("Computer Vision -- ECCV 2024"), so leave `year` as exported.
+  - After copying, formatting edits are fine: protecting capitalization (`{DVQA}`), renaming keys, and
+    dropping noise fields like `abstract`. Never add website fields to `pubs.bib`; they go in
+    `src/papers.yml`.
+  - Venue labels are derived from `booktitle`/`journal` (acronyms like "(CVPR)" or "ECCV 2024" are used
+    directly). If the build warns about a new venue, add a row to `VENUE_LUT` in `build.py`.
   - The owner may hand-write BibTeX; agents (LLMs) may not. Entries the owner wrote, including those in
     this repo's git history (e.g. the BibTeX blocks in the pre-rebuild `index.html` and project pages),
     count as sources and can be copied.
   - An agent writing or reconstructing an entry needs the owner's explicit OK **for that specific
     entry**, marked with a `% TO CHECK: agent-written, source: <url>` comment.
-- **Publications:** `topic` uses the tab ids in `build.py` `TOPICS` (`mllm`, `vlrep`, `gen`, `bias`,
-  `vqa`). `selected = {true}` + `thumb` puts a paper in the Selected tab. Paper list entries have no
+- **Publications:** in `src/papers.yml`, `topic` uses the tab ids in `build.py` `TOPICS` (`mllm`, `vlrep`,
+  `gen`, `bias`, `vqa`). `selected: true` + `thumb` puts a paper in the Selected tab. Paper list entries have no
   stars or badges.
 - **News:** no single-paper announcements (those belong in Research). Put links on the specific
   words (conference name -> conference site, role -> program committee page), not the whole

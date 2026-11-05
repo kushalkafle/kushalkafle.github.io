@@ -12,6 +12,7 @@ import argparse
 import datetime as dt
 import re
 import shutil
+import sys
 import subprocess
 from pathlib import Path
 
@@ -32,8 +33,6 @@ TOPICS = [
 ]
 COPY = ["CNAME", "favicon.ico", "images", "data"]
 COPY_IGNORE = shutil.ignore_patterns("game", ".DS_Store")
-STANDARD_BIB_FIELDS = ["title", "author", "booktitle", "journal", "school", "volume",
-                       "number", "pages", "year", "publisher", "doi", "eprint"]
 
 
 # ----------------------------------------------------------------- BibTeX
@@ -74,7 +73,8 @@ def parse_bib(text):
                 value, i = vm.group(0), vm.end()
             fields[name] = " ".join(value.split())
             i = rest.find(",", i) + 1 or len(rest)
-        entries.append({"type": m.group(1).lower(), "key": key.strip(), **fields})
+        raw = text[m.start(): m.end() - 1 + len(body) + 2]
+        entries.append({"type": m.group(1).lower(), "key": key.strip(), "raw": raw.strip(), **fields})
     return entries
 
 
@@ -125,59 +125,109 @@ def split_authors(author_field):
 
 # ------------------------------------------------------------ Publications
 
+# Short venue labels derived from the official booktitle/journal. Acronyms in the BibTeX itself
+# (e.g. "... (CVPR)", "Computer Vision -- ECCV 2024", "BMVC") are used directly; this table covers
+# venues whose official name has no acronym. Add a row when a new venue appears.
+VENUE_LUT = [
+    (r"Neural Information Processing Systems", "NeurIPS"),
+    (r"AAAI Conference on Artificial Intelligence", "AAAI"),
+    (r"Annual Meeting of the Association for Computational Linguistics", "ACL"),
+    (r"Empirical Methods in Natural Language Processing", "EMNLP"),
+    (r"North American Chapter of the Association for Computational Linguistics", "NAACL"),
+    (r"International Conference on Natural Language Generation", "INLG"),
+    (r"International Conference on Machine Learning", "ICML"),
+    (r"International Conference on Learning Representations", "ICLR"),
+    (r"Computer Vision and Image Understanding", "CVIU"),
+    (r"Frontiers in Artificial Intelligence", "Frontiers in AI"),
+    (r"Transactions on Machine Learning Research", "TMLR"),
+]
+SCHOOL_LUT = {"Rochester Institute of Technology": "RIT"}
+
+
+def derive_venue(e):
+    """-> (short venue, event year, is_workshop) from the official BibTeX fields."""
+    year = int(e["year"])
+    if e["type"] == "phdthesis":
+        school = delatex(e.get("school", ""))
+        return f"Ph.D. Thesis, {SCHOOL_LUT.get(school, school)}", year, False
+    if e.get("eprint") and not (e.get("booktitle") or e.get("journal")):
+        return "arXiv", year, False
+    full = delatex(e.get("booktitle") or e.get("journal") or "")
+    m = re.search(r"\(([A-Z][A-Za-z]+)\)\s*Workshops?\b", full)
+    if m:
+        return m.group(1) + "W", year, True
+    m = re.search(r"--?\s*([A-Z][A-Za-z]+)\s+(\d{4})\b", full) or re.search(r"\u2013\s*([A-Z][A-Za-z]+)\s+(\d{4})\b", full)
+    if m:  # Springer: "Computer Vision -- ECCV 2024" (its `year` is often the print year)
+        return m.group(1), int(m.group(2)), False
+    m = re.search(r"\(([A-Z][A-Za-z]+)\)\s*$", full)
+    if m:
+        return m.group(1), year, False
+    if re.fullmatch(r"[A-Z][A-Za-z]{1,9}", full):
+        return full, year, "workshop" in full.lower()
+    for pattern, label in VENUE_LUT:
+        if re.search(pattern, full):
+            return label, year, False
+    print(f"warning: no short venue for {e['key']!r} ({full!r}); add a row to VENUE_LUT", file=sys.stderr)
+    return full, year, False
+
+
+def as_list(v):
+    if v is None:
+        return []
+    return v if isinstance(v, list) else [x.strip() for x in str(v).split(",") if x.strip()]
+
+
 def load_pubs():
+    meta = load_yaml("papers.yml") or {}
+    entries = parse_bib((ROOT / "pubs.bib").read_text(encoding="utf-8"))
+    unknown = set(meta) - {e["key"] for e in entries}
+    if unknown:
+        raise SystemExit(f"src/papers.yml has keys not in pubs.bib: {sorted(unknown)}")
     pubs = []
-    for e in parse_bib((ROOT / "pubs.bib").read_text(encoding="utf-8")):
+    for e in entries:
+        m = meta.get(e["key"]) or {}
+        venue, year, workshop = derive_venue(e)
         if e["type"] == "inproceedings":
-            kind = "workshop" if e.get("workshop") == "true" else "conference"
+            kind = "workshop" if workshop else "conference"
         elif e["type"] == "article":
             kind = "journal"
         elif e["type"] == "phdthesis":
             kind = "thesis"
         else:
             kind = "preprint"
-        venue = e.get("venue") or ("arXiv" if kind == "preprint" else "")
-        equal = {int(x) for x in e.get("equal", "").replace(" ", "").split(",") if x}
+        equal = {int(x) for x in as_list(m.get("equal"))}
         authors = [{"name": f"{f} {l}".strip(), "first": f, "last": l,
                     "me": f"{f} {l}" == ME, "equal": i + 1 in equal}
                    for i, (f, l) in enumerate(split_authors(e["author"]))]
+        arxiv = str(m.get("arxiv") or (e.get("eprint") if "arxiv" in e.get("archiveprefix", "").lower() else "") or "")
+        doi = e.get("doi") or m.get("doi")
         links = []
-        if e.get("arxiv"):
-            links.append(("arXiv", f"https://arxiv.org/abs/{e['arxiv']}"))
-        if e.get("pdf"):
-            links.append(("PDF", e["pdf"]))
-        elif e.get("doi") and not e.get("arxiv"):
-            links.append(("Paper", f"https://doi.org/{e['doi']}"))
+        if arxiv:
+            links.append(("arXiv", f"https://arxiv.org/abs/{arxiv}"))
+        if m.get("pdf"):
+            links.append(("PDF", m["pdf"]))
+        elif doi and not arxiv:
+            links.append(("Paper", f"https://doi.org/{doi}"))
         for field, label in (("code", "Code"), ("project", "Project")):
-            if e.get(field):
-                links.append((label, e[field]))
+            if m.get(field):
+                links.append((label, m[field]))
         pubs.append({
-            "key": e["key"], "kind": kind, "year": int(e.get("eventyear") or e["year"]),
+            "key": e["key"], "kind": kind, "year": year,
             "title": delatex(e["title"]),
             "authors": authors, "has_equal": bool(equal),
             "venue": venue,
-            "venue_label": f"{venue} {e.get('eventyear') or e['year']}" if kind != "thesis" else f"{venue}, {e['year']}",
+            "venue_label": venue if kind == "thesis" and str(year) in venue else
+                           (f"{venue}, {year}" if kind == "thesis" else f"{venue} {year}"),
             "venue_full": delatex(e.get("booktitle") or e.get("journal") or e.get("school") or ""),
-            "award": delatex(e.get("award", "")),
-            "topics": [t.strip() for t in e.get("topic", "").split(",") if t.strip()],
-            "selected": e.get("selected") == "true",
-            "thumb": e.get("thumb", ""),
+            "award": m.get("award", ""),
+            "topics": as_list(m.get("topic")),
+            "selected": bool(m.get("selected")),
+            "thumb": m.get("thumb", ""),
             "links": links,
-            "bibtex": to_bibtex(e),
+            "bibtex": e["raw"],
         })
     pubs.sort(key=lambda p: -p["year"])  # stable: keeps file order within a year
     return pubs
-
-
-def to_bibtex(e):
-    fields = dict(e)
-    if e.get("arxiv") and e["type"] == "misc":
-        fields.update(eprint=e["arxiv"], archiveprefix="arXiv")
-    keys = [k for k in STANDARD_BIB_FIELDS if fields.get(k)]
-    if "archiveprefix" in fields:
-        keys.append("archiveprefix")
-    body = ",\n".join(f"  {k} = {{{fields[k]}}}" for k in keys)
-    return f"@{e['type']}{{{e['key']},\n{body}\n}}"
 
 
 # --------------------------------------------------------------------- CV
@@ -200,13 +250,7 @@ def cv_item(p):
         authors = r" \& ".join(names)
     else:
         authors = ", ".join(names[:-1]) + r", \& " + names[-1]
-    venue = p["venue_full"] if p["kind"] != "preprint" else "arXiv preprint"
-    venue = re.sub(r"\s*\([A-Z][A-Za-z]*\)$", "", venue)  # "... (CVPR)" -> "..."; the year tag is added below
-    tag = f"{p['venue']} {p['year']}"
-    if p["kind"] in ("conference", "workshop") and tag not in venue:
-        venue = f"{venue} ({tag})" if venue != p["venue"] else tag
-    elif p["kind"] == "journal" and p["venue"].isupper():
-        venue += f" ({p['venue']})"
+    venue = "arXiv preprint" if p["kind"] == "preprint" else p["venue_label"]
     title = tex_escape(p["title"]) + ("" if p["title"][-1] in "?!." else ".")
     line = rf"    \item {authors} ({p['year']}). {title} \emph{{{tex_escape(venue)}}}."
     url = dict(p["links"]).get("arXiv") or dict(p["links"]).get("Paper") or dict(p["links"]).get("PDF")
