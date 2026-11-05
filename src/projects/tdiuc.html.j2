@@ -1,0 +1,103 @@
+{% extends "_base.html.j2" %}
+{% block title %}TDIUC: Task Directed Image Understanding Challenge{% endblock %}
+{% block description %}TDIUC: a VQA dataset that divides visual question answering into 12 tasks for a more nuanced analysis of algorithms (ICCV 2017).{% endblock %}
+{% block path %}projects/tdiuc.html{% endblock %}
+{% block og_image %}images/vqa-tasks.png{% endblock %}
+{% block brand_href %}../{% endblock %}
+{% block nav %}
+      <li><a href="#about">About</a></li>
+      <li><a href="#paper">Paper</a></li>
+      <li><a href="#download">Download</a></li>
+      <li><a href="#contact">Contact</a></li>
+{% endblock %}
+{% block content %}
+<header class="hero page-hero" id="top">
+  <h1>TDIUC</h1>
+  <p class="role">Task Directed Image Understanding Challenge</p>
+  <p class="email">A more nuanced analysis of visual question answering algorithms &middot; ICCV 2017</p>
+</header>
+
+<section id="about" class="section">
+  <div class="wrap narrow">
+    <figure class="figure"><img src="../images/vqa-tasks.png" alt="Examples of the 12 TDIUC question types"></figure>
+    <p>
+      Visual question answering (VQA) is a challenging vision and language problem that demands a wide range of
+      language and image understanding abilities. However, studying the abilities of current VQA systems is very
+      difficult due to critical problems with bias and a lack of well-annotated question types. The Task Directed
+      Image Understanding Challenge (TDIUC) divides VQA into 12 constituent tasks, making it easier to measure and
+      compare the performance of VQA algorithms.
+    </p>
+    <p>
+      VQA is interesting because it encompasses many other computer vision problems, e.g., object detection, object
+      classification, attribute classification, positional reasoning, and counting. Truly solving VQA requires an
+      algorithm to solve all of them. Because prior datasets are heavily unbalanced toward certain kinds of
+      questions, good performance on less frequent kinds of questions has negligible impact on overall performance.
+      For example, object presence questions are far more common than questions requiring positional reasoning, so an
+      algorithm that excels at positional reasoning cannot showcase its abilities. TDIUC's metrics compensate for
+      this bias, so good performance on TDIUC requires good performance across kinds of questions. Many questions in
+      other datasets can also be answered from the question alone, so TDIUC introduces <em>absurd</em> questions that
+      require an algorithm to look at the image to decide whether the question even applies.
+    </p>
+    <h3>TDIUC at a glance</h3>
+    <ul class="stats">
+      <li><strong>12</strong> question types <span>grouped by underlying task, including absurd questions</span></li>
+      <li><strong>167,437</strong> images <span>from MS-COCO and Visual Genome</span></li>
+      <li><strong>1,654,167</strong> question-answer pairs <span>from three distinct sources</span></li>
+      <li><strong>4</strong> new evaluation metrics <span>designed to compensate for bias</span></li>
+      <li><strong>6</strong> new experimental setups <span>to answer crucial questions about VQA algorithms</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="paper" class="section alt">
+  <div class="wrap narrow">
+    <h2>Paper</h2>
+    <figure class="figure"><a href="https://arxiv.org/abs/1703.09684"><img src="../images/kushalkafle_iccv2017.png" alt="TDIUC paper preview"></a></figure>
+    <p>
+      In our ICCV paper, we show how TDIUC enables a more nuanced analysis and comparison of VQA algorithms through
+      extensive experimentation. If you use TDIUC in your work, please cite:
+    </p>
+<pre class="cite">@inproceedings{kafle2017analysis,
+  title={An Analysis of Visual Question Answering Algorithms},
+  author={Kafle, Kushal and Kanan, Christopher},
+  booktitle={ICCV},
+  year={2017}
+}</pre>
+  </div>
+</section>
+
+<section id="download" class="section">
+  <div class="wrap narrow">
+    <h2>Download and Usage</h2>
+    <p>
+      <a href="../data/TDIUC.zip">Download TDIUC</a> (70 MB). The archive contains all question-answer pairs for the
+      train and validation splits, manually created images, scripts for downloading and setting up images from MS-COCO
+      and Visual Genome, and a script for computing the normalized and un-normalized MPT scores from the paper. See the
+      included README for setup instructions.
+    </p>
+    <p>
+      The format mirrors the <a href="https://visualqa.org/vqa_v1_download.html">VQA dataset</a>, so code written for
+      VQA works with TDIUC with little or no modification.
+    </p>
+    <p class="warning">
+      <strong>Note:</strong> the validation/test split of TDIUC uses question-answer pairs and images from the VQA
+      validation set and images from the Visual Genome validation set. Do not use these sources as additional training
+      data if you evaluate on TDIUC.
+    </p>
+  </div>
+</section>
+
+<section id="contact" class="section alt">
+  <div class="wrap narrow">
+    <h2>Contact</h2>
+    <p>
+      Questions or comments about the paper or the dataset? Contact
+      <a href="../">Kushal Kafle</a> (kushalkafle [at] gmail [dot] com).
+    </p>
+    <p class="muted">
+      Authors: <a href="../">Kushal Kafle</a> and <a href="https://chriskanan.com">Christopher Kanan</a>,
+      Rochester Institute of Technology.
+    </p>
+  </div>
+</section>
+{% endblock %}

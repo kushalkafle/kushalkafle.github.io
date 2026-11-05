@@ -1,0 +1,21 @@
+# Invited talks and lectures, newest first. `title` and `venue` may contain HTML links.
+
+- date: Oct 2025
+  title: Understanding and mitigating model bias in the age of large models
+  venue: >-
+    Keynote, <a href="https://sites.google.com/di.uniroma1.it/biscuit-workshop-1">BISCUIT workshop</a>
+    at <a href="https://iccv.thecvf.com/Conferences/2025">ICCV 2025</a>
+- date: Dec 2021
+  title: Vision-language models and VQA
+  venue: >-
+    Invited lecture, <a href="https://www.youtube.com/playlist?list=PLAT0T4xBwLf87BFUzpyXIzI3NkyEe78v2">3rd Nepal Winter School in AI</a> (NAAMII)
+- date: Jul 2021
+  title: Why bias affects machine learning and what can we do about it?
+  venue: >-
+    Invited talk, <a href="https://sigir-ecom.github.io/ecom2021/">SIGIR eCom 2021</a> workshop
+- date: Sep 2020
+  title: "Biases in vision and language: visual question answering"
+  venue: Guest lectures, Vision and Language courses at Virginia Tech and RIT
+- date: Nov 2019
+  title: Language-grounded visual understanding
+  venue: Invited talks at Microsoft and Adobe Research

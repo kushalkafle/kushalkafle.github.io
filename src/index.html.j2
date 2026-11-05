@@ -1,0 +1,212 @@
+{# Home page. Text lives here; data comes from pubs.bib and src/*.yml. #}
+{% extends "_base.html.j2" %}
+{% from "_macros.html.j2" import authors, links, meta, card, entry, by_year, icon %}
+{% block nav %}
+      <li><a href="#about">About</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#transfers">Tech Transfers</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#talks">Talks</a></li>
+      <li><a href="#misc">Misc</a></li>
+{% endblock %}
+{% block content %}
+<header class="hero" id="top">
+  <h1>Kushal Kafle</h1>
+  <div class="hero-links">
+    {% for name, label, url in [
+      ('linkedin', 'LinkedIn', 'https://www.linkedin.com/in/kushalkafle'),
+      ('scholar', 'Google Scholar', 'https://scholar.google.com/citations?user=M_iwxCQAAAAJ'),
+      ('github', 'GitHub', 'https://github.com/kushalkafle'),
+      ('cv', 'CV', 'data/KushalKafle_CV.pdf')] %}
+    <a href="{{ url }}" target="_blank" rel="noopener" title="{{ label }}">{{ icon(name, root) }}<span>{{ label }}</span></a>
+    {% endfor %}
+  </div>
+  <p class="role">{{ site.title }}</p>
+  <p class="email">kushalkafle [at] gmail [dot] com</p>
+</header>
+
+<section id="about" class="section">
+  <div class="wrap about">
+    <div>
+      <h2>About Me</h2>
+      <p>
+        I am a {{ site.title.split(',')[0] }} at <a href="https://research.adobe.com/" target="_blank" rel="noopener">Adobe Research</a>,
+        where I lead the development of Adobe's vision-language foundation models, from data and training
+        infrastructure to new algorithms and product transfer. This spans image-text embedding models, which power
+        features across
+        <a href="https://firefly.adobe.com/" target="_blank" rel="noopener">Firefly</a>,
+        <a href="https://lightroom.adobe.com/" target="_blank" rel="noopener">Lightroom</a>,
+        <a href="https://helpx.adobe.com/premiere-pro/using/media-intelligence-and-search-panel.html" target="_blank" rel="noopener">Premiere Pro</a>,
+        <a href="https://express.adobe.com/" target="_blank" rel="noopener">Adobe Express</a>, and
+        <a href="https://stock.adobe.com/" target="_blank" rel="noopener">Adobe Stock</a>
+        (see <a href="#transfers">Tech Transfers</a>), and, since late 2024, multimodal large language models
+        for visual understanding.
+      </p>
+      <p>
+        My research focuses on multimodal large language models, vision-language representation learning,
+        benchmarks and evaluations that probe what these models actually understand, and building models that
+        are robust, fair, and right for the right reasons.
+      </p>
+      <p>
+        I received my Ph.D. from the <a href="https://www.rit.edu/science/chester-f-carlson-center-imaging-science" target="_blank" rel="noopener">Chester F. Carlson Center for Imaging Science</a>
+        at Rochester Institute of Technology, advised by <a href="https://chriskanan.com" target="_blank" rel="noopener">Christopher Kanan</a>,
+        where I worked on visual question answering and language-grounded visual understanding.
+      </p>
+    </div>
+    <img class="portrait" src="images/kushal.jpg" alt="Kushal Kafle">
+  </div>
+</section>
+
+{% if site.banner %}
+<div class="banner-wrap">
+  <div class="wrap">
+    <aside class="banner">
+      <span class="badge">{{ site.banner.label }}</span>
+      <p>{{ site.banner.text | safe }}</p>
+    </aside>
+  </div>
+</div>
+{% endif %}
+
+{% macro news_item(n) -%}
+  <li>
+    <span class="date">{{ n.date }}</span>
+    <span>
+      {{ n.text | safe }}
+      {% for p in n.refs %}<a class="ref" href="#pub-{{ p.key }}" title="{{ p.title }}">[{{ loop.index }}]</a>{% endfor %}
+    </span>
+  </li>
+{%- endmacro %}
+
+<section id="news" class="section alt">
+  <div class="wrap">
+    <h2>News</h2>
+    <ul class="news">
+      {% for n in news[:10] %}{{ news_item(n) }}{% endfor %}
+    </ul>
+    {% if news | length > 10 %}
+    <details class="more-news">
+      <summary>Show older news</summary>
+      <ul class="news">
+        {% for n in news[10:] %}{{ news_item(n) }}{% endfor %}
+      </ul>
+    </details>
+    {% endif %}
+  </div>
+</section>
+
+<section id="transfers" class="section">
+  <div class="wrap">
+    <h2>Tech Transfers</h2>
+    <p class="muted">
+      I lead Adobe's vision-language foundation model efforts: image-text embedding models and, since
+      late 2024, multimodal large language models. The embedding models are already used throughout Adobe products;
+      the multimodal LLM work is moving from exploration toward product. Some of the shipped features:
+    </p>
+    <div class="transfers">
+      {% for t in transfers %}
+      <article class="transfer">
+        {% if t.image %}<div class="thumb{% if t.fit == 'contain' %} contain{% endif %}"><img src="{{ t.image }}" alt="{{ t.name }}" loading="lazy"></div>{% endif %}
+        <div class="transfer-body">
+        <div class="transfer-head"><h3>{{ t.name }}</h3><span class="span">{{ t.span }}</span></div>
+        <p>{{ t.text | safe }}</p>
+        {% if t.bullets %}
+        <ul class="transfer-items">
+          {% for it in t.bullets %}<li>{{ (it.text if it is mapping else it) | safe }}</li>{% endfor %}
+        </ul>
+        {% endif %}
+        {% if t.links %}
+        <div class="pub-links">
+          {% for label, url in t.links %}<a href="{{ url }}" target="_blank" rel="noopener">{{ label }}</a>{% endfor %}
+        </div>
+        {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="research" class="section alt">
+  <div class="wrap">
+    <h2>Research</h2>
+    <p class="muted">
+      List last updated {{ pubs_updated }}. For the latest, see
+      <a href="https://scholar.google.com/citations?user=M_iwxCQAAAAJ" target="_blank" rel="noopener">Google Scholar</a>.
+    </p>
+
+    <div class="tabs" role="tablist">
+      {% for t in tabs %}
+      <button role="tab" id="tab-{{ t.id }}" aria-controls="panel-{{ t.id }}" aria-selected="{{ 'true' if loop.first else 'false' }}" data-tab="{{ t.id }}">
+        {{ t.label }} <span class="count">{{ t.pubs | length }}</span>
+      </button>
+      {% endfor %}
+    </div>
+
+    {% for t in tabs %}
+    <div class="panel" role="tabpanel" id="panel-{{ t.id }}" aria-labelledby="tab-{{ t.id }}"{% if not loop.first %} hidden{% endif %}>
+      {% if t.id == 'selected' %}
+        <div class="cards">{% for p in t.pubs %}{{ card(p, t.id) }}{% endfor %}</div>
+      {% elif t.id == 'all' %}
+        {{ by_year(t.pubs, t.id) }}
+      {% else %}
+        {% set hl = t.pubs | selectattr('selected') | list %}
+        {% if hl %}
+        <h3 class="sub">Highlights</h3>
+        <div class="cards">{% for p in hl %}{{ card(p, t.id) }}{% endfor %}</div>
+        <h3 class="sub">All papers</h3>
+        {% endif %}
+        {{ by_year(t.pubs, t.id) }}
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section id="talks" class="section">
+  <div class="wrap">
+    <h2>Talks</h2>
+    <ul class="talks">
+      {% for t in talks %}
+      <li><span class="date">{{ t.date }}</span><span><strong>{{ t.title }}</strong><br><span class="venue">{{ t.venue | safe }}</span></span></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section id="misc" class="section alt">
+  <div class="wrap">
+    <h2>Misc</h2>
+    <h4>I have an Erdős number of four!</h4>
+    <p>
+      What follows is some long-winded collaboration lineage hunting, but you can't deny the facts!
+      <a href="#top">Kushal Kafle</a> &rarr;
+      <a href="https://www.csauthors.net/hao-tan-002/" target="_blank" rel="noopener">Hao Tan</a> &rarr;
+      <a href="https://en.wikipedia.org/wiki/Leonidas_J._Guibas" target="_blank" rel="noopener">Leonidas Guibas</a> &rarr;
+      <a href="https://en.wikipedia.org/wiki/J%C3%A1nos_Pach" target="_blank" rel="noopener">János Pach</a> &rarr;
+      <a href="https://en.wikipedia.org/wiki/Paul_Erd%C5%91s" target="_blank" rel="noopener">Paul Erdős</a>.
+      Here's the <a href="https://www.csauthors.net/distance/kushal-kafle/paul-erdos" target="_blank" rel="noopener">link</a>.
+    </p>
+    <h4>I have some impressive academic lineage!</h4>
+    <p>
+      <a href="https://en.wikipedia.org/wiki/Norbert_Wiener" target="_blank" rel="noopener">Norbert Wiener</a> is my grand-grand-grand-mentor
+      (via <a href="https://chriskanan.com" target="_blank" rel="noopener">Christopher Kanan</a>,
+      <a href="https://cseweb.ucsd.edu/~gary/" target="_blank" rel="noopener">Garrison Cottrell</a>, and
+      <a href="https://en.wikipedia.org/wiki/Michael_A._Arbib" target="_blank" rel="noopener">Michael Arbib</a>), and <a href="https://en.wikipedia.org/wiki/David_Hilbert" target="_blank" rel="noopener">David Hilbert</a> and
+      <a href="https://en.wikipedia.org/wiki/Bertrand_Russell" target="_blank" rel="noopener">Bertrand Russell</a> are my grand-grand-grand-grand-mentors.
+      It only gets better from there!
+      Another branch runs through <a href="https://en.wikipedia.org/wiki/William_Feller" target="_blank" rel="noopener">William Feller</a>, <a href="https://en.wikipedia.org/wiki/Richard_Courant" target="_blank" rel="noopener">Richard Courant</a>,
+      <a href="https://en.wikipedia.org/wiki/Jakob_Rosanes" target="_blank" rel="noopener">Jacob Rosanes</a>, and <a href="https://en.wikipedia.org/wiki/Rudolf_Lipschitz" target="_blank" rel="noopener">Rudolf Lipschitz</a>, and if you keep
+      following it, you eventually encounter some really big-shot names:
+      <a href="https://en.wikipedia.org/wiki/Peter_Gustav_Lejeune_Dirichlet" target="_blank" rel="noopener">Dirichlet</a>,
+      <a href="https://en.wikipedia.org/wiki/Joseph_Fourier" target="_blank" rel="noopener">Fourier</a>,
+      <a href="https://en.wikipedia.org/wiki/Sim%C3%A9on_Denis_Poisson" target="_blank" rel="noopener">Poisson</a>,
+      <a href="https://en.wikipedia.org/wiki/Pierre-Simon_Laplace" target="_blank" rel="noopener">Laplace</a>, and
+      <a href="https://en.wikipedia.org/wiki/Joseph-Louis_Lagrange" target="_blank" rel="noopener">Lagrange</a>.
+      Along the way there are also <a href="https://en.wikipedia.org/wiki/David_Rumelhart" target="_blank" rel="noopener">David Rumelhart</a>,
+      <a href="https://en.wikipedia.org/wiki/Warren_Sturgis_McCulloch" target="_blank" rel="noopener">Warren McCulloch</a>, and <a href="https://en.wikipedia.org/wiki/Rudolf_E._K%C3%A1lm%C3%A1n" target="_blank" rel="noopener">Rudolf Kalman</a>.
+      Talk about standing on the shoulders of giants! Here's the <a href="https://neurotree.org/neurotree/tree.php?pid=754712" target="_blank" rel="noopener">link</a>.
+    </p>
+  </div>
+</section>
+{% endblock %}

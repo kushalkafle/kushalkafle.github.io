@@ -1,0 +1,42 @@
+{# Shared page layout. Child templates fill title/description/nav/content; `root` is the path to the site root. #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Kushal Kafle{% endblock %}</title>
+  <meta name="description" content="{% block description %}Kushal Kafle, {{ site.title }}, working on vision-language foundation models.{% endblock %}">
+  <meta name="author" content="Kushal Kafle">
+  <meta property="og:title" content="{{ self.title() }}">
+  <meta property="og:url" content="https://kushalkafle.com/{% block path %}{% endblock %}">
+  <meta property="og:image" content="https://kushalkafle.com/{% block og_image %}images/kushal.jpg{% endblock %}">
+  <meta property="og:description" content="{{ self.description() }}">
+  <link rel="icon" href="{{ root }}favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ root }}style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="{% block brand_href %}#top{% endblock %}">{% block brand %}Kushal Kafle{% endblock %}</a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
+    <ul class="nav-links">
+      {% block nav %}{% endblock %}
+      <li><a href="{{ root }}data/KushalKafle_CV.pdf" target="_blank">CV</a></li>
+    </ul>
+  </div>
+</nav>
+
+{% block content %}{% endblock %}
+
+<footer class="footer">
+  <a href="#top">Back to top &uarr;</a>
+  <span>Last updated {{ built }}</span>
+</footer>
+
+<script src="{{ root }}site.js"></script>
+</body>
+</html>

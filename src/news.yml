@@ -1,0 +1,90 @@
+# News, newest first. The newest 10 are shown; the rest sit behind "Show older news".
+#   date:   free text, e.g. "Oct 2025"
+#   text:   HTML
+#   Put links inline on the specific words (conference -> its site, role -> program committee page).
+#   papers: optional list of pubs.bib keys, rendered as [1] [2] links to the papers below
+# Keep single-paper announcements out; those live in Research.
+# Items marked "verify" need a check (dates inferred from conference dates / link not reachable by script).
+
+- date: Nov 2026
+  text: >-
+    Serving on the Senior Program Committee for <a href="https://aaai.org/conference/aaai/aaai-27/">AAAI 2027</a>.
+- date: Sep 2026  # verify month
+  text: >-
+    Two papers at <a href="https://eccv.ecva.net/Conferences/2026">ECCV 2026</a>, and recognized as an
+    <a href="https://eccv.ecva.net/Conferences/2026/ProgramCommittee#outstanding-reviewer">Outstanding Reviewer</a>.
+  papers: [fioresi2026controlling, sethuraman2026vitalx]
+- date: Jun 2026
+  text: >-
+    Served as a <a href="https://cvpr.thecvf.com/Conferences/2026/ProgramCommittee#lead-area-chair">Lead Area Chair</a>
+    for <a href="https://cvpr.thecvf.com/Conferences/2026">CVPR 2026</a>.
+- date: Mar 2026
+  text: >-
+    Served as an <a href="https://wacv.thecvf.com/Conferences/2026/ProgramCommittee#area-chair">Area Chair</a>
+    for <a href="https://wacv.thecvf.com/Conferences/2026">WACV 2026</a>.
+- date: Oct 2025
+  text: >-
+    Gave a keynote, "Understanding and mitigating model bias in the age of large models", at the
+    <a href="https://sites.google.com/di.uniroma1.it/biscuit-workshop-1">BISCUIT workshop</a> at
+    <a href="https://iccv.thecvf.com/Conferences/2025">ICCV 2025</a>.
+- date: Oct 2025
+  text: >-
+    Two papers at <a href="https://iccv.thecvf.com/Conferences/2025">ICCV 2025</a>, where I also served as a
+    <a href="https://iccv.thecvf.com/Conferences/2025/ProgramCommittee#all-lead-area-chair">Lead Area Chair</a>.
+  papers: [hernandez2025panel, slyman2025calibrating]
+- date: Jun 2024
+  text: >-
+    Two papers at <a href="https://cvpr.thecvf.com/Conferences/2024">CVPR 2024</a>.
+  papers: [slyman2024fairdedup, sameni2024building]
+- date: Jan 2024
+  text: >-
+    Two papers at <a href="https://openaccess.thecvf.com/WACV2024">WACV 2024</a>, one selected for an oral presentation.
+  papers: [tanjim2024discovering, yang2024scord]
+- date: Oct 2022
+  text: >-
+    Two papers at <a href="https://eccv2022.ecva.net/">ECCV 2022</a>, including an oral presentation, and
+    co-organized the DIRA workshop on drawings and abstract imagery.
+  papers: [shrestha2022occamnets, pham2022improving]
+- date: Dec 2021
+  text: >-
+    Invited lecture on vision-language models and VQA at the
+    <a href="https://www.youtube.com/playlist?list=PLAT0T4xBwLf87BFUzpyXIzI3NkyEe78v2">3rd Nepal Winter School in AI</a>.
+- date: Oct 2021
+  text: >-
+    Papers at <a href="https://openaccess.thecvf.com/CVPR2021">CVPR 2021</a> and
+    <a href="https://openaccess.thecvf.com/ICCV2021">ICCV 2021</a>.
+  papers: [pham2021learning, ravi2021aesop]
+- date: Jul 2021
+  text: >-
+    Invited talk on bias in machine learning at the <a href="https://sigir-ecom.github.io/ecom2021/">SIGIR eCom 2021</a> workshop.
+- date: Dec 2020
+  text: >-
+    Papers at <a href="https://aclanthology.org/events/acl-2020/">ACL 2020</a>, <a href="https://eccv2020.eu/">ECCV 2020</a>,
+    and <a href="https://neurips.cc/Conferences/2020">NeurIPS 2020</a>.
+  papers: [shrestha2020negative, hayes2020remind, teney2020value]
+- date: Mar 2020
+  text: >-
+    Started working at <a href="https://research.adobe.com/">Adobe Research</a> as a research scientist.
+- date: Feb 2020
+  text: Successfully defended my Ph.D. dissertation.
+  papers: [kafle2020thesis]
+- date: Mar 2019
+  text: Joining Microsoft Research, Redmond as a research intern this summer.
+- date: Jan 2019
+  text: Co-organizing the second Workshop on Shortcomings in Vision and Language (SiVL) at NAACL 2019.
+- date: Nov 2018
+  text: Successfully defended my thesis proposal (advancement to candidacy).
+- date: Jul 2018
+  text: Co-organizing the Workshop on Shortcomings in Vision and Language (SiVL) at ECCV 2018.
+- date: May 2018
+  text: Recognized as an outstanding reviewer for CVPR 2018.
+- date: May 2017
+  text: Started a research internship at Adobe Research.
+- date: May 2016
+  text: Accepted with a scholarship to the Deep Learning Summer School 2016.
+- date: Apr 2016
+  text: Launched an online VQA demo at askimage.org (later extended with a DVQA demo).
+- date: Mar 2016
+  text: Our AWS research grant proposal was accepted ($15K in AWS credits).
+- date: Jul 2015
+  text: Started working in the Machine and Neuromorphic Perception Laboratory with Dr. Christopher Kanan.

@@ -1,0 +1,94 @@
+# Tech transfers / shipped products, shown as cards after News.
+# Use time spans rather than exact dates; long-running items can keep growing.
+#   name, span, text (HTML), bullets: [HTML, ...] (optional list), links: [[label, url], ...],
+#   image (optional), fit: contain (optional, for wide images)
+# CV (build.py --cv-dir): cards with `cv: highlight` get a full entry; everything else is listed by its
+#   `short` name on one "Other transfers" line. Bullets can be plain HTML or {text: ..., short: ...}.
+# Draft wording and spans; please review.
+
+- name: Semantic Search in Express and Stock
+  span: 2023 – present
+  cv: highlight
+  image: images/transfers/stock-search.jpg
+  text: >-
+    Natural-language and image search for templates in Adobe Express (+46% click-through) and for
+    assets in Adobe Stock. It has since grown to multilingual, behavior-tuned, and steerable search,
+    and now runs on a new generation of our foundation model.
+  links:
+    - [Adobe Express, https://express.adobe.com/]
+    - [Adobe Stock, https://stock.adobe.com/]
+
+- name: Lightroom Natural-Language Search
+  span: 2025 – present
+  cv: highlight
+  image: images/transfers/lightroom-search.jpg
+  text: >-
+    Search a photo library with full phrases like "photos of dog taken at the beach", with no keywords
+    needed. Launched in Lightroom on the web, then in Lightroom desktop and mobile.
+  links:
+    - [Lightroom, https://lightroom.adobe.com/]
+    - [Help article, https://helpx.adobe.com/lightroom/web/create-albums-and-organize-photos/add-and-organize-photos/semantic-search.html]
+    - [Tutorial, https://www.adobe.com/learn/lightroom-cc/web/find-photos-natural-language-search]
+
+- name: Adobe Firefly Image Generation
+  span: 2023 – 2025
+  cv: highlight
+  image: images/transfers/firefly-style-reference.webp
+  text: >-
+    Our text and image encoders powered the Firefly Image models' reference features, including
+    Style Reference uploads, generating similar images, and using images as references.
+  links:
+    - [Firefly, https://firefly.adobe.com/]
+
+- name: Firefly Image-to-Video
+  span: 2025
+  short: Firefly image-to-video (prompt coherence and safety)
+  image: images/transfers/firefly-image-to-video.jpg
+  fit: contain
+  text: >-
+    Features from our image-text encoders were key to improving prompt coherence and bias handling
+    for the image-to-video launch.
+  links:
+    - [Firefly, https://firefly.adobe.com/]
+    - [Help article, https://helpx.adobe.com/firefly/web/work-with-audio-and-video/work-with-video/generate-videos-using-images.html]
+
+- name: Premiere Pro Media Intelligence
+  span: 2025
+  cv: highlight
+  image: images/transfers/premiere-search.webp
+  text: >-
+    Visual search in Premiere Pro's Media Intelligence and Search panel, built with the video team on
+    our image-text foundation model.
+  links:
+    - [Premiere Pro, https://www.adobe.com/products/premiere.html]
+    - [Help article & video, https://helpx.adobe.com/premiere/desktop/organize-media/file-organization/search-for-media-using-ai-powered-media-intelligence.html]
+
+- name: Foundational Technology
+  span: 2023 – present
+  image: images/transfers/aem-smart-tags.jpg
+  fit: contain
+  text: >-
+    Beyond the products above, the same models are used across Adobe, including:
+  bullets:
+    - text: >-
+        Safety filtering: an NSFW classifier built on our models has screened generated images since
+        Firefly's 2023 launch.
+      short: Firefly NSFW safety filter
+    - text: >-
+        <a href="https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/assets/manage/smart-tags">Smart Tags</a>
+        in Adobe Experience Manager.
+      short: AEM Smart Tags
+    - text: >-
+        <a href="https://helpx.adobe.com/lightroom-cc/using/assisted-culling.html">Assisted culling</a> and
+        <a href="https://helpx.adobe.com/lightroom-classic/help/auto-stack.html">Auto Stack</a> in Lightroom,
+        via a compact on-device model.
+      short: Lightroom assisted culling and Auto Stack (on-device)
+    - text: >-
+        "More like this" template similarity in Adobe Express.
+      short: Express "More like this" template similarity
+    - text: >-
+        Prompt-free object compositing in Photoshop (beta).
+      short: Photoshop prompt-free object compositing (beta)
+    - text: >-
+        Data-filtering classifiers for Firefly training data, and visual encoders for our multimodal LLM research.
+      short: Firefly training-data filtering models

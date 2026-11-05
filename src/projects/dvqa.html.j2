@@ -1,0 +1,92 @@
+{% extends "_base.html.j2" %}
+{% block title %}DVQA: Understanding Data Visualizations via Question Answering{% endblock %}
+{% block description %}DVQA: a synthetic question answering dataset of 300,000 bar charts and 3.5M question-answer pairs (CVPR 2018).{% endblock %}
+{% block path %}projects/dvqa.html{% endblock %}
+{% block og_image %}images/dvqa.png{% endblock %}
+{% block brand_href %}../{% endblock %}
+{% block nav %}
+      <li><a href="#about">About</a></li>
+      <li><a href="#paper">Paper</a></li>
+      <li><a href="#download">Download</a></li>
+      <li><a href="#contact">Contact</a></li>
+{% endblock %}
+{% block content %}
+<header class="hero page-hero" id="top">
+  <h1>DVQA</h1>
+  <p class="role">Understanding Data Visualizations via Question Answering</p>
+  <p class="email">Kushal Kafle, Brian Price, Scott Cohen, Christopher Kanan &middot; CVPR 2018</p>
+</header>
+
+<section id="about" class="section">
+  <div class="wrap narrow">
+    <figure class="figure"><img src="../images/dvqa.png" alt="Example DVQA bar charts with questions and answers"></figure>
+    <p>
+      Data visualizations, e.g., bar charts, pie charts, and plots, contain large amounts of information in a concise
+      format. These visualizations are designed to communicate data to people, not to be machine interpretable.
+      Nevertheless, making algorithms capable of making inferences from data visualizations has enormous practical
+      applications. Here, we study systems capable of answering open-ended questions about bar charts, which we refer
+      to as data visualization question answering (DVQA). DVQA would enable vast repositories of charts within
+      scientific documents, web pages, and business reports to be queried automatically.
+    </p>
+    <p>
+      Unlike visual question answering (VQA), DVQA requires processing words and answers that are unique to a
+      particular bar chart. State-of-the-art VQA algorithms perform poorly on DVQA, and we propose two strong baselines
+      that perform considerably better. Besides practical benefits, DVQA also serves as an important proxy task for
+      several critical AI abilities, such as attention, working memory, visual reasoning, and the ability to handle
+      dynamic and out-of-vocabulary (OOV) labels.
+    </p>
+    <h3>DVQA at a glance</h3>
+    <ul class="stats">
+      <li><strong>3</strong> question types <span>assessing structure understanding, data retrieval, and reasoning</span></li>
+      <li><strong>300,000</strong> images <span>with large variation in both data and bar-chart appearance</span></li>
+      <li><strong>3,487,194</strong> question-answer pairs <span>balanced to remove simple language biases</span></li>
+      <li><strong>Detailed metadata</strong> <span>for every element in each chart</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="paper" class="section alt">
+  <div class="wrap narrow">
+    <h2>Paper</h2>
+    <figure class="figure"><a href="https://arxiv.org/abs/1801.08163"><img src="../images/dvqa_paper.png" alt="DVQA paper preview"></a></figure>
+    <p>If you use DVQA in your work, please cite:</p>
+<pre class="cite">@inproceedings{kafle2018dvqa,
+  title={DVQA: Understanding Data Visualizations via Question Answering},
+  author={Kafle, Kushal and Price, Brian and Cohen, Scott and Kanan, Christopher},
+  booktitle={CVPR},
+  year={2018}
+}</pre>
+    <p>
+      Follow-up: <a href="https://arxiv.org/abs/1908.01801">Answering Questions about Data Visualizations using
+      Efficient Bimodal Fusion</a> (WACV 2020, <a href="https://github.com/kushalkafle/PReFIL">code</a>).
+    </p>
+  </div>
+</section>
+
+<section id="download" class="section">
+  <div class="wrap narrow">
+    <h2>Download and Usage</h2>
+    <p>
+      Download links and the README are in the
+      <a href="https://github.com/kushalkafle/DVQA_dataset">DVQA GitHub repository</a>.
+    </p>
+  </div>
+</section>
+
+<section id="contact" class="section alt">
+  <div class="wrap narrow">
+    <h2>Contact</h2>
+    <p>
+      Questions or comments about the paper or the dataset? Contact
+      <a href="../">Kushal Kafle</a> (kushalkafle [at] gmail [dot] com).
+    </p>
+    <p class="muted">
+      Authors: <a href="../">Kushal Kafle</a>,
+      <a href="https://research.adobe.com/person/brian-price/">Brian Price</a>,
+      <a href="https://research.adobe.com/person/scott-cohen/">Scott Cohen</a>, and
+      <a href="https://chriskanan.com">Christopher Kanan</a>.
+      This work was done during an internship at Adobe Research.
+    </p>
+  </div>
+</section>
+{% endblock %}

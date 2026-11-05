@@ -1,0 +1,12 @@
+# Site-wide settings.
+
+title: Senior Research Scientist, Adobe Research
+
+# Highlighted "key news" banner between About and News. Delete or set to null to hide.
+banner:
+  label: New
+  text: >-
+    <strong>I'm looking for research interns!</strong> I'm working on multimodal LLMs,
+    representation learning, and agentic systems. If you're currently pursuing a PhD in these
+    areas and think you'd be a good fit, please reach out at kushalkafle [at] gmail [dot] com
+    with your CV and a short note about your research interests.

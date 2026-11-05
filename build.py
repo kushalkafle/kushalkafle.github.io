@@ -1,0 +1,323 @@
+#!/usr/bin/env python3
+"""Build kushalkafle.com into _site/.
+
+    python3 build.py                     # build the website into _site/
+    python3 build.py --cv-dir DIR        # also write CV fragments: DIR/pubs.tex, DIR/transfers.tex
+
+Publications come from pubs.bib; news, tech transfers, talks and site settings from
+src/*.yml; layout from src/_base.html.j2, the home page from src/index.html.j2, and
+project pages from src/projects/*.html.j2. See the header of pubs.bib for supported custom fields.
+"""
+import argparse
+import datetime as dt
+import re
+import shutil
+import subprocess
+from pathlib import Path
+
+import yaml
+from jinja2 import Environment, FileSystemLoader, select_autoescape
+
+ROOT = Path(__file__).resolve().parent
+SRC = ROOT / "src"
+OUT = ROOT / "_site"
+ME = "Kushal Kafle"
+
+TOPICS = [
+    ("mllm", "Multimodal LLMs & Evaluation"),
+    ("vlrep", "Vision-Language Representation Learning"),
+    ("gen", "Generative Models & Image Editing"),
+    ("bias", "Fairness & Robustness"),
+    ("vqa", "Visual Question Answering"),
+]
+COPY = ["CNAME", "favicon.ico", "images", "data"]
+COPY_IGNORE = shutil.ignore_patterns("game", ".DS_Store")
+STANDARD_BIB_FIELDS = ["title", "author", "booktitle", "journal", "school", "volume",
+                       "number", "pages", "year", "publisher", "doi", "eprint"]
+
+
+# ----------------------------------------------------------------- BibTeX
+
+def _read_braced(s, i):
+    """s[i] is '{' -> (content, index after matching '}')."""
+    depth, j = 0, i
+    while j < len(s):
+        if s[j] == "{" and s[j - 1] != "\\":
+            depth += 1
+        elif s[j] == "}" and s[j - 1] != "\\":
+            depth -= 1
+            if depth == 0:
+                return s[i + 1:j], j + 1
+        j += 1
+    raise ValueError(f"Unbalanced braces near: {s[i:i + 60]!r}")
+
+
+def parse_bib(text):
+    text = "\n".join(l for l in text.splitlines() if not l.lstrip().startswith("%"))
+    entries = []
+    for m in re.finditer(r"@(\w+)\s*\{", text):
+        body, _ = _read_braced(text, m.end() - 1)
+        key, _, rest = body.partition(",")
+        fields, i = {}, 0
+        while True:
+            fm = re.compile(r"\s*(\w+)\s*=\s*").match(rest, i)
+            if not fm:
+                break
+            name, i = fm.group(1).lower(), fm.end()
+            if rest[i] == "{":
+                value, i = _read_braced(rest, i)
+            elif rest[i] == '"':
+                j = rest.index('"', i + 1)
+                value, i = rest[i + 1:j], j + 1
+            else:
+                vm = re.compile(r"[^,\s}]+").match(rest, i)
+                value, i = vm.group(0), vm.end()
+            fields[name] = " ".join(value.split())
+            i = rest.find(",", i) + 1 or len(rest)
+        entries.append({"type": m.group(1).lower(), "key": key.strip(), **fields})
+    return entries
+
+
+def delatex(s):
+    s = s.replace("\\&", "&").replace("\\%", "%").replace("\\_", "_").replace("~", "\u00a0")
+    s = s.replace("---", "\u2014").replace("--", "\u2013")
+    return re.sub(r"[{}]", "", s)
+
+
+def split_authors(author_field):
+    names = []
+    for a in re.split(r"\s+and\s+", author_field):
+        last, _, first = (p.strip() for p in a.partition(","))
+        names.append((delatex(first), delatex(last)))
+    return names
+
+
+# ------------------------------------------------------------ Publications
+
+def load_pubs():
+    pubs = []
+    for e in parse_bib((ROOT / "pubs.bib").read_text(encoding="utf-8")):
+        if e["type"] == "inproceedings":
+            kind = "workshop" if e.get("workshop") == "true" else "conference"
+        elif e["type"] == "article":
+            kind = "journal"
+        elif e["type"] == "phdthesis":
+            kind = "thesis"
+        else:
+            kind = "preprint"
+        venue = e.get("venue") or ("arXiv" if kind == "preprint" else "")
+        equal = {int(x) for x in e.get("equal", "").replace(" ", "").split(",") if x}
+        authors = [{"name": f"{f} {l}".strip(), "first": f, "last": l,
+                    "me": f"{f} {l}" == ME, "equal": i + 1 in equal}
+                   for i, (f, l) in enumerate(split_authors(e["author"]))]
+        links = []
+        if e.get("arxiv"):
+            links.append(("arXiv", f"https://arxiv.org/abs/{e['arxiv']}"))
+        if e.get("pdf"):
+            links.append(("PDF", e["pdf"]))
+        elif e.get("doi") and not e.get("arxiv"):
+            links.append(("Paper", f"https://doi.org/{e['doi']}"))
+        for field, label in (("code", "Code"), ("project", "Project")):
+            if e.get(field):
+                links.append((label, e[field]))
+        pubs.append({
+            "key": e["key"], "kind": kind, "year": int(e["year"]),
+            "title": delatex(e["title"]),
+            "authors": authors, "has_equal": bool(equal),
+            "venue": venue, "venue_label": f"{venue} {e['year']}" if kind != "thesis" else f"{venue}, {e['year']}",
+            "venue_full": delatex(e.get("booktitle") or e.get("journal") or e.get("school") or ""),
+            "award": delatex(e.get("award", "")),
+            "topics": [t.strip() for t in e.get("topic", "").split(",") if t.strip()],
+            "selected": e.get("selected") == "true",
+            "thumb": e.get("thumb", ""),
+            "links": links,
+            "bibtex": to_bibtex(e),
+        })
+    pubs.sort(key=lambda p: -p["year"])  # stable: keeps file order within a year
+    return pubs
+
+
+def to_bibtex(e):
+    fields = dict(e)
+    if e.get("arxiv") and e["type"] == "misc":
+        fields.update(eprint=e["arxiv"], archiveprefix="arXiv")
+    keys = [k for k in STANDARD_BIB_FIELDS if fields.get(k)]
+    if "archiveprefix" in fields:
+        keys.append("archiveprefix")
+    body = ",\n".join(f"  {k} = {{{fields[k]}}}" for k in keys)
+    return f"@{e['type']}{{{e['key']},\n{body}\n}}"
+
+
+# --------------------------------------------------------------------- CV
+
+def cv_name(a):
+    initials = " ".join("-".join(f"{h[0]}." for h in p.split("-") if h) for p in a["first"].split())
+    s = f"{a['last']}, {initials}".strip().rstrip(",")
+    if a["equal"]:
+        s += "*"
+    return rf"\textbf{{{s}}}" if a["me"] else s
+
+
+def tex_escape(s):
+    return s.replace("&", r"\&").replace("%", r"\%").replace("#", r"\#")
+
+
+def cv_item(p):
+    names = [cv_name(a) for a in p["authors"]]
+    if len(names) <= 2:
+        authors = r" \& ".join(names)
+    else:
+        authors = ", ".join(names[:-1]) + r", \& " + names[-1]
+    venue = p["venue_full"] if p["kind"] != "preprint" else "arXiv preprint"
+    if p["kind"] in ("conference", "workshop"):
+        venue += f" ({p['venue']} {p['year']})"
+    elif p["kind"] == "journal" and p["venue"].isupper():
+        venue += f" ({p['venue']})"
+    title = tex_escape(p["title"]) + ("" if p["title"][-1] in "?!." else ".")
+    line = rf"    \item {authors} ({p['year']}). {title} \emph{{{tex_escape(venue)}}}."
+    url = dict(p["links"]).get("arXiv") or dict(p["links"]).get("Paper") or dict(p["links"]).get("PDF")
+    if p["kind"] == "preprint" and url:
+        line = line[:-1] + rf" \href{{{url}}}{{arXiv:{url.rsplit('/', 1)[-1]}}}."
+    if p["award"]:
+        line += rf" \textcolor{{red}}{{{tex_escape(p['award'])}}}"
+    if p["has_equal"]:
+        line += r" \textcolor{red}{*equal contribution}"
+    return line
+
+
+def write_cv_pubs(pubs, path):
+    groups = [("Peer Reviewed International Conferences", "conference", "C"),
+              ("Peer Reviewed Journals", "journal", "J"),
+              ("Workshop Papers", "workshop", "W"),
+              ("Preprints", "preprint", "P")]
+    out = ["% AUTO-GENERATED by build.py from pubs.bib -- do not edit by hand.", ""]
+    for title, kind, label in groups:
+        items = [p for p in pubs if p["kind"] == kind]
+        if not items:
+            continue
+        out += [rf"\subsection*{{{title}}}", rf"\begin{{enumerate}}[label=({label}\arabic*)]", r"\small"]
+        out += [cv_item(p) for p in items]
+        out += [r"\end{enumerate}", ""]
+    Path(path).write_text("\n".join(out), encoding="utf-8")
+    print(f"wrote {path}")
+
+
+def html_to_tex(s):
+    links = []
+
+    def keep(m):
+        links.append((m.group(1), m.group(2)))
+        return f"\x00{len(links) - 1}\x00"
+
+    s = re.sub(r'<a [^>]*href="([^"]+)"[^>]*>(.*?)</a>', keep, s)
+    s = re.sub(r"<[^>]+>", "", s)
+    s = re.sub(r'"([^"]*)"', r"``\1''", s)
+    s = tex_escape(s).replace("–", "--")
+    return re.sub(r"\x00(\d+)\x00",
+                  lambda m: r"\href{%s}{%s}" % (links[int(m.group(1))][0], tex_escape(links[int(m.group(1))][1])), s)
+
+
+def write_cv_transfers(transfers, path):
+    out = ["% AUTO-GENERATED by build.py from src/transfers.yml -- do not edit by hand.",
+           r"\begin{itemize}[leftmargin=*]", r"\small"]
+    others = []
+    for t in transfers:
+        for b in t.get("bullets") or []:
+            if isinstance(b, dict) and b.get("short"):
+                others.append(b["short"])
+        if t.get("cv") != "highlight":
+            if t.get("short"):
+                others.append(t["short"])
+            continue
+        name = tex_escape(t["name"])
+        if t.get("links"):
+            name = rf"\href{{{t['links'][0][1]}}}{{{name}}}"
+        out.append(rf"\item \textbf{{{name}}} \hfill \textit{{{html_to_tex(str(t['span']))}}}\\")
+        out.append(rf"\begin{{scriptsize}}{html_to_tex(' '.join(t['text'].split()))}\end{{scriptsize}}")
+        out.append("")
+    if others:
+        out.append(r"\item \textbf{Other transfers:} \begin{scriptsize}"
+                   + "; ".join(html_to_tex(o) for o in others) + r".\end{scriptsize}")
+    out.append(r"\end{itemize}")
+    Path(path).write_text("\n".join(out) + "\n", encoding="utf-8")
+    print(f"wrote {path}")
+
+
+# ------------------------------------------------------------------- Site
+
+def pubs_updated():
+    """Date pubs.bib last changed: its git commit date, or file mtime if it has uncommitted edits."""
+    bib = ROOT / "pubs.bib"
+    def git(*args):
+        try:
+            return subprocess.run(["git", *args], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+        except OSError:
+            return ""
+    if not git("status", "--porcelain", "--", bib.name):
+        stamp = git("log", "-1", "--format=%cs", "--", bib.name)
+        if stamp:
+            return dt.date.fromisoformat(stamp)
+    return dt.date.fromtimestamp(bib.stat().st_mtime)
+
+
+def load_yaml(name):
+    return yaml.safe_load((SRC / name).read_text(encoding="utf-8"))
+
+
+def build_site(pubs):
+    if OUT.exists():
+        shutil.rmtree(OUT)
+    OUT.mkdir()
+    for name in COPY:
+        src = ROOT / name
+        if src.is_dir():
+            shutil.copytree(src, OUT / name, ignore=COPY_IGNORE)
+        elif src.exists():
+            shutil.copy2(src, OUT / name)
+    for asset in ("style.css", "site.js"):
+        shutil.copy2(SRC / asset, OUT / asset)
+
+    site = load_yaml("site.yml") or {}
+    transfers = load_yaml("transfers.yml") or []
+    by_key = {p["key"]: p for p in pubs}
+    news = load_yaml("news.yml") or []
+    for n in news:
+        missing = [k for k in n.get("papers", []) if k not in by_key]
+        if missing:
+            raise SystemExit(f"news.yml ({n['date']}): unknown paper keys {missing}")
+        n["refs"] = [by_key[k] for k in n.get("papers", [])]
+    tabs = [{"id": "selected", "label": "Selected", "pubs": [p for p in pubs if p["selected"]]}]
+    for tid, label in TOPICS:
+        tabs.append({"id": tid, "label": label, "pubs": [p for p in pubs if tid in p["topics"]]})
+    tabs.append({"id": "all", "label": "All", "pubs": pubs})
+
+    env = Environment(loader=FileSystemLoader(SRC), autoescape=select_autoescape(["html", "j2"]),
+                      trim_blocks=True, lstrip_blocks=True)
+    common = dict(site=site, built=dt.date.today().strftime("%B %Y"))
+    for tpl in sorted((SRC / "projects").glob("*.html.j2")):
+        out = OUT / "projects" / tpl.name[: -len(".j2")]
+        out.parent.mkdir(exist_ok=True)
+        out.write_text(env.get_template(f"projects/{tpl.name}").render(root="../", **common), encoding="utf-8")
+    page = env.get_template("index.html.j2").render(
+        root="", tabs=tabs, news=news, transfers=transfers, pubs=pubs, talks=load_yaml("talks.yml") or [], **common,
+        pubs_updated=f"{pubs_updated():%B} {pubs_updated().day}, {pubs_updated():%Y}",
+        counts={k: sum(p["kind"] == k for p in pubs) for k in ("conference", "journal", "workshop", "preprint")},
+    )
+    (OUT / "index.html").write_text(page, encoding="utf-8")
+    print(f"built {OUT.relative_to(ROOT)}/index.html: {len(pubs)} publications, {len(news)} news items")
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--cv-dir", help="also write CV fragments (pubs.tex, transfers.tex) into this directory")
+    args = ap.parse_args()
+    pubs = load_pubs()
+    build_site(pubs)
+    if args.cv_dir:
+        Path(args.cv_dir).mkdir(parents=True, exist_ok=True)
+        write_cv_pubs(pubs, Path(args.cv_dir) / "pubs.tex")
+        write_cv_transfers(load_yaml("transfers.yml") or [], Path(args.cv_dir) / "transfers.tex")
+
+
+if __name__ == "__main__":
+    main()

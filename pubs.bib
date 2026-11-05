@@ -1,0 +1,481 @@
+% =============================================================================
+% Single source of truth for publications (website + CV).
+%
+% Standard fields: title, author, booktitle/journal, year, doi, ...
+% Custom fields used by build.py (ignored by regular BibTeX):
+%   venue    short venue label shown on the website, e.g. {CVPR}. Year is appended.
+%   topic    comma list of: mllm, vlrep, gen, bias, vqa (tabs defined in build.py TOPICS)
+%   selected {true} to feature in the "Selected" tab (with thumbnail)
+%   thumb    image path for selected papers, e.g. {images/pubs/dvqa.png}
+%   arxiv    arXiv id, e.g. {1801.08163}
+%   pdf, code, project   URLs (relative paths allowed)
+%   award    e.g. {Oral Presentation}
+%   equal    1-based author positions with equal contribution, e.g. {1,2,3}
+%   workshop {true} for workshop papers
+%
+% Entry types: @inproceedings = conference, @article = journal,
+%              @misc with arxiv = preprint, @phdthesis = thesis
+% Keep entries newest first.
+% =============================================================================
+
+% ----------------------------------------------------------------- Preprints
+
+@misc{abdelmagid2026copying,
+  title    = {Copying As Defense: Protecting Images from Editing By Eliciting Model Copying},
+  author   = {Abdel Magid, Salma and Chun, Sanghyuk and Slyman, Eric and Kafle, Kushal and Russakovsky, Olga},
+  year     = {2026},
+  arxiv    = {2610.35566},
+  topic    = {gen, bias},
+}
+
+@misc{lu2026seeing,
+  title    = {Seeing Through Words: Controlling Visual Retrieval Quality with Language Models},
+  author   = {Lu, Jianglin and Jenni, Simon and Kafle, Kushal and Shi, Jing and Zhao, Handong and Fu, Yun},
+  year     = {2026},
+  arxiv    = {2602.21175},
+  topic    = {vlrep},
+}
+
+@misc{wu2026retouchiq,
+  title    = {{RetouchIQ}: {MLLM} Agents for Instruction-Based Image Retouching with Generalist Reward},
+  author   = {Wu, Qiucheng and Shi, Jing and Jenni, Simon and Kafle, Kushal and Wang, Tianyu and Chang, Shiyu and Zhao, Handong},
+  year     = {2026},
+  arxiv    = {2602.17558},
+  topic    = {gen, mllm},
+}
+
+@misc{just2025more,
+  title    = {More Than the Final Answer: Improving Visual Extraction and Logical Consistency in Vision-Language Models},
+  author   = {Just, Hoang Anh and Fan, Yifei and Zhao, Handong and Gu, Jiuxiang and Zhang, Ruiyi and Jenni, Simon and Kafle, Kushal and Jia, Ruoxi and Shi, Jing},
+  year     = {2025},
+  arxiv    = {2512.12487},
+  topic    = {mllm},
+}
+
+@misc{dong2025cot,
+  title    = {{CoT} Referring: Improving Referring Expression Tasks with Grounded Reasoning},
+  author   = {Dong, Qi and Figueroa, Luis and Zhao, Handong and Kafle, Kushal and Kuen, Jason and Ding, Zhihong and Cohen, Scott and Fu, Yun},
+  year     = {2025},
+  arxiv    = {2510.06243},
+  topic    = {mllm},
+}
+
+@misc{zang2025ms4ui,
+  title    = {{MS4UI}: A Dataset for Multi-modal Summarization of User Interface Instructional Videos},
+  author   = {Zang, Yuan and Tan, Hao and Yoon, Seunghyun and Dernoncourt, Franck and Gu, Jiuxiang and Kafle, Kushal and Sun, Chen and Bui, Trung},
+  year     = {2025},
+  arxiv    = {2506.12623},
+  topic    = {mllm},
+}
+
+@misc{abdelmagid2024doctors,
+  title    = {They're All Doctors: Synthesizing Diverse Counterfactuals to Mitigate Associative Bias},
+  author   = {Abdel Magid, Salma and Wang, Jui-Hsien and Kafle, Kushal and Pfister, Hanspeter},
+  year     = {2024},
+  arxiv    = {2406.11331},
+  topic    = {bias, gen},
+}
+
+@misc{qian2020fc,
+  title    = {Do We Need Fully Connected Output Layers in Convolutional Networks?},
+  author   = {Qian, Zhongchao and Hayes, Tyler L. and Kafle, Kushal and Kanan, Christopher},
+  year     = {2020},
+  arxiv    = {2004.13587},
+}
+
+% ------------------------------------------------------------- Conferences
+
+@inproceedings{fioresi2026controlling,
+  title     = {Controlling Embedding Spaces with Text-Conditioned Transformations},
+  author    = {Fioresi, Joseph and Caba Heilbron, Fabian and Nathani, Pankaj and Shah, Mubarak and Kafle, Kushal},
+  booktitle = {European Conference on Computer Vision},
+  venue     = {ECCV},
+  year      = {2026},
+  arxiv     = {2607.22919},
+  doi       = {10.1007/978-3-032-37041-9_30},
+  topic     = {vlrep},
+  selected  = {true},
+  thumb     = {images/pubs/controlling-embeddings.png},
+}
+
+@inproceedings{sethuraman2026vitalx,
+  title     = {{ViTAL-X}: Video-Text Alignment with Cross-Modal Temporal Edits},
+  author    = {Sethuraman, T. V. and Khosla, Savya and Susladkar, Onkar and Tiwari, Aditi and Oh, Seoung Wug and Kafle, Kushal and Lee, Joon-Young and Hoiem, Derek and Jenni, Simon},
+  booktitle = {European Conference on Computer Vision},
+  venue     = {ECCV},
+  year      = {2026},
+  arxiv     = {2609.00505},
+  doi       = {10.1007/978-3-032-37174-4_8},
+  topic     = {vlrep},
+}
+
+@inproceedings{akdemir2026plot,
+  title     = {Plot'n Polish: Zero-Shot Story Visualization and Disentangled Editing with Text-to-Image Diffusion Models},
+  author    = {Akdemir, Kiymet and Shi, Jing and Kafle, Kushal and Price, Brian and Yanardag, Pinar},
+  booktitle = {AAAI Conference on Artificial Intelligence},
+  venue     = {AAAI},
+  year      = {2026},
+  arxiv     = {2509.04446},
+  doi       = {10.1609/aaai.v40i3.37147},
+  topic     = {gen},
+}
+
+@inproceedings{hernandez2025panel,
+  title     = {Improving Large Vision and Language Models by Learning from a Panel of Peers},
+  author    = {Hernandez, Jefferson and Shi, Jing and Jenni, Simon and Ordonez, Vicente and Kafle, Kushal},
+  booktitle = {IEEE/CVF International Conference on Computer Vision},
+  venue     = {ICCV},
+  year      = {2025},
+  arxiv     = {2509.01610},
+  doi       = {10.1109/ICCV51701.2025.00138},
+  topic     = {mllm},
+  selected  = {true},
+  thumb     = {images/pubs/panel-of-peers.png},
+}
+
+@inproceedings{slyman2025calibrating,
+  title     = {Calibrating {MLLM}-as-a-judge via Multimodal {Bayesian} Prompt Ensembles},
+  author    = {Slyman, Eric and Tanjim, Mehrab and Kafle, Kushal and Lee, Stefan},
+  booktitle = {IEEE/CVF International Conference on Computer Vision},
+  venue     = {ICCV},
+  year      = {2025},
+  arxiv     = {2509.08777},
+  doi       = {10.1109/ICCV51701.2025.01600},
+  topic     = {mllm},
+}
+
+@inproceedings{khosla2025magnet,
+  title     = {{MAGNET}: Augmenting Generative Decoders with Representation Learning and Infilling Capabilities},
+  author    = {Khosla, Savya and Tiwari, Aditi and Kafle, Kushal and Jenni, Simon and Zhao, Handong and Collomosse, John and Shi, Jing},
+  booktitle = {Annual Meeting of the Association for Computational Linguistics},
+  venue     = {ACL},
+  year      = {2025},
+  arxiv     = {2501.08648},
+  doi       = {10.18653/v1/2025.acl-long.1325},
+  topic     = {mllm, vlrep},
+}
+
+@inproceedings{lu2025revisiting,
+  title     = {Revisiting Multi-Modal {LLM} Evaluation},
+  author    = {Lu, Jian and Srivastava, Shikhar and Chen, Junyu and Shrestha, Robik and Acharya, Manoj and Kafle, Kushal and Kanan, Christopher},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops},
+  venue     = {CVPRW},
+  year      = {2025},
+  arxiv     = {2408.05334},
+  doi       = {10.1109/CVPRW67362.2025.00060},
+  topic     = {mllm, vqa},
+  workshop  = {true},
+}
+
+@inproceedings{hua2024finematch,
+  title     = {{FineMatch}: Aspect-Based Fine-Grained Image and Text Mismatch Detection and Correction},
+  author    = {Hua, Hang and Shi, Jing and Kafle, Kushal and Jenni, Simon and Zhang, Daoan and Collomosse, John and Cohen, Scott and Luo, Jiebo},
+  booktitle = {European Conference on Computer Vision},
+  venue     = {ECCV},
+  year      = {2024},
+  arxiv     = {2404.14715},
+  doi       = {10.1007/978-3-031-72673-6_26},
+  code      = {https://github.com/hanghuacs/FineMatch},
+  topic     = {vlrep, mllm},
+}
+
+@inproceedings{slyman2024fairdedup,
+  title     = {{FairDeDup}: Detecting and Mitigating Vision-Language Fairness Disparities in Semantic Dataset Deduplication},
+  author    = {Slyman, Eric and Lee, Stefan and Cohen, Scott and Kafle, Kushal},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  venue     = {CVPR},
+  year      = {2024},
+  arxiv     = {2404.16123},
+  doi       = {10.1109/CVPR52733.2024.01319},
+  topic     = {bias, vlrep},
+  selected  = {true},
+  thumb     = {images/pubs/fairdedup.jpg},
+}
+
+@inproceedings{sameni2024building,
+  title     = {Building Vision-Language Models on Solid Foundations with Masked Distillation},
+  author    = {Sameni, Sepehr and Kafle, Kushal and Tan, Hao and Jenni, Simon},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  venue     = {CVPR},
+  year      = {2024},
+  doi       = {10.1109/CVPR52733.2024.01348},
+  topic     = {vlrep},
+  selected  = {true},
+  thumb     = {images/pubs/sf-clip.png},
+}
+
+@inproceedings{yang2024scord,
+  title     = {{SCoRD}: Subject-Conditional Relation Detection with Text-Augmented Data},
+  author    = {Yang, Ziyan and Kafle, Kushal and Lin, Zhe and Cohen, Scott and Ding, Zhihong and Ordonez, Vicente},
+  booktitle = {IEEE/CVF Winter Conference on Applications of Computer Vision},
+  venue     = {WACV},
+  year      = {2024},
+  arxiv     = {2308.12910},
+  doi       = {10.1109/WACV57701.2024.00563},
+  topic     = {vlrep},
+}
+
+@inproceedings{tanjim2024discovering,
+  title     = {Discovering and Mitigating Biases in {CLIP}-based Image Editing},
+  author    = {Tanjim, Md Mehrab and Singh, Krishna Kumar and Kafle, Kushal and Sinha, Ritwik and Cottrell, Garrison W.},
+  booktitle = {IEEE/CVF Winter Conference on Applications of Computer Vision},
+  venue     = {WACV},
+  year      = {2024},
+  doi       = {10.1109/WACV57701.2024.00296},
+  pdf       = {https://openaccess.thecvf.com/content/WACV2024/papers/Tanjim_Discovering_and_Mitigating_Biases_in_CLIP-Based_Image_Editing_WACV_2024_paper.pdf},
+  project   = {https://mehrab-tanjim.github.io/Debiasing-CLIP-based-Editing/},
+  award     = {Oral Presentation (2.6\% of submissions)},
+  topic     = {bias, gen},
+  selected  = {true},
+  thumb     = {images/pubs/clip-editing-bias.png},
+}
+
+@inproceedings{yang2023improving,
+  title     = {Improving Visual Grounding by Encouraging Consistent Gradient-Based Explanations},
+  author    = {Yang, Ziyan and Kafle, Kushal and Dernoncourt, Franck and Ordonez, Vicente},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  venue     = {CVPR},
+  year      = {2023},
+  arxiv     = {2206.15462},
+  doi       = {10.1109/CVPR52729.2023.01837},
+  topic     = {vlrep},
+}
+
+@inproceedings{tanjim2022debiasing,
+  title     = {Debiasing Image-to-Image Translation Models},
+  author    = {Tanjim, Md Mehrab and Singh, Krishna Kumar and Kafle, Kushal and Sinha, Ritwik and Cottrell, Garrison W.},
+  booktitle = {British Machine Vision Conference},
+  venue     = {BMVC},
+  year      = {2022},
+  pdf       = {https://pdf-files.bmvc2022.org/0182.pdf},
+  topic     = {bias, gen},
+}
+
+@inproceedings{pham2022improving,
+  title     = {Improving Closed and Open-Vocabulary Attribute Prediction Using Transformers},
+  author    = {Pham, Khoi and Kafle, Kushal and Lin, Zhe and Ding, Zhihong and Cohen, Scott and Tran, Quan and Shrivastava, Abhinav},
+  booktitle = {European Conference on Computer Vision},
+  venue     = {ECCV},
+  year      = {2022},
+  doi       = {10.1007/978-3-031-19806-9_12},
+  topic     = {vlrep},
+}
+
+@inproceedings{shrestha2022occamnets,
+  title     = {{OccamNets}: Mitigating Dataset Bias by Favoring Simpler Hypotheses},
+  author    = {Shrestha, Robik and Kafle, Kushal and Kanan, Christopher},
+  booktitle = {European Conference on Computer Vision},
+  venue     = {ECCV},
+  year      = {2022},
+  arxiv     = {2204.02426},
+  doi       = {10.1007/978-3-031-20044-1_40},
+  code      = {https://github.com/erobic/occam-nets-v1},
+  award     = {Oral Presentation (2.7\% of submissions)},
+  topic     = {bias},
+  selected  = {true},
+  thumb     = {images/pubs/occamnets.png},
+}
+
+@inproceedings{shrestha2022investigation,
+  title     = {An Investigation of Critical Issues in Bias Mitigation Techniques},
+  author    = {Shrestha, Robik and Kafle, Kushal and Kanan, Christopher},
+  booktitle = {IEEE/CVF Winter Conference on Applications of Computer Vision},
+  venue     = {WACV},
+  year      = {2022},
+  arxiv     = {2104.00170},
+  doi       = {10.1109/WACV51458.2022.00257},
+  code      = {https://github.com/erobic/bias-mitigators},
+  topic     = {bias},
+}
+
+@inproceedings{ravi2021aesop,
+  title     = {{AESOP}: Abstract Encoding of Stories, Objects, and Pictures},
+  author    = {Ravi, Hareesh and Kafle, Kushal and Cohen, Scott and Brandt, Jonathan and Kapadia, Mubbasir},
+  booktitle = {IEEE/CVF International Conference on Computer Vision},
+  venue     = {ICCV},
+  year      = {2021},
+  doi       = {10.1109/ICCV48922.2021.00206},
+  topic     = {gen},
+}
+
+@inproceedings{pham2021learning,
+  title     = {Learning to Predict Visual Attributes in the Wild},
+  author    = {Pham, Khoi and Kafle, Kushal and Lin, Zhe and Ding, Zhihong and Cohen, Scott and Tran, Quan and Shrivastava, Abhinav},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  venue     = {CVPR},
+  year      = {2021},
+  arxiv     = {2106.09707},
+  doi       = {10.1109/CVPR46437.2021.01282},
+  topic     = {vlrep},
+}
+
+@inproceedings{teney2020value,
+  title     = {On the Value of Out-of-Distribution Testing: An Example of {Goodhart's} Law},
+  author    = {Teney, Damien and Kafle, Kushal and Shrestha, Robik and Abbasnejad, Ehsan and Kanan, Christopher and van den Hengel, Anton},
+  booktitle = {Advances in Neural Information Processing Systems},
+  venue     = {NeurIPS},
+  year      = {2020},
+  arxiv     = {2005.09241},
+  topic     = {bias, vqa},
+}
+
+@inproceedings{shrestha2020negative,
+  title     = {A Negative Case Analysis of Visual Grounding Methods for {VQA}},
+  author    = {Shrestha, Robik and Kafle, Kushal and Kanan, Christopher},
+  booktitle = {Annual Meeting of the Association for Computational Linguistics},
+  venue     = {ACL},
+  year      = {2020},
+  arxiv     = {2004.05704},
+  doi       = {10.18653/v1/2020.acl-main.727},
+  code      = {https://github.com/erobic/negative_analysis_of_grounding},
+  topic     = {vqa, bias},
+}
+
+@inproceedings{hayes2020remind,
+  title     = {{REMIND} Your Neural Network to Prevent Catastrophic Forgetting},
+  author    = {Hayes, Tyler L. and Kafle, Kushal and Shrestha, Robik and Acharya, Manoj and Kanan, Christopher},
+  booktitle = {European Conference on Computer Vision},
+  venue     = {ECCV},
+  year      = {2020},
+  arxiv     = {1910.02509},
+  doi       = {10.1007/978-3-030-58598-3_28},
+  code      = {https://github.com/tyler-hayes/REMIND},
+  equal     = {1,2,3},
+  topic     = {vqa},
+  selected  = {true},
+  thumb     = {images/remind.png},
+}
+
+@inproceedings{kafle2020answering,
+  title     = {Answering Questions about Data Visualizations using Efficient Bimodal Fusion},
+  author    = {Kafle, Kushal and Shrestha, Robik and Price, Brian and Cohen, Scott and Kanan, Christopher},
+  booktitle = {IEEE/CVF Winter Conference on Applications of Computer Vision},
+  venue     = {WACV},
+  year      = {2020},
+  arxiv     = {1908.01801},
+  doi       = {10.1109/WACV45572.2020.9093494},
+  code      = {https://github.com/kushalkafle/PReFIL},
+  topic     = {vqa},
+  thumb     = {images/prefil.png},
+}
+
+@inproceedings{shrestha2019answer,
+  title     = {Answer Them All! Toward Universal Visual Question Answering Models},
+  author    = {Shrestha, Robik and Kafle, Kushal and Kanan, Christopher},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  venue     = {CVPR},
+  year      = {2019},
+  arxiv     = {1903.00366},
+  doi       = {10.1109/CVPR.2019.01072},
+  code      = {https://github.com/erobic/ramen},
+  topic     = {vqa},
+  thumb     = {images/ramen.png},
+}
+
+@inproceedings{acharya2019tallyqa,
+  title     = {{TallyQA}: Answering Complex Counting Questions},
+  author    = {Acharya, Manoj and Kafle, Kushal and Kanan, Christopher},
+  booktitle = {AAAI Conference on Artificial Intelligence},
+  venue     = {AAAI},
+  year      = {2019},
+  arxiv     = {1810.12440},
+  doi       = {10.1609/aaai.v33i01.33018076},
+  project   = {https://www.manojacharya.com/tallyqa.html},
+  topic     = {vqa},
+  thumb     = {images/tallyqa.png},
+}
+
+@inproceedings{kafle2018dvqa,
+  title     = {{DVQA}: Understanding Data Visualizations via Question Answering},
+  author    = {Kafle, Kushal and Price, Brian and Cohen, Scott and Kanan, Christopher},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  venue     = {CVPR},
+  year      = {2018},
+  arxiv     = {1801.08163},
+  doi       = {10.1109/CVPR.2018.00592},
+  code      = {https://github.com/kushalkafle/DVQA_dataset},
+  project   = {projects/dvqa.html},
+  topic     = {vqa},
+  selected  = {true},
+  thumb     = {images/dvqa.png},
+}
+
+@inproceedings{kafle2017analysis,
+  title     = {An Analysis of Visual Question Answering Algorithms},
+  author    = {Kafle, Kushal and Kanan, Christopher},
+  booktitle = {IEEE/CVF International Conference on Computer Vision},
+  venue     = {ICCV},
+  year      = {2017},
+  arxiv     = {1703.09684},
+  doi       = {10.1109/ICCV.2017.217},
+  project   = {projects/tdiuc.html},
+  topic     = {vqa},
+  selected  = {true},
+  thumb     = {images/vqa-tasks.png},
+}
+
+@inproceedings{kafle2017data,
+  title     = {Data Augmentation for Visual Question Answering},
+  author    = {Kafle, Kushal and Yousefhussien, Mohammed and Kanan, Christopher},
+  booktitle = {International Conference on Natural Language Generation},
+  venue     = {INLG},
+  year      = {2017},
+  doi       = {10.18653/v1/W17-3529},
+  pdf       = {https://aclanthology.org/W17-3529.pdf},
+  topic     = {vqa},
+  thumb     = {images/vqa-framework.png},
+}
+
+@inproceedings{kafle2016answer,
+  title     = {Answer-Type Prediction for Visual Question Answering},
+  author    = {Kafle, Kushal and Kanan, Christopher},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  venue     = {CVPR},
+  year      = {2016},
+  doi       = {10.1109/CVPR.2016.538},
+  pdf       = {https://openaccess.thecvf.com/content_cvpr_2016/papers/Kafle_Answer-Type_Prediction_for_CVPR_2016_paper.pdf},
+  topic     = {vqa},
+  thumb     = {images/answertype.png},
+}
+
+% ----------------------------------------------------------------- Journals
+
+@article{kafle2019challenges,
+  title     = {Challenges and Prospects in Vision and Language Research},
+  author    = {Kafle, Kushal and Shrestha, Robik and Kanan, Christopher},
+  journal   = {Frontiers in Artificial Intelligence},
+  venue     = {Frontiers in AI},
+  volume    = {2},
+  pages     = {28},
+  year      = {2019},
+  arxiv     = {1904.09317},
+  doi       = {10.3389/frai.2019.00028},
+  topic     = {vqa, bias},
+  thumb     = {images/challenges.png},
+}
+
+@article{kafle2017visual,
+  title     = {Visual Question Answering: Datasets, Algorithms, and Future Challenges},
+  author    = {Kafle, Kushal and Kanan, Christopher},
+  journal   = {Computer Vision and Image Understanding},
+  venue     = {CVIU},
+  volume    = {163},
+  pages     = {3--20},
+  year      = {2017},
+  arxiv     = {1610.01465},
+  doi       = {10.1016/j.cviu.2017.06.005},
+  topic     = {vqa},
+  thumb     = {images/VQA-classification.png},
+}
+
+% ------------------------------------------------------------------- Thesis
+
+@phdthesis{kafle2020thesis,
+  title     = {Advancing Multi-Modal Deep Learning: Towards Language-Grounded Visual Understanding},
+  author    = {Kafle, Kushal},
+  school    = {Rochester Institute of Technology},
+  venue     = {Ph.D. Thesis, RIT},
+  year      = {2020},
+  pdf       = {https://repository.rit.edu/theses/10357},
+  topic     = {vqa},
+}
