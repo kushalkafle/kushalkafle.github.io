@@ -18,10 +18,10 @@
       ('scholar', 'Google Scholar', 'https://scholar.google.com/citations?user=M_iwxCQAAAAJ'),
       ('github', 'GitHub', 'https://github.com/kushalkafle'),
       ('cv', 'CV', 'data/KushalKafle_CV.pdf')] %}
-    <a href="{{ url }}" target="_blank" rel="noopener" title="{{ label }}">{{ icon(name, root) }}<span>{{ label }}</span></a>
+    <a href="{{ url }}" target="_blank" rel="noopener" title="{{ label }}" aria-label="{{ label }}">{{ icon(name, root) }}</a>
     {% endfor %}
   </div>
-  <p class="role">{{ site.title }}</p>
+  <p class="role">{{ site.title | replace(', ', '<br>') | safe }}</p>
   <p class="email">kushalkafle [at] gmail [dot] com</p>
 </header>
 
