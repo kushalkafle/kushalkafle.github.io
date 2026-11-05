@@ -10,6 +10,7 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt   # once
 .venv/bin/python build.py                          # render into _site/
 .venv/bin/python -m http.server 8000 -d _site      # preview at http://localhost:8000
 .venv/bin/python build.py --cv-dir <cv-repo>       # also write <cv-repo>/pubs.tex and transfers.tex
+python3 tools/fetch_bib.py <arXiv id | DOI | CVF/NeurIPS/ACL URL>   # official BibTeX + TO CHECK note
 ```
 
 There are no tests. Verify changes by building, opening the preview (desktop and a ~390px
@@ -34,9 +35,27 @@ Never edit `_site/` (generated, gitignored) and don't reintroduce a root `index.
 
 ## Content conventions
 
-- **BibTeX is copied, never generated.** Always paste the official BibTeX from the source (publisher or
-  proceedings page, DBLP, arXiv, Google Scholar). Do not write or reconstruct entries yourself; only add
-  the custom fields (`venue`, `topic`, `selected`, `thumb`, `arxiv`/`pdf`/`code`/`project`, ...).
+- **BibTeX is copied, never generated.** Copy each entry verbatim from the venue's official export
+  (CVF Open Access, ACL Anthology, PMLR, NeurIPS proceedings, OpenReview, Springer/AAAI/publisher
+  "export citation"). Use arXiv BibTeX only for papers that exist only on arXiv. Google Scholar blocks
+  automated access; don't try to get around it (the owner can paste Scholar BibTeX themselves).
+  - Every entry an agent copies gets a note on the line directly above it, and the owner reviews it once:
+    `% TO CHECK (copied by agent) | source: <exact URL the BibTeX came from> | changes: <edits, or none>`
+    The owner replaces it with `% Checked` after reviewing. Never mark an entry Checked yourself, and
+    keep existing `% Checked` notes when editing an entry (switch back to TO CHECK if you change its
+    standard fields).
+  - `tools/fetch_bib.py` fetches official exports (CVF, ACL Anthology, Springer/ECCV, Frontiers, NeurIPS,
+    arXiv) and prints the note line for you. AAAI is behind a bot check and BMVC/RIT have no export:
+    ask the owner to paste those.
+  - If an official `year` is a print year that differs from the conference year (Springer often does
+    this), keep it and add `eventyear` for display instead of editing `year`.
+  - After copying, formatting edits are fine: protecting capitalization (`{DVQA}`), renaming keys,
+    dropping noise fields, and adding our custom fields (`venue`, `topic`, `selected`, `thumb`, links).
+  - The owner may hand-write BibTeX; agents (LLMs) may not. Entries the owner wrote, including those in
+    this repo's git history (e.g. the BibTeX blocks in the pre-rebuild `index.html` and project pages),
+    count as sources and can be copied.
+  - An agent writing or reconstructing an entry needs the owner's explicit OK **for that specific
+    entry**, marked with a `% TO CHECK: agent-written, source: <url>` comment.
 - **Publications:** `topic` uses the tab ids in `build.py` `TOPICS` (`mllm`, `vlrep`, `gen`, `bias`,
   `vqa`). `selected = {true}` + `thumb` puts a paper in the Selected tab. Paper list entries have no
   stars or badges.

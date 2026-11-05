@@ -78,16 +78,47 @@ def parse_bib(text):
     return entries
 
 
+ACCENTS = {"'": "\u0301", "`": "\u0300", '"': "\u0308", "^": "\u0302", "~": "\u0303", "v": "\u030c",
+           "c": "\u0327", "=": "\u0304", ".": "\u0307", "u": "\u0306", "H": "\u030b"}
+
+
 def delatex(s):
+    import unicodedata
+    s = re.sub(r"\\textquotesingle\s*", "'", s)
+    s = re.sub(r"\\textquotedbl\s*", '"', s)
+    s = re.sub(r"\\([`'\"^~=.]|[vcuH](?=[\s{]))\s*\{?\\?([A-Za-z])\}?",
+               lambda m: unicodedata.normalize("NFC", m.group(2) + ACCENTS[m.group(1)]), s)
     s = s.replace("\\&", "&").replace("\\%", "%").replace("\\_", "_").replace("~", "\u00a0")
     s = s.replace("---", "\u2014").replace("--", "\u2013")
     return re.sub(r"[{}]", "", s)
 
 
+def _words(name):
+    """Split on spaces outside braces, so "Salma {Abdel Magid}" keeps the braced surname together."""
+    words, depth, cur = [], 0, ""
+    for ch in name:
+        depth += ch == "{"
+        depth -= ch == "}"
+        if ch.isspace() and depth == 0:
+            if cur:
+                words.append(cur)
+            cur = ""
+        else:
+            cur += ch
+    return words + ([cur] if cur else [])
+
+
 def split_authors(author_field):
     names = []
-    for a in re.split(r"\s+and\s+", author_field):
-        last, _, first = (p.strip() for p in a.partition(","))
+    for a in re.split(r"\s+and\s+", " ".join(author_field.split())):
+        if "," in a:
+            last, _, first = (p.strip() for p in a.partition(","))
+        else:  # "First von Last" form (e.g. arXiv exports)
+            w = _words(a)
+            i = len(w) - 1
+            while i > 1 and w[i - 1][:1].islower():
+                i -= 1
+            first, last = " ".join(w[:i]), " ".join(w[i:])
         names.append((delatex(first), delatex(last)))
     return names
 
@@ -121,10 +152,11 @@ def load_pubs():
             if e.get(field):
                 links.append((label, e[field]))
         pubs.append({
-            "key": e["key"], "kind": kind, "year": int(e["year"]),
+            "key": e["key"], "kind": kind, "year": int(e.get("eventyear") or e["year"]),
             "title": delatex(e["title"]),
             "authors": authors, "has_equal": bool(equal),
-            "venue": venue, "venue_label": f"{venue} {e['year']}" if kind != "thesis" else f"{venue}, {e['year']}",
+            "venue": venue,
+            "venue_label": f"{venue} {e.get('eventyear') or e['year']}" if kind != "thesis" else f"{venue}, {e['year']}",
             "venue_full": delatex(e.get("booktitle") or e.get("journal") or e.get("school") or ""),
             "award": delatex(e.get("award", "")),
             "topics": [t.strip() for t in e.get("topic", "").split(",") if t.strip()],
@@ -169,8 +201,10 @@ def cv_item(p):
     else:
         authors = ", ".join(names[:-1]) + r", \& " + names[-1]
     venue = p["venue_full"] if p["kind"] != "preprint" else "arXiv preprint"
-    if p["kind"] in ("conference", "workshop"):
-        venue += f" ({p['venue']} {p['year']})"
+    venue = re.sub(r"\s*\([A-Z][A-Za-z]*\)$", "", venue)  # "... (CVPR)" -> "..."; the year tag is added below
+    tag = f"{p['venue']} {p['year']}"
+    if p["kind"] in ("conference", "workshop") and tag not in venue:
+        venue = f"{venue} ({tag})" if venue != p["venue"] else tag
     elif p["kind"] == "journal" and p["venue"].isupper():
         venue += f" ({p['venue']})"
     title = tex_escape(p["title"]) + ("" if p["title"][-1] in "?!." else ".")
