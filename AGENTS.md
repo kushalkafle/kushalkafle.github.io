@@ -34,6 +34,9 @@ Never edit `_site/` (generated, gitignored) and don't reintroduce a root `index.
 
 ## Content conventions
 
+- **BibTeX is copied, never generated.** Always paste the official BibTeX from the source (publisher or
+  proceedings page, DBLP, arXiv, Google Scholar). Do not write or reconstruct entries yourself; only add
+  the custom fields (`venue`, `topic`, `selected`, `thumb`, `arxiv`/`pdf`/`code`/`project`, ...).
 - **Publications:** `topic` uses the tab ids in `build.py` `TOPICS` (`mllm`, `vlrep`, `gen`, `bias`,
   `vqa`). `selected = {true}` + `thumb` puts a paper in the Selected tab. Paper list entries have no
   stars or badges.
