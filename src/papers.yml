@@ -6,28 +6,28 @@
 #   doi:      used for a "Paper" link when the BibTeX has no doi and there is no arXiv/PDF
 #   award:    e.g. "Oral Presentation";  equal: [1, 2, 3] author positions with equal contribution
 
-abdelmagid2026copying:
+magid2026copyingdefenseprotectingimages:
   topic: [gen, bias]
 
-lu2026seeing:
+lu2026seeingwordscontrollingvisual:
   topic: [vlrep]
 
-wu2026retouchiq:
+wu2026retouchiqmllmagentsinstructionbased:
   topic: [gen, mllm]
 
-just2025more:
+just2025finalanswerimprovingvisual:
   topic: [mllm]
 
-dong2025cot:
+dong2026cotreferringimprovingreferring:
   topic: [mllm]
 
-zang2025ms4ui:
+zang2025ms4uidatasetmultimodalsummarization:
   topic: [mllm]
 
-abdelmagid2024doctors:
+magid2024theyredoctorssynthesizingdiverse:
   topic: [bias, gen]
 
-qian2020fc: {}
+qian2020needfullyconnectedoutput: {}
 
 fioresi2026controlling:
   topic: [vlrep]
@@ -46,52 +46,52 @@ akdemir2026plot:
   arxiv: "2509.04446"
   doi: 10.1609/aaai.v40i3.37147
 
-hernandez2025panel:
+Hernandez_2025_ICCV:
   topic: [mllm]
   selected: true
   thumb: images/pubs/panel-of-peers.png
   arxiv: "2509.01610"
   doi: 10.1109/ICCV51701.2025.00138
 
-slyman2025calibrating:
+Slyman_2025_ICCV:
   topic: [mllm]
   arxiv: "2509.08777"
   doi: 10.1109/ICCV51701.2025.01600
 
-khosla2025magnet:
+khosla-etal-2025-magnet:
   topic: [mllm, vlrep]
   arxiv: "2501.08648"
 
-lu2025revisiting:
+Lu_2025_CVPR:
   topic: [mllm, vqa]
   arxiv: "2408.05334"
   doi: 10.1109/CVPRW67362.2025.00060
 
-hua2024finematch:
+Hua_2024_ECCV:
   topic: [vlrep, mllm]
   arxiv: "2404.14715"
   code: https://github.com/hanghuacs/FineMatch
   doi: 10.1007/978-3-031-72673-6_26
 
-slyman2024fairdedup:
+Slyman_2024_CVPR:
   topic: [bias, vlrep]
   selected: true
   thumb: images/pubs/fairdedup.jpg
   arxiv: "2404.16123"
   doi: 10.1109/CVPR52733.2024.01319
 
-sameni2024building:
+Sameni_2024_CVPR:
   topic: [vlrep]
   selected: true
   thumb: images/pubs/sf-clip.png
   doi: 10.1109/CVPR52733.2024.01348
 
-yang2024scord:
+Yang_2024_WACV:
   topic: [vlrep]
   arxiv: "2308.12910"
   doi: 10.1109/WACV57701.2024.00563
 
-tanjim2024discovering:
+Tanjim_2024_WACV:
   topic: [bias, gen]
   selected: true
   thumb: images/pubs/clip-editing-bias.png
@@ -100,7 +100,7 @@ tanjim2024discovering:
   doi: 10.1109/WACV57701.2024.00296
   award: "Oral Presentation (2.6% of submissions)"
 
-yang2023improving:
+Yang_2023_CVPR:
   topic: [vlrep]
   arxiv: "2206.15462"
   doi: 10.1109/CVPR52729.2023.01837
@@ -122,17 +122,17 @@ shrestha2022occamnets:
   doi: 10.1007/978-3-031-20044-1_40
   award: "Oral Presentation (2.7% of submissions)"
 
-shrestha2022investigation:
+Shrestha_2022_WACV:
   topic: [bias]
   arxiv: "2104.00170"
   code: https://github.com/erobic/bias-mitigators
   doi: 10.1109/WACV51458.2022.00257
 
-ravi2021aesop:
+Ravi_2021_ICCV:
   topic: [gen]
   doi: 10.1109/ICCV48922.2021.00206
 
-pham2021learning:
+Pham_2021_CVPR:
   topic: [vlrep]
   arxiv: "2106.09707"
   doi: 10.1109/CVPR46437.2021.01282
@@ -141,7 +141,7 @@ teney2020value:
   topic: [bias, vqa]
   arxiv: "2005.09241"
 
-shrestha2020negative:
+shrestha-etal-2020-negative:
   topic: [vqa, bias]
   arxiv: "2004.05704"
   code: https://github.com/erobic/negative_analysis_of_grounding
@@ -155,14 +155,14 @@ hayes2020remind:
   doi: 10.1007/978-3-030-58598-3_28
   equal: [1, 2, 3]
 
-kafle2020answering:
+Kafle_2020_WACV:
   topic: [vqa]
   thumb: images/prefil.png
   arxiv: "1908.01801"
   code: https://github.com/kushalkafle/PReFIL
   doi: 10.1109/WACV45572.2020.9093494
 
-shrestha2019answer:
+Shrestha_2019_CVPR:
   topic: [vqa]
   thumb: images/ramen.png
   arxiv: "1903.00366"
@@ -176,7 +176,7 @@ acharya2019tallyqa:
   project: https://www.manojacharya.com/tallyqa.html
   doi: 10.1609/aaai.v33i01.33018076
 
-kafle2018dvqa:
+Kafle_2018_CVPR:
   topic: [vqa]
   selected: true
   thumb: images/dvqa.png
@@ -185,7 +185,7 @@ kafle2018dvqa:
   project: projects/dvqa.html
   doi: 10.1109/CVPR.2018.00592
 
-kafle2017analysis:
+Kafle_2017_ICCV:
   topic: [vqa]
   selected: true
   thumb: images/vqa-tasks.png
@@ -193,12 +193,12 @@ kafle2017analysis:
   project: projects/tdiuc.html
   doi: 10.1109/ICCV.2017.217
 
-kafle2017data:
+kafle-etal-2017-data:
   topic: [vqa]
   thumb: images/vqa-framework.png
   pdf: https://aclanthology.org/W17-3529.pdf
 
-kafle2016answer:
+Kafle_2016_CVPR:
   topic: [vqa]
   thumb: images/answertype.png
   pdf: https://openaccess.thecvf.com/content_cvpr_2016/papers/Kafle_Answer-Type_Prediction_for_CVPR_2016_paper.pdf

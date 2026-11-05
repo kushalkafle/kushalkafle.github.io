@@ -50,8 +50,10 @@ Never edit `_site/` (generated, gitignored) and don't reintroduce a root `index.
     ask the owner to paste those.
   - Springer's `year` is sometimes the print year; the conference year comes from its booktitle
     ("Computer Vision -- ECCV 2024"), so leave `year` as exported.
-  - After copying, formatting edits are fine: protecting capitalization (`{DVQA}`), renaming keys, and
-    dropping noise fields like `abstract`. Never add website fields to `pubs.bib`; they go in
+  - Keep the source's citation key. Rename it only if it isn't a usable key (a DOI, hash, or numeric id,
+    e.g. Springer's `10.1007/...` or NeurIPS's `NEURIPS2020_045117b0`); then use `lastnameYEARword`.
+  - After copying, formatting edits are fine: protecting capitalization (`{DVQA}`), the key renames above,
+    and dropping noise fields like `abstract`. Never add website fields to `pubs.bib`; they go in
     `src/papers.yml`.
   - Venue labels are derived from `booktitle`/`journal` (acronyms like "(CVPR)" or "ECCV 2024" are used
     directly). If the build warns about a new venue, add a row to `VENUE_LUT` in `build.py`.
