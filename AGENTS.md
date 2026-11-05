@@ -41,9 +41,6 @@ Never edit `_site/` (generated, gitignored) and don't reintroduce a root `index.
   automated access; don't try to get around it (the owner can paste Scholar BibTeX themselves).
   - Every entry an agent copies gets a note on the line directly above it, and the owner reviews it once:
     `% TO CHECK (copied by agent) | source: <exact URL the BibTeX came from> | changes: <edits, or none>`
-    Exception: entries copied unchanged (apart from formatting) from sources the owner already reviewed,
-    i.e. `% Checked` entries in another of the owner's projects or the owner's own BibTeX in git
-    history, get `% Checked (<which source>)` directly.
     The owner replaces it with `% Checked` after reviewing. Never mark an entry Checked yourself, and
     keep existing `% Checked` notes when editing an entry (switch back to TO CHECK if you change its
     standard fields).
