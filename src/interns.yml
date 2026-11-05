@@ -52,7 +52,7 @@
   project: Coalesced learning for vision-language contrastive pretraining
 - year: 2022
   name: Eric Slyman
-  homepage: https://github.com/slymane  # ericslyman.com was down on 2026-11-05; switch back when it is up
+  homepage: https://ericslyman.com/
   project: User-driven behavioral testing of vision-language models
 
 - year: 2023
@@ -61,7 +61,7 @@
   project: Visual reasoning by bootstrapping foundation models
 - year: 2023
   name: Eric Slyman
-  homepage: https://github.com/slymane  # ericslyman.com was down on 2026-11-05; switch back when it is up
+  homepage: https://ericslyman.com/
   project: Fair data deduplication for vision-language models
   papers: [Slyman_2024_CVPR]
 - year: 2023
@@ -110,7 +110,7 @@
   papers: [khosla-etal-2025-magnet]
 - year: 2024
   name: Eric Slyman
-  homepage: https://github.com/slymane  # ericslyman.com was down on 2026-11-05; switch back when it is up
+  homepage: https://ericslyman.com/
   project: Human-in-the-loop collaborative judging
   papers: [Slyman_2025_ICCV]
 - year: 2024
