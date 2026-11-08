@@ -2,13 +2,15 @@
 # Use time spans rather than exact dates; long-running items can keep growing.
 #   name, span, text (HTML), bullets: [HTML, ...] (optional list), links: [[label, url], ...],
 #   image (optional), fit: contain (optional, for wide images)
-# CV (build.py --cv-dir): cards with `cv: highlight` get a full entry; everything else is listed by its
-#   `short` name on one "Other transfers" line. Bullets can be plain HTML or {text: ..., short: ...}.
+# CV/resume: items with `highlight: true` get a full entry (text, or text-cv / text-resume variants);
+#   everything else is listed by its `short` name on one "Other" line. Bullets can be plain HTML or
+#   {text: ..., short: ...}. Same variant rule as every data file: any field can have -cv / -resume versions.
 # Draft wording and spans; please review.
 
 - name: Adobe Express and Adobe Stock
   span: 2023 – present
-  cv: highlight
+  highlight: true
+  text-resume: Natural-language and image search for Express templates (+46% click-through) and Stock assets; "More like this" template similarity
   image: images/transfers/stock-search.jpg
   text: >-
     Natural-language and image search for templates in Adobe Express (+46% click-through) and for
@@ -20,7 +22,8 @@
 
 - name: Adobe Lightroom
   span: 2025 – present
-  cv: highlight
+  highlight: true
+  text-resume: Natural-language photo search, plus assisted culling and Auto Stack via a compact on-device model
   image: images/transfers/lightroom-search.jpg
   text: >-
     Natural-language search of photo libraries with full phrases like "photos of dog taken at the beach",
@@ -34,7 +37,8 @@
 
 - name: Adobe Firefly Image Generation
   span: 2023 – 2025
-  cv: highlight
+  highlight: true
+  text-resume: Reference features in Firefly Image 1–3 (Style Reference, similar images); NSFW safety filter for image and video; training-data filtering
   image: images/transfers/firefly-style-reference.webp
   text: >-
     Firefly Image 1, 2, and 3 used our text and image encoders for their reference features, including
@@ -58,7 +62,8 @@
 
 - name: Premiere Pro Media Intelligence
   span: 2025
-  cv: highlight
+  highlight: true
+  text-resume: Visual search in the Media Intelligence and Search panel
   image: images/transfers/premiere-search.webp
   text: >-
     Visual search in Premiere Pro's Media Intelligence and Search panel, built with the video team on
@@ -80,6 +85,6 @@
       short: AEM Smart Tags
     - text: >-
         Prompt-free object compositing in Photoshop (beta).
-      short: Photoshop prompt-free object compositing (beta)
+      short: Photoshop prompt-free object compositing
     - text: >-
         Visual encoders for our multimodal LLM research.

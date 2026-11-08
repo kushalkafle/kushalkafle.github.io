@@ -1,0 +1,93 @@
+((# Full CV. Rendered by build.py --pdf; variants resolved for out="cv". #))
+((* include "_preamble.tex.j2" *))
+
+\section{Selected Technology Transfers}
+\small ((( transfers_intro|tex )))
+\begin{itemize}[leftmargin=*]
+\small
+((* for t in transfers *))
+\item {\normalsize\textbf{((* if t.url *))\href{((( t.url )))}{((( t.name|tex )))}((* else *))((( t.name|tex )))((* endif *))}} \hfill \textit{((( t.span|tex )))}\\
+\begin{scriptsize}((( t.text|tex )))\end{scriptsize}
+
+((* endfor *))
+((* if other_transfers *))
+\item \textbf{Other transfers:} \begin{scriptsize}((( other_transfers|map('tex')|join('; ') ))).\end{scriptsize}
+((* endif *))
+\end{itemize}
+
+\section{Research Experience}
+\small
+((* for j in jobs *))
+\entryhead{((( j.org|tex )))((* if j.where *)), ((( j.where|tex )))((* endif *))}{((( j.dates|tex )))}
+\begin{entrybody}
+((( j.roles|tex )))
+((* if j.bullets *))
+\begin{itemize}[leftmargin=*]
+((* for b in j.bullets *))
+\item ((( b|tex )))
+((* endfor *))
+\end{itemize}
+((* endif *))
+\end{entrybody}
+((* endfor *))
+((* for i in internships *))
+\entrysep
+\entryhead{((( i.role|tex ))), ((( i.org|tex )))}{((( i.dates|tex )))}
+\begin{entrybody}
+((( i.text|tex )))
+\end{entrybody}
+((* endfor *))
+
+\section{Education}
+\small
+((* for e in education *))
+\entryhead{((( e.degree|tex ))), ((( e.school|tex )))}{((( e.dates|tex )))}
+\begin{entrybody}
+((( e.lines|map('tex')|join('\\\\\n') )))
+\end{entrybody}
+((* endfor *))
+((* if teaching *))
+
+\section{Mentoring and Teaching}
+\small
+((* for role, org, dates, text in teaching *))
+((* if not loop.first *))\entrysep
+((* endif *))
+\entryhead{((( role|tex )))((* if org *)), ((( org|tex )))((* endif *))}{((( dates|tex )))}
+\begin{entrybody}
+((( text|tex )))
+\end{entrybody}
+((* endfor *))
+((* endif *))
+
+\section{Professional Services}
+((* for s in service *))
+\textbf{((* if s.highlight *))\textcolor{red}{((( s.label|tex )))}((* else *))((( s.label|tex )))((* endif *))}: \begin{small}((( s.text|tex )))\end{small}
+
+((* endfor *))
+\section{Publications}
+((* for title, label, items in pub_groups *))
+\subsection*{((( title )))}
+\begin{enumerate}[label=((( '(' ~ label )))\arabic*)]
+\small
+((* for p in items *))
+    \item ((( p|cite )))
+((* endfor *))
+\end{enumerate}
+
+((* endfor *))
+\section{Invited Talks and Guest Lectures}
+\begin{itemize}[leftmargin=*]
+((* for t in talks *))
+\item \textbf{((( t.title|tex )))}((( '' if t.title[-1] in '?!.' else '.' ))) ((( t.venue|tex ))) ((( '(' ~ (t.date|tex) ~ ')' )))
+((* endfor *))
+\end{itemize}
+
+\section{Skills}
+\begin{itemize}[leftmargin=*,noitemsep]
+((* for label, text in skills *))
+    \item \textbf{((( label|tex )))}: ((( text|tex )))
+((* endfor *))
+\end{itemize}
+
+\end{document}

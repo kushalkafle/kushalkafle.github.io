@@ -65,3 +65,13 @@
   <svg class="hero-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#000"/><path fill="#2c3e50" transform="translate(4.2 4.2) scale(.65)" d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
   {%- endif -%}
 {%- endmacro %}
+
+{# Main site menu, shared by the home page and /cv (root = path to the site root). #}
+{% macro main_nav(root="") -%}
+      <li><a href="{{ root }}#about">About</a></li>
+      <li><a href="{{ root }}#transfers">Tech Transfers</a></li>
+      <li><a href="{{ root }}#research">Research</a></li>
+      <li><a href="{{ root }}#talks">Talks</a></li>
+      <li><a href="{{ root }}#interns">Mentoring</a></li>
+      <li><a href="{{ root }}#misc">Misc</a></li>
+{%- endmacro %}

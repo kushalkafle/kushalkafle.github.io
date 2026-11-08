@@ -1,0 +1,50 @@
+# Professional service: shown on the site (Talks and Service), in the full CV, and in the resume.
+# Variants (same rule in every data file): any field can have a `-cv` or `-resume` version
+# (e.g. text-resume); `hide: [site, cv, resume]` drops an item from those outputs.
+# resume-line groups items onto the resume's two lines; highlight shows the label in red.
+- label: Area Chair
+  text: ICCV 2025 (Lead AC), CVPR 2026 (Lead AC), CVPR 2027, WACV 2024, 2025, and 2026
+  text-cv: WACV 2024, WACV 2025, ICCV 2025 (Lead AC), WACV 2026, CVPR 2026 (Lead AC), CVPR 2027
+  text-resume: ICCV 2025 (Lead AC), CVPR 2026 (Lead AC), CVPR 2027, WACV 2024–2026
+  resume-line: 1
+- label: Senior Program Committee
+  label-resume: Senior PC
+  text: AAAI 2027
+  resume-line: 1
+- label: Workshop organizer
+  label-cv: Workshop Organization
+  label-resume: Workshops organized
+  text: >-
+    Shortcomings in Vision and Language (SiVL) at ECCV 2018 and NAACL 2019; Drawings and Abstract Imagery:
+    Representation and Analysis (DIRA) at ECCV 2022
+  text-resume: SiVL (ECCV 2018, NAACL 2019), DIRA (ECCV 2022)
+  resume-line: 1
+- label: Associate Editor
+  label-cv: Journal Editing
+  text: >-
+    Frontiers special topic on <em>Identifying, Analyzing, and Overcoming Challenges in Vision and Language
+    Research</em>
+  text-cv: >-
+    Special Topic on <em>Identifying, Analyzing, and Overcoming Challenges in Vision and Language Research</em>,
+    cross-posted to: Frontiers in Big Data, Frontiers in Robotics and AI, and Frontiers in Artificial
+    Intelligence. Associate Editor.
+  hide: [resume]
+- label: Reviewer
+  text: Over 100 papers for CVPR, NeurIPS, ICCV, ECCV, ICML, ICLR, AAAI, ACL, EMNLP, NAACL, TPAMI, TIP, TMLR, and others
+  text-resume: 100+ papers (CVPR, NeurIPS, ICCV, ECCV, ICML, ICLR, ACL)
+  hide: [cv]
+  resume-line: 2
+- label: Journal Reviewing
+  text: TPAMI (2019), TIP (2019), CVIU (2017–18), ACM-MM (2018–2019), TMI (2020), TDKE (2019), PR (2021), TMLR (2022–2024)
+  hide: [site, resume]
+- label: Conference Reviewing
+  text: >-
+    CVPR (2017–2025), NeurIPS (2016–2025), AAAI (2017–2020), ICCV (2019, 2023, 2024), ICML (2020–2023),
+    EMNLP (2019–2021), ACL (2020), NAACL (2021), ICLR (2022, 2024), ECCV (2026)
+  hide: [site, resume]
+- label: Outstanding Reviewer Awards
+  label-resume: Outstanding Reviewer
+  text: CVPR 2018, 2019, 2020, and 2021; NeurIPS 2021; ECCV 2026
+  text-resume: CVPR 2018–21, NeurIPS 2021, ECCV 2026
+  resume-line: 2
+  highlight: true

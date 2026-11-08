@@ -25,7 +25,7 @@
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
     <ul class="nav-links">
       {% block nav %}{% endblock %}
-      <li><a href="{{ root }}data/KushalKafle_CV.pdf" target="_blank">CV</a></li>
+      <li><a href="{{ root }}cv/"{% if self.path() == 'cv/' %} class="active" aria-current="page"{% endif %}>CV</a></li>
     </ul>
   </div>
 </nav>

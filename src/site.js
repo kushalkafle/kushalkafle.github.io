@@ -60,3 +60,35 @@
     a.rel = 'noopener';
   });
 })();
+
+// Bio box under About: size the text boxes to fit, and copy with a fallback for older browsers.
+const fitBio = () => document.querySelectorAll(".bio-text").forEach((t) => {
+  t.style.height = "auto";
+  t.style.height = t.scrollHeight + 2 + "px";
+});
+document.querySelectorAll("details.bio").forEach((d) => d.addEventListener("toggle", fitBio));
+window.addEventListener("resize", fitBio);
+document.querySelectorAll(".bio-text").forEach((t) => t.addEventListener("focus", () => t.select()));
+document.querySelectorAll("button.copy[data-copy]").forEach((b) => b.addEventListener("click", () => {
+  const t = document.getElementById(b.dataset.copy);
+  const done = () => { b.textContent = "Copied!"; setTimeout(() => { b.textContent = "Copy"; }, 1500); };
+  const fallback = () => { t.focus(); t.select(); if (document.execCommand("copy")) done(); };
+  if (navigator.clipboard) navigator.clipboard.writeText(t.value).then(done, fallback); else fallback();
+}));
+
+// /cv page: switch between the full CV and the resume (#resume in the URL opens the resume).
+(() => {
+  const versions = document.querySelectorAll(".cv-version");
+  if (!versions.length) return;
+  const show = (mode) => {
+    versions.forEach((v) => { v.hidden = v.dataset.version !== mode; });
+    document.querySelectorAll(".cv-toggle button").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.mode === mode)));
+    const dl = document.querySelector(".cv-download");
+    if (dl) { dl.href = dl.dataset[mode]; dl.querySelector("span").textContent = dl.dataset[mode + "Label"]; }
+  };
+  document.querySelectorAll(".cv-toggle button").forEach((b) => b.addEventListener("click", () => {
+    show(b.dataset.mode);
+    history.replaceState(null, "", b.dataset.mode === "resume" ? "#resume" : location.pathname);
+  }));
+  show(location.hash === "#resume" ? "resume" : "cv");
+})();

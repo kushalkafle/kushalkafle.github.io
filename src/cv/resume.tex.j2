@@ -1,0 +1,62 @@
+((# 1-page resume. Rendered by build.py --pdf; variants resolved for out="resume". #))
+((* include "_preamble.tex.j2" *))
+
+\section{Experience}
+\small
+((* for j in jobs *))
+\entryhead{((( j.org|tex )))((* if j.where *)), ((( j.where|tex )))((* endif *))}{((( j.dates|tex )))}
+\begin{entrybody}
+((( j.roles|tex )))
+((* if j.bullets *))
+\begin{itemize}[leftmargin=*]
+((* for b in j.bullets *))
+\item ((( b|tex )))
+((* endfor *))
+\end{itemize}
+((* endif *))
+\end{entrybody}
+((* endfor *))
+((* if internships *))
+\entrysep
+\entryhead{((( internships_line|tex )))}{}
+((* endif *))
+
+\section{Education}
+\small
+((* for e in education *))
+\entryhead{((( e.degree|tex ))), ((( e.school|tex )))}{((( e.dates|tex )))}
+\begin{entrybody}
+((( e.lines|map('tex')|join('\\\\\n') )))
+\end{entrybody}
+((* endfor *))
+
+\section{Selected Technology Transfers}
+\begin{itemize}[leftmargin=*,noitemsep]
+\small
+((* for t in transfers *))
+\item \textbf{((( t.name|tex )))} \textit{((( '(' ~ (t.span|tex) ~ ')' )))}: ((( t.text|tex ))).
+((* endfor *))
+((* if other_transfers *))
+\item \textbf{Other:} ((( other_transfers|map('tex')|join('; ') ))).
+((* endif *))
+\end{itemize}
+
+\section{Selected Publications}
+\small ((( n_peer ))) peer-reviewed papers; selected below. Full list on \href{https://scholar.google.com/citations?user=M_iwxCQAAAAJ}{Google Scholar} and \href{https://kushalkafle.com/\#research}{kushalkafle.com}.
+\begin{enumerate}[label={[\arabic*]},leftmargin=2.4em,labelsep=0.5em,itemsep=2pt,topsep=3pt]
+\small
+((* for p in pub_groups[0][2] *))
+    \item ((( p|cite )))
+((* endfor *))
+\end{enumerate}
+
+\section{Professional Service}
+\small
+\begin{itemize}[leftmargin=*]
+((* for line in service|groupby('line') *))
+\item ((* for s in line.list *))((* if s.highlight *))\textcolor{red}{((( s.label|tex )))}((* else *))\textbf{((( s.label|tex )))}((* endif *)): ((( s.text|tex ))).((* if not loop.last *)) ((* endif *))((* endfor *))
+
+((* endfor *))
+\end{itemize}
+
+\end{document}

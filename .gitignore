@@ -2,3 +2,7 @@ _site/
 .venv/
 __pycache__/
 .DS_Store
+
+# CV build: Fontin font files are local only (license forbids redistribution); _cv/ is build output
+/fonts/
+/_cv/

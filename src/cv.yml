@@ -1,0 +1,108 @@
+# CV content shared by the full CV (PDF), the 1-page resume (PDF), and the /cv web page.
+# Papers come from pubs.bib, tech transfers from transfers.yml, talks from talks.yml,
+# service from service.yml, and the intern count from interns.yml.
+#
+# Text may use simple HTML (<a href>, <em>, <strong>); it is converted for LaTeX.
+# Variants (same rule in every data file): any field can have a `-cv` or `-resume` version
+# (e.g. text-resume); `hide: [cv]` / `hide: [resume]` drops an item from that output.
+# The /cv web page shows the cv version (with a toggle to the resume version).
+
+name: Kushal Kafle
+# Header title (the exact level, e.g. Senior Research Scientist 2, is listed under Experience).
+title: Senior Research Scientist, Adobe Research
+contact:
+  - [envelope, kushalkafle@gmail.com, "mailto:kushalkafle@gmail.com"]
+  - [globe, kushalkafle.com, "https://kushalkafle.com"]
+  - [scholar, Google Scholar, "https://scholar.google.com/citations?user=M_iwxCQAAAAJ"]
+  - [github, /kushalkafle, "https://github.com/kushalkafle"]
+  - [linkedin, /kushalkafle, "https://linkedin.com/in/kushalkafle"]
+
+interests: >-
+  Multimodal LLMs / vision-language models (VLMs), representation learning, foundation model training on
+  web-scale data, benchmarks, evaluation and model probing, robustness and fairness
+
+transfers-intro: >-
+  I lead Adobe's vision-language foundation models: image-text embedding models and, recently, multimodal
+  LLMs / VLMs. Our embedding model matches or beats the best open-weight models (e.g., Perception Encoder,
+  SigLIP 2) on text-to-image retrieval benchmarks, by a wider margin on Adobe content, and since 2023 has
+  powered features across Adobe products:
+
+experience:
+  - org: Adobe Research
+    where: San Jose, CA
+    dates: Mar 2020 – present
+    roles: >-
+        <strong>Senior Research Scientist 2</strong> (Feb 2026 – present); Senior Research Scientist
+        (Jan 2024 – Feb 2026); Research Scientist 2 (Feb 2022 – Jan 2024); Research Scientist
+        (Mar 2020 – Feb 2022). Manager: Scott Cohen.
+    roles-resume: >-
+        Senior Research Scientist 2 (2026); Senior Research Scientist (2024); Research Scientist 2 (2022);
+        Research Scientist (2020)
+    bullets:
+      - text: >-
+          Lead Adobe's vision-language foundation models across the full lifecycle (data, legal, training
+          infrastructure, novel algorithms, codebase development, and tech transfer): image-text embedding
+          models that power features in Firefly, Express, Stock, Lightroom, and Premiere Pro, and, in the
+          last few years, multimodal LLMs / VLMs.
+        text-resume: >-
+          Lead Adobe's vision-language foundation models across the full lifecycle (data, legal, training
+          infrastructure, algorithms, and tech transfer): image-text embedding models and, recently,
+          multimodal LLMs / VLMs.
+      - hide: [cv]
+        text: >-
+          Our embedding model matches or beats the best open-weight models (e.g., Perception Encoder,
+          SigLIP 2) on text-to-image retrieval benchmarks, by a wider margin on Adobe content.
+      # {interns} is replaced with the number of interns in interns.yml.
+      - text: >-
+          Mentored {interns} research interns (2020–2026), mostly PhD students; many internships led to
+          publications (<a href="https://kushalkafle.com/#interns">full list</a>).
+        text-resume: >-
+          Mentored {interns} research interns (2020–2026), mostly PhD students
+          (<a href="https://kushalkafle.com/#interns">full list</a>).
+
+  # Internships: separate entries in the CV, one combined line in the resume.
+  - org: Microsoft Research
+    role: Research Intern
+    dates: "2019"
+    internship: true
+    text: "With Dinei Florêncio: scene-text entity recognition."
+  - org: Adobe Research
+    role: Research Intern
+    dates: 2017 – 2018
+    internship: true
+    text: >-
+      With Scott Cohen and Brian Price: <a href="https://arxiv.org/abs/1801.08163">DVQA</a> and
+      <a href="https://arxiv.org/abs/1908.01801">PReFIL</a>.
+
+education:
+  - degree: Ph.D. in Imaging Science
+    school: Rochester Institute of Technology
+    dates: Aug 2014 – Feb 2020
+    dates-resume: 2014 – 2020
+    lines:
+        - >-
+          Chester F. Carlson Center for Imaging Science. Advisor: Christopher Kanan
+          (<a href="http://klab.cis.rit.edu">klab</a>).
+        - "Thesis: <em>Advancing Multi-modal Deep Learning: Towards Language-grounded Visual Understanding</em>"
+    lines-resume:
+        - >-
+          Advisor: Christopher Kanan. Thesis: <em>Advancing Multi-modal Deep Learning: Towards
+          Language-grounded Visual Understanding</em>
+
+skills:
+  - [Technical, "PyTorch, Python, large-scale distributed training, billion-scale data pipelines and filtering, Git, LaTeX, Bash, AWS"]
+  - [Data, "Scraping and curating web-scale data, data licensing and legal review, vendor and crowdsourced annotation (MTurk, Appen, LabelBox, Hive, iMerit)"]
+
+# Mentoring and Teaching: for academic applications. Set `show: true` to include it in the CV and /cv page
+# (the mentoring bullet under Adobe Research is then dropped so it is not listed twice).
+teaching:
+  show: false
+  items:
+    - [Research internship mentor, Adobe Research, 2020 – 2026,
+       "{interns} research interns, mostly PhD students; many internships led to publications (<a href=\"https://kushalkafle.com/#interns\">full list</a>)."]
+    - [Guest lectures, "", 2020 – 2021,
+       "University of Virginia and RIT <em>Vision and Language</em> courses (2020); 3rd Nepal Winter School in AI (2021)."]
+    - [Teaching Assistant, Rochester Institute of Technology, 2014 – 2015,
+       "<em>Radiometry</em> and <em>Fundamentals of Imaging Science</em>."]
+    - [Lecturer, "Purbanchal University, Kathmandu, Nepal", "2013",
+       "Taught an undergraduate semester course on <em>Image Processing and Pattern Recognition</em>."]

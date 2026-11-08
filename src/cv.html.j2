@@ -1,0 +1,180 @@
+{# /cv web page: the full CV and the 1-page resume rendered from the same data as the PDFs (see build.py cv_model).
+   A toggle switches between them; #resume in the URL opens the resume view. #}
+{% extends "_base.html.j2" %}
+{% block title %}CV · Kushal Kafle{% endblock %}
+{% block path %}cv/{% endblock %}
+{% block brand_href %}{{ root }}{% endblock %}
+{% from "_macros.html.j2" import main_nav %}
+{% block nav %}
+{{ main_nav(root) }}
+{% endblock %}
+
+{% macro cv_icon(name) -%}
+{%- set paths = {
+  'envelope': 'M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z',
+  'globe': 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z',
+  'scholar': 'M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z',
+  'github': 'M12 .3a12 12 0 0 0-3.8 23.38c.6.12.82-.26.82-.57v-2.04c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.62-5.48 5.92.42.36.81 1.1.81 2.22v3.29c0 .32.21.69.82.57A12 12 0 0 0 12 .3',
+  'linkedin': 'M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z',
+} -%}
+{%- if name in paths %}<svg class="cv-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="{{ paths[name] }}"/></svg>{% endif -%}
+{%- endmacro %}
+
+{% macro entry(title, dates) -%}
+<div class="cv-entry-head"><strong>{{ title }}</strong><span class="cv-dates">{{ dates }}</span></div>
+{%- endmacro %}
+
+{% macro interests(m) %}
+<section><h2>Research Interests</h2><p>{{ m.interests }}</p></section>
+{% endmacro %}
+
+{% macro experience(m, heading) %}
+<section><h2>{{ heading }}</h2>
+  {% for j in m.jobs %}
+  <div class="cv-entry">
+    {{ entry(j.org ~ (", " ~ j.where if j.where else ""), j.dates) }}
+    <div class="cv-body">
+      <p>{{ j.roles | safe }}</p>
+      {% if j.bullets %}<ul>{% for b in j.bullets %}<li>{{ b | safe }}</li>{% endfor %}</ul>{% endif %}
+    </div>
+  </div>
+  {% endfor %}
+  {% if m.out == "resume" and m.internships %}
+  <div class="cv-entry">{{ entry(m.internships_line, "") }}</div>
+  {% else %}
+  {% for i in m.internships %}
+  <div class="cv-entry">
+    {{ entry(i.role ~ ", " ~ i.org, i.dates) }}
+    <div class="cv-body"><p>{{ i.text | safe }}</p></div>
+  </div>
+  {% endfor %}
+  {% endif %}
+</section>
+{% endmacro %}
+
+{% macro education(m) %}
+<section><h2>Education</h2>
+  {% for e in m.education %}
+  <div class="cv-entry">
+    {{ entry(e.degree ~ ", " ~ e.school, e.dates) }}
+    <div class="cv-body">{% for l in e.lines %}<p>{{ l | safe }}</p>{% endfor %}</div>
+  </div>
+  {% endfor %}
+</section>
+{% endmacro %}
+
+{% macro transfers(m) %}
+<section><h2>Selected Technology Transfers</h2>
+  {% if m.transfers_intro %}<p>{{ m.transfers_intro | safe }}</p>{% endif %}
+  <ul class="cv-transfers">
+    {% for t in m.transfers %}
+    <li>
+      {% if m.out == "resume" %}
+      <strong>{{ t.name }}</strong> <em>({{ t.span }})</em>: {{ t.text | safe }}.
+      {% else %}
+      <div class="cv-entry-head"><strong>{% if t.url %}<a href="{{ t.url }}">{{ t.name }}</a>{% else %}{{ t.name }}{% endif %}</strong><span class="cv-dates">{{ t.span }}</span></div>
+      <p class="cv-small">{{ t.text | safe }}</p>
+      {% endif %}
+    </li>
+    {% endfor %}
+    {% if m.other_transfers %}<li><strong>Other{% if m.out != "resume" %} transfers{% endif %}:</strong> {{ m.other_transfers | join("; ") | safe }}.</li>{% endif %}
+  </ul>
+</section>
+{% endmacro %}
+
+{% macro teaching(m) %}
+{% if m.teaching %}
+<section><h2>Mentoring and Teaching</h2>
+  {% for role, org, dates, text in m.teaching %}
+  <div class="cv-entry">
+    {{ entry(role ~ (", " ~ org if org else ""), dates) }}
+    <div class="cv-body"><p>{{ text | safe }}</p></div>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
+{% endmacro %}
+
+{% macro service(m, heading) %}
+<section><h2>{{ heading }}</h2>
+  <ul>
+    {% for s in m.service %}
+    <li><strong{% if s.highlight %} class="cv-highlight"{% endif %}>{{ s.label }}:</strong> {{ s.text | safe }}</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endmacro %}
+
+{% macro publications(m) %}
+{% if m.out == "resume" %}
+<section><h2>Selected Publications</h2>
+  <p>{{ m.n_peer }} peer-reviewed papers; selected below. Full list on
+    <a href="https://scholar.google.com/citations?user=M_iwxCQAAAAJ">Google Scholar</a> and <a href="{{ root }}#research">the Research section</a>.</p>
+  <ol class="cv-pubs">{% for p in m.pub_groups[0][2] %}<li><span class="cv-num">[{{ loop.index }}]</span><span>{{ p | cite_html | safe }}</span></li>{% endfor %}</ol>
+</section>
+{% else %}
+<section><h2>Publications</h2>
+  {% for title, label, items in m.pub_groups %}
+  <h3>{{ title }}</h3>
+  <ol class="cv-pubs">{% for p in items %}<li><span class="cv-num">({{ label }}{{ loop.index }})</span><span>{{ p | cite_html | safe }}</span></li>{% endfor %}</ol>
+  {% endfor %}
+</section>
+{% endif %}
+{% endmacro %}
+
+{% macro talks(m) %}
+<section><h2>Invited Talks and Guest Lectures</h2>
+  <ul>{% for t in m.talks %}<li><strong>{{ t.title }}</strong>{{ '' if t.title[-1] in '?!.' else '.' }} {{ t.venue | safe }} ({{ t.date }})</li>{% endfor %}</ul>
+</section>
+{% endmacro %}
+
+{% macro skills(m) %}
+<section><h2>Skills</h2>
+  <ul>{% for label, text in m.skills %}<li><strong>{{ label }}:</strong> {{ text }}</li>{% endfor %}</ul>
+</section>
+{% endmacro %}
+
+{% block content %}
+<main class="cv-page" id="top">
+  <header class="cv-header">
+    <h1>{{ cv.name }}</h1>
+    <p class="cv-title">{{ cv.title }}</p>
+    <p class="cv-contact">
+      {% for icon, label, url in cv.contact %}<a href="{{ url }}">{{ cv_icon(icon) }}{{ label }}</a>{% endfor %}
+    </p>
+    <div class="cv-controls">
+      <div class="cv-toggle" role="tablist" aria-label="Version">
+        <button role="tab" data-mode="cv" aria-selected="true">Full CV</button>
+        <button role="tab" data-mode="resume" aria-selected="false">Résumé</button>
+      </div>
+      <a class="cv-download" href="{{ root }}data/KushalKafle_CV.pdf" target="_blank" rel="noopener"
+         data-cv="{{ root }}data/KushalKafle_CV.pdf" data-resume="{{ root }}data/KushalKafle_Resume.pdf"
+         data-cv-label="Download CV (PDF)" data-resume-label="Download Résumé (PDF)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>
+        <span>Download CV (PDF)</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="cv-version" data-version="cv">
+    {{ interests(cv) }}
+    {{ transfers(cv) }}
+    {{ experience(cv, "Research Experience") }}
+    {{ education(cv) }}
+    {{ teaching(cv) }}
+    {{ service(cv, "Professional Services") }}
+    {{ publications(cv) }}
+    {{ talks(cv) }}
+    {{ skills(cv) }}
+  </div>
+
+  <div class="cv-version" data-version="resume" hidden>
+    {{ interests(resume) }}
+    {{ experience(resume, "Experience") }}
+    {{ education(resume) }}
+    {{ transfers(resume) }}
+    {{ publications(resume) }}
+    {{ service(resume, "Professional Service") }}
+  </div>
+</main>
+{% endblock %}

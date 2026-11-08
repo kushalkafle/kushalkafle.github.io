@@ -214,3 +214,57 @@ pre.cite { font-size: 13px; background: #fff; border: 1px solid var(--line); pad
 .warning { background: #fff8db; border-left: 4px solid #e6b800; padding: 10px 14px; border-radius: 4px; font-size: 15px; }
 .interns .sep { color: var(--muted); }
 .interns a { white-space: nowrap; }
+.bio { margin-top: 16px; border: 1px solid var(--line); border-radius: 6px; padding: 8px 14px; }
+.bio > summary { cursor: pointer; color: var(--accent); font-weight: 700; }
+.bio-block { margin-top: 12px; }
+.bio-head { display: flex; align-items: center; gap: 12px; }
+.bio-head h4 { margin: 0; }
+.bio .copy { font: inherit; font-size: 13px; padding: 2px 10px; border: 1px solid var(--line); border-radius: 4px; background: #fff; cursor: pointer; }
+.bio-text { display: block; width: 100%; box-sizing: border-box; margin: 6px 0 4px; padding: 10px 12px; resize: vertical;
+  font-family: inherit; font-size: 15px; line-height: 1.55; color: inherit; background: #fafbfc; border: 1px solid var(--line); border-radius: 4px; }
+.service { margin: 0; padding-left: 18px; }
+.service li { padding: 4px 0; }
+
+/* ---------- /cv page: mirrors the CV/resume PDFs ---------- */
+/* A font by Jos Buivenga (exljbris) -> www.exljbris.com */
+@font-face { font-family: "Fontin"; src: url("assets/fonts/fontin.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Fontin"; src: url("assets/fonts/fontin-bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Fontin"; src: url("assets/fonts/fontin-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Fontin SC"; src: url("assets/fonts/fontin-smallcaps.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+.cv-page { font-family: "Fontin", Georgia, serif; font-size: 15px; line-height: 1.45; color: #111; max-width: 790px; margin: 0 auto; padding: 96px 28px 40px; }
+.cv-page p, .cv-page li { text-wrap: pretty; }
+.cv-page a { color: #003399; }
+.cv-header { text-align: center; margin-bottom: 8px; }
+.cv-header h1 { font-family: "Fontin", Georgia, serif; font-weight: 400; font-size: 40px; margin: 0; letter-spacing: 0; }
+.cv-title { margin: 2px 0; font-size: 15px; }
+.cv-contact { margin: 2px 0 10px; font-size: 14px; }
+.cv-contact { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 18px; }
+.cv-contact a { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+.cv-icon { width: 14px; height: 14px; flex: none; }
+.cv-controls { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 6px; font-family: "Lato", sans-serif; font-size: 14px; }
+.cv-toggle { display: inline-flex; border: 1px solid #c8ccd2; border-radius: 6px; overflow: hidden; }
+.cv-toggle button { font: inherit; font-size: 18px; border: 0; background: #fff; padding: 7px 18px; cursor: pointer; }
+.cv-toggle button[aria-selected="true"] { background: #003399; color: #fff; }
+.cv-page a.cv-download { display: inline-flex; align-items: center; gap: 7px; padding: 6px 16px; border: 1px solid #003399; border-radius: 6px; color: #003399; font-weight: 700; text-decoration: none; }
+.cv-page a.cv-download:hover { background: #003399; color: #fff; }
+.cv-download svg { width: 16px; height: 16px; }
+.cv-page h2 { font-family: "Fontin SC", "Fontin", Georgia, serif; font-weight: 400; font-size: 19px; margin: 16px 0 6px; padding-bottom: 1px; border-bottom: 1px solid #111; }
+.cv-page h3 { font-size: 16px; font-weight: 700; margin: 10px 0 4px; }
+.cv-page p { margin: 0 0 4px; }
+.cv-page ul { margin: 2px 0 4px; padding-left: 18px; }
+.cv-page li { margin: 1px 0; }
+.cv-entry { margin: 0 0 8px; }
+.cv-entry-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+.cv-entry-head strong { font-size: 16px; }
+.cv-dates { font-style: italic; font-size: 14px; white-space: nowrap; }
+.cv-body { padding-left: 1.2em; }
+.cv-small { font-size: 13px; }
+.cv-transfers > li { margin-bottom: 4px; }
+.cv-red, .cv-highlight { color: #e00; }
+.cv-pubs { list-style: none; padding-left: 0; margin: 2px 0 6px; }
+.cv-pubs li { display: grid; grid-template-columns: 3.2em 1fr; margin: 3px 0; }
+.cv-num { text-align: right; padding-right: 0.6em; }
+@media (max-width: 640px) {
+  .cv-page { padding-top: 80px; font-size: 14px; }
+  .cv-entry-head { flex-direction: column; gap: 0; }
+}

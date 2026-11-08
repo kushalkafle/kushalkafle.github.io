@@ -1,0 +1,21 @@
+{# Bio shown in the collapsible box under About. Numbers come from pubs.bib and interns.yml. #}
+{% set title = site.title.split(',')[0] %}
+<details class="bio">
+  <summary>Need a bio? Short and long versions you can copy</summary>
+  <div class="bio-block">
+    <div class="bio-head"><h4>Short bio</h4><button type="button" class="copy" data-copy="bio-short">Copy</button></div>
+    <textarea id="bio-short" class="bio-text" readonly rows="8" aria-label="bio short">
+Kushal Kafle is a research scientist working on vision and language, with a focus on multimodal large language models, vision-language representation learning, and evaluating what these models actually understand. He is a {{ title }} at Adobe Research, where his work has been transferred into Adobe products including Firefly, Lightroom, Premiere Pro, Adobe Express, and Adobe Stock. He received his Ph.D. in Imaging Science from Rochester Institute of Technology.</textarea>
+  </div>
+  <div class="bio-block">
+    <div class="bio-head"><h4>Long bio</h4><button type="button" class="copy" data-copy="bio-long">Copy</button></div>
+    <textarea id="bio-long" class="bio-text" readonly rows="8" aria-label="bio long">
+Kushal Kafle is a research scientist working at the intersection of computer vision and natural language processing. His current interests include multimodal large language models (vision-language models), vision-language representation learning, large-scale training with web-scale data, benchmarks and evaluations that probe what multimodal models actually understand, and building models that are robust and fair. His earlier work on visual question answering includes widely used datasets such as TDIUC, DVQA (which introduced question answering on charts), and TallyQA, along with studies of how vision-language models exploit statistical shortcuts and other biases. He is currently a {{ title }} at Adobe Research, where his work on image-text foundation models has been transferred into products including Firefly, Lightroom, Premiere Pro, Adobe Express, and Adobe Stock.
+
+He has published {{ peer_reviewed }} peer-reviewed papers in venues including CVPR, ICCV, ECCV, NeurIPS, ACL, AAAI, and WACV, and has mentored nearly {{ (intern_count / 5) | round(0, 'ceil') | int * 5 }} research interns at Adobe, most of them PhD students.
+
+He is an active member of the computer vision and machine learning research community. He has served as a Lead Area Chair for ICCV 2025 and CVPR 2026, an Area Chair for CVPR 2027 and WACV 2024-2026, and a Senior Program Committee member for AAAI 2027. He has reviewed over 100 papers for conferences and journals including CVPR, ICCV, ECCV, NeurIPS, ICML, ICLR, ACL, EMNLP, and IEEE TPAMI, and has received Outstanding Reviewer awards at CVPR (2018-2021), NeurIPS 2021, and ECCV 2026. He co-organized the Shortcomings in Vision and Language (SiVL) workshops at ECCV 2018 and NAACL 2019 and the DIRA workshop at ECCV 2022, and served as an Associate Editor for a Frontiers special topic on challenges in vision and language research.
+
+He received his Ph.D. in Imaging Science from Rochester Institute of Technology in 2020, advised by Christopher Kanan.</textarea>
+  </div>
+</details>

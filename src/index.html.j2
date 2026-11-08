@@ -1,14 +1,8 @@
 {# Home page. Text lives here; data comes from pubs.bib and src/*.yml. #}
 {% extends "_base.html.j2" %}
-{% from "_macros.html.j2" import authors, links, meta, card, entry, by_year, icon %}
+{% from "_macros.html.j2" import authors, links, meta, card, entry, by_year, icon, main_nav %}
 {% block nav %}
-      <li><a href="#about">About</a></li>
-      <li><a href="#news">News</a></li>
-      <li><a href="#transfers">Tech Transfers</a></li>
-      <li><a href="#research">Research</a></li>
-      <li><a href="#talks">Talks</a></li>
-      <li><a href="#interns">Mentoring</a></li>
-      <li><a href="#misc">Misc</a></li>
+{{ main_nav(root) }}
 {% endblock %}
 {% block content %}
 <header class="hero" id="top">
@@ -18,8 +12,8 @@
       ('linkedin', 'LinkedIn', 'https://www.linkedin.com/in/kushalkafle'),
       ('scholar', 'Google Scholar', 'https://scholar.google.com/citations?user=M_iwxCQAAAAJ'),
       ('github', 'GitHub', 'https://github.com/kushalkafle'),
-      ('cv', 'CV', 'data/KushalKafle_CV.pdf')] %}
-    <a href="{{ url }}" target="_blank" rel="noopener" title="{{ label }}" aria-label="{{ label }}">{{ icon(name, root) }}</a>
+      ('cv', 'CV', 'cv/')] %}
+    <a href="{{ url }}"{% if url.startswith('http') %} target="_blank" rel="noopener"{% endif %} title="{{ label }}" aria-label="{{ label }}">{{ icon(name, root) }}</a>
     {% endfor %}
   </div>
   <p class="role">{{ site.title | replace(', ', '<br>') | safe }}</p>
@@ -31,26 +25,31 @@
     <div>
       <h2>About Me</h2>
       <p>
-        I am a {{ site.title.split(',')[0] }} at <a href="https://research.adobe.com/" target="_blank" rel="noopener">Adobe Research</a>,
-        where I lead the development of Adobe's vision-language foundation models across the full lifecycle:
-        data, training infrastructure, new algorithms, and product transfer. Our embedding models power features in
+        I am a researcher working on vision and language. I work primarily on multimodal embedding / representation
+        learning models and multimodal LLMs / vision-language models (VLMs). My goal is to build models that work well,
+        understand how they learn from their data, and make sure they are learning the right things rather than
+        statistical shortcuts and other biases.
+      </p>
+      <p>
+        At <a href="https://research.adobe.com/" target="_blank" rel="noopener">Adobe Research</a>, I lead the development of our vision-language foundation models across the full lifecycle: data,
+        training infrastructure, new algorithms, and product transfer. Our image-text embedding models power
+        features in
         <a href="https://firefly.adobe.com/" target="_blank" rel="noopener">Firefly</a>,
         <a href="https://lightroom.adobe.com/" target="_blank" rel="noopener">Lightroom</a>,
         <a href="https://helpx.adobe.com/premiere-pro/using/media-intelligence-and-search-panel.html" target="_blank" rel="noopener">Premiere Pro</a>,
         <a href="https://express.adobe.com/" target="_blank" rel="noopener">Adobe Express</a>, and
         <a href="https://stock.adobe.com/" target="_blank" rel="noopener">Adobe Stock</a>
-        (see <a href="#transfers">Tech Transfers</a>), and in the last few years we have also been building multimodal
-        LLMs / vision-language models (VLMs).
-      </p>
-      <p>
-        My research interests include representation learning, benchmarks and evaluations that probe what these
-        models actually understand, and building models that are robust, fair, and right for the right reasons.
+        (see <a href="#transfers">Tech Transfers</a>).
       </p>
       <p>
         I received my Ph.D. from the <a href="https://www.rit.edu/science/chester-f-carlson-center-imaging-science" target="_blank" rel="noopener">Chester F. Carlson Center for Imaging Science</a>
         at Rochester Institute of Technology, advised by <a href="https://chriskanan.com" target="_blank" rel="noopener">Christopher Kanan</a>,
         where I worked on visual question answering and language-grounded visual understanding.
       </p>
+      <p>
+        I am always happy to talk about research collaborations, invited talks, and internships, so feel free to reach out.
+      </p>
+      {% include "_bio.html.j2" %}
     </div>
     <img class="portrait" src="images/kushal.jpg" alt="Kushal Kafle">
   </div>
@@ -99,8 +98,10 @@
     <h2>Tech Transfers</h2>
     <p class="muted">
       I lead Adobe's vision-language foundation model efforts: image-text embedding models and, in the
-      last few years, multimodal LLMs / VLMs. The embedding models are already used throughout Adobe products;
-      the VLM work is moving from exploration toward product. Some of the shipped features:
+      last few years, multimodal LLMs / VLMs. Our in-house embedding model matches or outperforms the strongest
+      open-weight embedding models (such as Meta's Perception Encoder and SigLIP 2) on standard text-to-image retrieval
+      benchmarks, and by a wider margin on Adobe content. It is used throughout Adobe products, and the VLM work is
+      moving from exploration toward product. Some of the shipped features:
     </p>
     <div class="transfers">
       {% for t in transfers %}
@@ -164,10 +165,16 @@
 
 <section id="talks" class="section">
   <div class="wrap">
-    <h2>Talks</h2>
+    <h2>Talks and Service</h2>
+    <h3 class="sub">Talks</h3>
     <ul class="talks">
       {% for t in talks %}
       <li><span class="date">{{ t.date }}</span><span><strong>{{ t.title }}</strong><br><span class="venue">{{ t.venue | safe }}</span></span></li>
+      {% endfor %}
+    </ul>
+    <h3 class="sub">Service</h3>
+    <ul class="service">
+      {% for x in service %}<li><strong>{{ x.label }}:</strong> {{ x.text | safe }}</li>
       {% endfor %}
     </ul>
   </div>
