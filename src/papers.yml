@@ -9,11 +9,10 @@
 magid2026copyingdefenseprotectingimages:
   topic: [gen, bias]
 
-lu2026seeingwordscontrollingvisual:
+lu2026seeing:
   topic: [vlrep]
-
-wu2026retouchiqmllmagentsinstructionbased:
-  topic: [gen, mllm]
+  arxiv: "2602.21175"
+  pdf: https://openreview.net/pdf?id=yOEmEXmbV8
 
 just2025finalanswerimprovingvisual:
   topic: [mllm]
@@ -28,6 +27,11 @@ magid2024theyredoctorssynthesizingdiverse:
   topic: [bias, gen]
 
 qian2020needfullyconnectedoutput: {}
+
+Wu_2026_CVPR:
+  topic: [gen, mllm]
+  arxiv: "2602.17558"
+  pdf: https://openaccess.thecvf.com/content/CVPR2026/papers/Wu_RetouchIQ_MLLM_Agents_for_Instruction-Based_Image_Retouching_with_Generalist_Reward_CVPR_2026_paper.pdf
 
 fioresi2026controlling:
   topic: [vlrep]

@@ -66,6 +66,9 @@ Never edit `_site/` (generated, gitignored) and don't reintroduce a root `index.
     count as sources and can be copied.
   - An agent writing or reconstructing an entry needs the owner's explicit OK **for that specific
     entry**, marked with a `% TO CHECK: agent-written, source: <url>` comment.
+- **Paper counts:** "peer-reviewed papers" (bio, CV, resume) counts main-conference and journal papers only
+  (`PEER_REVIEWED` in `build.py`). Archival workshop papers are listed but not counted; non-archival workshop
+  papers are not listed.
 - **Publications:** in `src/papers.yml`, `topic` uses the tab ids in `build.py` `TOPICS` (`mllm`, `vlrep`,
   `gen`, `bias`, `vqa`). `selected: true` + `thumb` puts a paper in the Selected tab. Paper list entries have no
   stars or badges.

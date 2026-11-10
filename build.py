@@ -31,6 +31,7 @@ TOPICS = [
     ("bias", "Fairness & Robustness"),
     ("vqa", "Visual Question Answering"),
 ]
+PEER_REVIEWED = ("conference", "journal")  # counted as "peer-reviewed papers" (site bio, CV, resume); not workshops
 COPY = ["CNAME", "favicon.ico", "images", "data", "assets"]
 COPY_IGNORE = shutil.ignore_patterns("game", ".DS_Store")
 
@@ -367,7 +368,7 @@ def cv_model(out, pubs, interns):
     talks = [dict(date=t["date"], title=variant(t, "title", out), venue=variant(t, "venue", out))
              for t in load_yaml("talks.yml") or [] if shown(t, out)]
 
-    peer = [p for p in pubs if p["kind"] in ("conference", "journal", "workshop")]
+    peer = [p for p in pubs if p["kind"] in PEER_REVIEWED]
     if out == "resume":
         groups = [("Selected", "", [p for p in pubs if p["kind"] in ("conference", "journal") and p["selected"]])]
     else:
@@ -484,7 +485,7 @@ def build_site(pubs):
     page = env.get_template("index.html.j2").render(
         root="", tabs=tabs, news=news, transfers=transfers, pubs=pubs, talks=load_yaml("talks.yml") or [], intern_years=intern_years,
         service=load_yaml("service.yml") or [],
-        peer_reviewed=sum(p["kind"] in ("conference", "journal", "workshop") for p in pubs),
+        peer_reviewed=sum(p["kind"] in PEER_REVIEWED for p in pubs),
         intern_count=len({i["name"] for i in interns}), **common,
         pubs_updated=f"{pubs_updated():%B} {pubs_updated().day}, {pubs_updated():%Y}",
         counts={k: sum(p["kind"] == k for p in pubs) for k in ("conference", "journal", "workshop", "preprint")},
