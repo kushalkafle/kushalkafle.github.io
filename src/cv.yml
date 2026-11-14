@@ -23,8 +23,8 @@ interests: >-
 
 transfers-intro: >-
   I lead Adobe's vision-language foundation models: image-text embedding models and, recently, multimodal
-  LLMs / VLMs. Our embedding model matches or beats the best open-weight models (e.g., Perception Encoder,
-  SigLIP 2) on text-to-image retrieval benchmarks, by a wider margin on Adobe content, and since 2023 has
+  LLMs / VLMs. Our embedding model matches or beats the best open-weight models on text-to-image retrieval
+  benchmarks, by a wider margin on Adobe content, and since 2023 has
   powered features across Adobe products:
 
 experience:
@@ -50,8 +50,8 @@ experience:
           multimodal LLMs / VLMs.
       - hide: [cv]
         text: >-
-          Our embedding model matches or beats the best open-weight models (e.g., Perception Encoder,
-          SigLIP 2) on text-to-image retrieval benchmarks, by a wider margin on Adobe content.
+          Our embedding model matches or beats the best open-weight models on text-to-image retrieval
+          benchmarks, by a wider margin on Adobe content.
       # {interns} is replaced with the number of interns in interns.yml.
       - text: >-
           Mentored {interns} research interns (2020–2026), mostly PhD students; many internships led to

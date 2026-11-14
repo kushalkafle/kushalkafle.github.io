@@ -10,15 +10,16 @@
 - name: Adobe Express and Adobe Stock
   span: 2023 – present
   highlight: true
-  text-resume: Natural-language and image search for Express templates (+46% click-through) and Stock assets; "More like this" template similarity
+  text-resume: Natural-language and image search for Express templates (higher click-through, fewer no-result searches) and Stock assets; "More like this" template similarity
   image: images/transfers/stock-search.jpg
   text: >-
-    Natural-language and image search for templates in Adobe Express (+46% click-through) and for
-    assets in Adobe Stock, plus "More like this" template similarity in Express. Search has since grown
+    Natural-language and image search for templates in Adobe Express (higher click-through and fewer
+    no-result searches) and for assets in Adobe Stock, plus "More like this" template similarity in Express. Search has since grown
     to multilingual, behavior-tuned, and steerable, and now runs on a new generation of our foundation model.
   links:
     - [Adobe Express, https://express.adobe.com/]
     - [Adobe Stock, https://stock.adobe.com/]
+    - [Paper (Express search), https://arxiv.org/abs/2408.14698]
 
 - name: Adobe Lightroom
   span: 2025 – present
